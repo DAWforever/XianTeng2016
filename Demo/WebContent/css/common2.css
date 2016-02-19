@@ -1,0 +1,89 @@
+@charset "utf-8";
+/* CSS Document */
+.header{color:#333;}
+.header a{color:#333;}
+.header .dropdown-toggle .caret{border-top-color: #333;border-bottom-color: #333;}
+.footer a,.footer{color:#796F6F;}
+.footer hr{	margin-bottom:6px;}
+.footer ul{	list-style:none;margin-right:20px;}
+.footer ul li{float:left;margin-right:10px;}
+.renren-login-small{background:url(../img/renren_login_133_28.png) no-repeat;display:block;width:133px;height:28px;}
+.renren-login-medium{background:url(../img/renren_login_195_40.png) no-repeat;display:block;width:195px;height:40px;}
+.weibo-login-large{background:url(../img/weibo_login_200_48.png) no-repeat;display:block;width:200px;height:48px;}
+.douban-login-large{background:url(../img/douban_login_168_32.png) no-repeat;display:block;width:168px;height:32px;}
+.weibo-login-comingsoon-small{background:url(../img/weibo_login_comingsoon_126_24.png) no-repeat;display:block;width:126px;height:24px;}
+.weibo-login-comingsoon-medium{background:url(../img/weibo_login_comingsoon_173_32.png) no-repeat;display:block;width:173px;height:32px;}
+.weibo-login-comingsoon-large{background:url(../img/weibo_login_comingsoon_200_48.png) no-repeat;display:block;width:200px;height:48px;}
+.douban-login-comingsoon-small{background:url(../img/douban_login_comingsoon_120_24.png) no-repeat;display:block;width:120px;height:24px;}
+.douban-login-comingsoon-large{background:url(../img/douban_login_comingsoon_168_32.png) no-repeat;display:block;width:168px;height:32px;}
+
+.left-bordered{border-left:1px solid;}
+.right-bordered{border-right:1px solid;}
+.border-gray{border-color:#CCC;}
+
+.mordal-wide{width:600px;}
+.mordal-narrow{width:450px;}
+
+.margin-top-10{margin-top:10px;}
+.margin-top-15{margin-top:15px;}
+.margin-top-20{margin-top:20px;}
+.margin-top-30{margin-top:30px;}
+
+.text-captcha{width:100px;}
+.text-gray{color:#888;}
+.signup-column{padding-left:20px;}
+
+.head-box-medium{width:50px;}
+
+.input-narrow{width:80px;}
+
+.pagination-flow{border:1px solid #CCC;padding:5px 3px;margin-top:20px;text-align:center;}
+.main-stage{
+	min-height:550px;
+}
+.sosea-icon-small{
+display: inline-block;
+width: 14px;
+height: 14px;
+margin-top: 1px;
+line-height: 14px;
+vertical-align: text-top;
+background-repeat: no-repeat;
+}
+.sosea-icon-small-settings{
+	background-image: url("../img/settings_small.png");
+}
+.sosea-icon-small-lab{
+	background-image: url("../img/lab_small.png");
+}
+.sosea-icon-small-help{
+	background-image: url("../img/help_small.png");
+}
+
+section{padding : 40px}
+#spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -100px 0 0 -100px;
+	height: 200px;
+	width: 200px;
+	text-indent: 250px;
+	white-space: nowrap;
+	overflow: hidden;
+	-webkit-mask-image: url(../../img/spinner.png);
+	background-color: #000;
+	-webkit-animation-name: spinnerRotate;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes spinnerRotate {
+	from {
+		-webkit-transform:rotate(0deg);
+	}
+	to {
+		-webkit-transform:rotate(360deg);
+	}
+}

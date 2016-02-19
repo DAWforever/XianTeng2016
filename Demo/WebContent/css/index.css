@@ -1,0 +1,6 @@
+@charset "utf-8";
+/* CSS Document */
+.logo{margin:80px 200px 0px 38%;}
+.search-block{width:60%;margin:40px 200px 0px 25%;}
+.search-form input[type="text"]{width:70%;height:35px;font-size:20px;}
+.search-form input[type="submit"]{min-width:70px;width:10%;font-size:14px;padding-left:2%;margin-bottom: 5px;}
