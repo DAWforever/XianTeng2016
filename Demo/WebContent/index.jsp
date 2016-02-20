@@ -138,10 +138,10 @@
 						</h4>
 						<h4 class="v1_title">
 							<p>
-								共<a href="news_list" target="_blank">${count}</a>条信息 (良好<a
-									href="news_list" target="_blank">0</a>条，中性<a
+								共<a href="news_list?type=all" target="_blank">${count}&nbsp;</a>条信息 (良好<a
+									href="news_list?type=positive" target="_blank">${pos_count}&nbsp;</a>条，中性<a
 									href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条，风险信息<a
-									href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条)
+									href="news_list?type=negative" target="_blank">${neg_count}&nbsp;</a>条)
 							</p>
 							<a href="news_list.html" target="_blank">2-2.新闻媒体评价信息</a>
 						</h4>

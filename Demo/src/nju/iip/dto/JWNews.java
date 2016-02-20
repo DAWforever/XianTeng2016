@@ -9,7 +9,7 @@ public class JWNews {
 	// 来源
 	private String source;
 	// 正面还是负面
-	private int sentiment;
+	private String sentiment;
 	// 抓取时间
 	private String crawltime;
 	//标签
@@ -65,11 +65,11 @@ public class JWNews {
 		this.source = source;
 	}
 
-	public int getSentiment() {
+	public String getSentiment() {
 		return sentiment;
 	}
 
-	public void setSentiment(int sentiment) {
+	public void setSentiment(String sentiment) {
 		this.sentiment = sentiment;
 	}
 

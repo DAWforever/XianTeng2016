@@ -18,7 +18,7 @@ public class NewsDAO extends DAO{
 	private static final Logger logger = LoggerFactory.getLogger(NewsDAO.class);
 	
 	@SuppressWarnings("unchecked")
-	public List<JWNews> getNews(String tag) {
+	public List<JWNews> getAllNews(String tag) {
 		List<JWNews> list = new ArrayList<JWNews>();
 		try{
 			begin();
@@ -34,19 +34,39 @@ public class NewsDAO extends DAO{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<JWNews> getAllNews() {
+	public List<JWNews> getPosNews(String tag) {
 		List<JWNews> list = new ArrayList<JWNews>();
 		try{
 			begin();
-			Query query = getSession().createQuery("from JWNews j where j.sentiment=0");
-			list = query.list();
+			Query q = getSession().createQuery("from JWNews where tag=:tag and sentiment=:sentiment");
+			q.setString("tag", tag);
+			q.setString("sentiment", "良好信息");
+			list = q.list();
 			commit();
-		}catch (HibernateException e) {
+		}catch(Exception e) {
 			rollback();
-			logger.info("NewsDAO-->getAllNews",e);
+			logger.error("getPosNews failed!",e);
 		}
 		return list;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<JWNews> getNegNews(String tag) {
+		List<JWNews> list = new ArrayList<JWNews>();
+		try{
+			begin();
+			Query q = getSession().createQuery("from JWNews where tag=:tag and sentiment=:sentiment");
+			q.setString("tag", tag);
+			q.setString("sentiment", "风险信息");
+			list = q.list();
+			commit();
+		}catch(Exception e) {
+			rollback();
+			logger.error("getNegNews failed!",e);
+		}
+		return list;
+	}
+	
 	
 	public void updateSentiment(int flag,int id) {
 		try{
@@ -67,12 +87,19 @@ public class NewsDAO extends DAO{
 		updateSentiment(flag,news.getId());
 	}
 	
-	public static void main(String[] args) {
-		NewsDAO newsDAO = new NewsDAO();
-		List<JWNews> list = newsDAO.getAllNews();
-		for(JWNews news:list) {
-			newsDAO.tagSentiment(news);
+	public void delete() {
+		try{
+			begin();
+			Query query = getSession().createQuery("delete JWNews where tag is null");
+			query.executeUpdate();
+			commit();
+		}catch (HibernateException e) {
+			rollback();
+			logger.info("NewsDAO-->delete",e);
 		}
+	}
+	
+	public static void main(String[] args) {
 	}
 
 }

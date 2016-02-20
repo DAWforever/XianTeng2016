@@ -15,7 +15,7 @@
 		<property name="title" column="title" type="string" />
 		<property name="content" column="content" type="string" />
 		<property name="source" column="source" type="string" />
-		<property name="sentiment" column="sentiment" type="int" />
+		<property name="sentiment" column="sentiment" type="string" />
 		<property name="crawltime" column="crawltime" type="string" />
 		<property name="tag" column="tag" type="string" />
 	</class>
