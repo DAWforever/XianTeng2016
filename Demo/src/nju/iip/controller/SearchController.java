@@ -62,7 +62,6 @@ public class SearchController {
 		String unitName = (String) request.getSession().getAttribute("unitName");
 		JWNews temp = new JWNews();
 		for(JWNews news:list) {
-			logger.info("id="+news.getId());
 			if(id.equals(news.getId()+"")) {
 				temp = news;
 			}
