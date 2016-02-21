@@ -1,36 +1,31 @@
 package cn.edu.nju.iip.spider;
 
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import cn.edu.hfut.dmic.contentextractor.ContentExtractor;
 import cn.edu.hfut.dmic.contentextractor.News;
 import cn.edu.nju.iip.dao.NewsDAO;
 import cn.edu.nju.iip.model.JWNews;
-import cn.edu.nju.iip.model.Url;
 import cn.edu.nju.iip.util.CommonUtil;
 
 
-
+/**
+ * 360新闻搜索爬虫
+ * @author wangqiang
+ *
+ */
 public class SearchCrawler implements Runnable{
 	
 	private static final Logger logger = LoggerFactory.getLogger(SearchCrawler.class);
 	
-	private BlockingQueue<Url> UrlQueue;
 	
 	private static NewsDAO newsDAO = new NewsDAO();
 	
-	public SearchCrawler(BlockingQueue<Url> UrlQueue) {
-		this.UrlQueue = UrlQueue;
-	}
 	
 	public String getHTML(String url) {
 		String html = null;
@@ -92,8 +87,7 @@ public class SearchCrawler implements Runnable{
 	}
 	
 	public static void main(String[] args) {
-		BlockingQueue<Url> UrlQueue = new LinkedBlockingQueue<Url>();
-		SearchCrawler test = new SearchCrawler(UrlQueue);
+		SearchCrawler test = new SearchCrawler();
 		Thread thread = new Thread(test);
 		thread.start();
 	}
