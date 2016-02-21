@@ -1,15 +1,16 @@
-package nju.iip.dao;
+package cn.edu.nju.iip.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import nju.iip.dto.JWNews;
-import nju.iip.util.CommonUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import cn.edu.nju.iip.model.JWNews;
+import cn.edu.nju.iip.util.CommonUtil;
 
 
 @Service

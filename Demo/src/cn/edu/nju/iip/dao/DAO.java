@@ -1,4 +1,4 @@
-package nju.iip.dao;
+package cn.edu.nju.iip.dao;
 
 
 import org.hibernate.HibernateException;

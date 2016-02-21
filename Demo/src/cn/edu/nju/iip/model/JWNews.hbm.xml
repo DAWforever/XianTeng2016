@@ -4,9 +4,9 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="nju.iip.dto.JWNews" table="JWNEWS">
+	<class name="cn.edu.nju.iip.model.JWNews" table="JWNEWS">
 		<meta attribute="class-description">
-			This class contains the nju.iip.model.JWNews detail.
+			This class contains the cn.edu.nju.iip.model.JWNews detail.
 		</meta>
 		<id name="id" type="int" column="id">
 			<generator class="native" />

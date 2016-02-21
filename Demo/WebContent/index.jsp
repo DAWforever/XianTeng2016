@@ -129,12 +129,9 @@
 						<h4 class="v1_title">
 							<p>
 
-								共<a href="charge_list.html" target="_blank">0&nbsp;</a>条信息 (良好<a
-									href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条，中性<a
-									href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条，风险信息<a
-									href="charge_list.html" target="_blank">0&nbsp;</a>条)
+								共<a href="judge_list" target="_blank"> ${judge_doc_count}&nbsp;</a>条信息
 							</p>
-							<a href="charge_list.html" target="_blank">2-1.人民法院的判决信息</a>
+							<a href="javascript:void(0);" onclick="return false;">2-1.人民法院的判决信息</a>
 						</h4>
 						<h4 class="v1_title">
 							<p>

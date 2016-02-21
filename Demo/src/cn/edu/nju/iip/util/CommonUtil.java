@@ -1,4 +1,4 @@
-package nju.iip.util;
+package cn.edu.nju.iip.util;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

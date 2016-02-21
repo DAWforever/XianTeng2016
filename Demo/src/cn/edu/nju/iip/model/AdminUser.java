@@ -1,4 +1,4 @@
-package nju.iip.dto;
+package cn.edu.nju.iip.model;
 
 /**
  * 管理员用户

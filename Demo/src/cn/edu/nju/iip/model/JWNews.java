@@ -1,4 +1,4 @@
-package nju.iip.dto;
+package cn.edu.nju.iip.model;
 
 public class JWNews {
 

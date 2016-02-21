@@ -28,7 +28,8 @@
 		<property name="c3p0.max_statement">5</property> <!--可以被缓存的PreparedStatement的最大数目 -->
 
 		<!-- List of XML mapping files -->
-		<mapping resource="nju/iip/dto/JWNews.hbm.xml" />
+	    <mapping resource="cn/edu/nju/iip/model/JWNews.hbm.xml" />
+		<mapping resource="cn/edu/nju/iip/model/JudgeDoc.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>

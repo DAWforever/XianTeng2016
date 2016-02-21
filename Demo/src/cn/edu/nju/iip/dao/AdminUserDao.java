@@ -1,10 +1,11 @@
-package nju.iip.dao;
+package cn.edu.nju.iip.dao;
 
-import nju.iip.dto.AdminUser;
 import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import cn.edu.nju.iip.model.AdminUser;
 
 @Service
 public class AdminUserDao extends DAO{

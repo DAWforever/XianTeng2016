@@ -1,11 +1,8 @@
-package nju.iip.controller;
+package cn.edu.nju.iip.controller;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
-import nju.iip.dao.NewsDAO;
-import nju.iip.dto.JWNews;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.edu.nju.iip.dao.JudgeDocDAO;
+import cn.edu.nju.iip.dao.NewsDAO;
+import cn.edu.nju.iip.model.JWNews;
+import cn.edu.nju.iip.model.JudgeDoc;
+
 @Controller
 public class SearchController {
 	
@@ -21,6 +23,9 @@ public class SearchController {
 	
 	@Autowired
 	private NewsDAO newsDAO;
+	
+	@Autowired
+	private JudgeDocDAO judgeDocDAO;
 	
 	/**
 	 * 根据type 选择特定搜索
@@ -36,6 +41,8 @@ public class SearchController {
 		List<JWNews> pos_list = newsDAO.getPosNews(query);
 		List<JWNews> neg_list = newsDAO.getNegNews(query);
 		List<JWNews> list = newsDAO.getAllNews(query);
+		List<JudgeDoc> judge_list = judgeDocDAO.getJudgeDoc(query);
+		request.getSession().setAttribute("judge_list", judge_list);
 		request.getSession().setAttribute("news", list);
 		request.getSession().setAttribute("pos_news", pos_list);
 		request.getSession().setAttribute("neg_news", neg_list);
@@ -43,6 +50,7 @@ public class SearchController {
 		model.addAttribute("count", list.size());
 		model.addAttribute("pos_count", pos_list.size());
 		model.addAttribute("neg_count", neg_list.size());
+		model.addAttribute("judge_doc_count", judge_list.size());
 		model.addAttribute("unitName", query);
 		return "index.jsp";
 	}
@@ -68,6 +76,37 @@ public class SearchController {
 		String unitName = (String) request.getSession().getAttribute("unitName");
 		model.addAttribute("unitName",unitName);
 		return "news_list.jsp";
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/judge_list")
+	public String getJudgeList(Model model,HttpServletRequest request) {
+		logger.info("getJudgeList called");
+		List<JudgeDoc> list = (List<JudgeDoc>) request.getSession().getAttribute("judge_list");
+		logger.info("list isze="+list.size());
+		String unitName = (String) request.getSession().getAttribute("unitName");
+		model.addAttribute("unitName",unitName);
+		model.addAttribute("list",list);
+		return "judge_list.jsp";
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/get_doc")
+	public String getDoc(String id,Model model,HttpServletRequest request) {
+		logger.info("getDoc called");
+		logger.info("id="+id);
+		List<JudgeDoc> list = (List<JudgeDoc>) request.getSession().getAttribute("judge_list");
+		String unitName = (String) request.getSession().getAttribute("unitName");
+		JudgeDoc temp = new JudgeDoc();
+		for(JudgeDoc doc:list) {
+			if(id.equals(doc.getId()+"")) {
+				temp = doc;
+			}
+		}
+		model.addAttribute("doc",temp);
+		model.addAttribute("unitName",unitName);
+		return "judge.jsp";
 	}
 	
 	@SuppressWarnings("unchecked")
