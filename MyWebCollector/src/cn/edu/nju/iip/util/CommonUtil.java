@@ -45,6 +45,16 @@ public class CommonUtil {
 		return url_list;
 	}
 	
+	/**
+	 * 抽取待爬取url的主域名
+	 * @return
+	 */
+	public static String extractSourceUrl() {
+		String source_url = null;
+		
+		return source_url;
+	}
+	
 	public static List<String> importUnitName() {
 		Workbook workbook = null;
 		List<String> list = new ArrayList<String>();

@@ -69,12 +69,12 @@ public class NewsDAO extends DAO{
 	}
 	
 	
-	public void updateSentiment(int flag,int id) {
+	public void updateSentiment(String sentiment,int id) {
 		try{
 			begin();
-			Query query = getSession().createQuery("update JWNews set sentiment=:flag where id=:id");
+			Query query = getSession().createQuery("update JWNews set sentiment=:sentiment where id=:id");
 			query.setInteger("id",id);
-			query.setInteger("flag",flag);
+			query.setString("sentiment",sentiment);
 			query.executeUpdate();
 			commit();
 		}catch (HibernateException e) {
@@ -84,8 +84,8 @@ public class NewsDAO extends DAO{
 	}
 	
 	public void tagSentiment(JWNews news) {
-		int flag = CommonUtil.getSentiment(news.getContent());
-		updateSentiment(flag,news.getId());
+		String sentiment = CommonUtil.getSentiment(news.getContent());
+		updateSentiment(sentiment,news.getId());
 	}
 	
 	public void delete() {

@@ -24,22 +24,22 @@ public class CommonUtil {
 	 * @param content
 	 * @return flag (1表示正面新闻 2表示负面新闻)
 	 */
-	public static int getSentiment(String content) {
-		int flag = 0;
+	public static String getSentiment(String content) {
+		String sentiment = null;
 		try {
 			JSONObject object = TextSentiment.TextSentimentAPI(content);
 			logger.info(object.toString());
 			double positive = object.getDouble("positive");
 			double negative = object.getDouble("negative");
-			if (positive > negative) {
-				flag = 1;
+			if (positive >= negative) {
+				sentiment = "良好信息";
 			} else {
-				flag = 2;
+				sentiment = "风险信息";
 			}
 		} catch (Exception e) {
 			logger.error("getSentiment error", e);
 		}
-		return flag;
+		return sentiment;
 	}
 
 	public static void SentimentApiExample(String text) {
