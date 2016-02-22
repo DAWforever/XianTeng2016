@@ -42,7 +42,7 @@ public class CommonUtil {
 		return sentiment;
 	}
 
-	public static void SentimentApiExample(String text) {
+	public static String SentimentApiExample(String text) {
 		String url = "http://api.bosonnlp.com/sentiment/analysis?news";
 		try{
 			String body = new JSONArray(new String[]{text}).toString();
@@ -54,12 +54,11 @@ public class CommonUtil {
 			post.setEntity(entity);
 			HttpResponse response = httpclient.execute(post);
 			String result = EntityUtils.toString(response.getEntity());
-			logger.info(result);
-
+			return result;
 		} catch (Exception e) {
 			logger.error("SentimentApiExample error", e);
 		}
-	
+		return null;
 	}
 
 	public static void main(String[] args) {
