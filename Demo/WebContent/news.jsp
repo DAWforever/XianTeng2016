@@ -21,9 +21,9 @@
 				<div class="company_dl">
 					<dl>
 						<dt>档案编号：</dt>
-						<dd>MT-371-0164-6585&nbsp;</dd>
+						<dd>${news.id}&nbsp;</dd>
 						<dt>档案性质：</dt>
-						<dd>良好信息</dd>
+						<dd>${news.sentiment}</dd>
 						<dt>发布媒体：</dt>
 						<dd>${news.source}</dd>
 						<dt>发布时间：</dt>

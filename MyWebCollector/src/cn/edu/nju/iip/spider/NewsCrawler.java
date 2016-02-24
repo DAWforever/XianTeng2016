@@ -116,7 +116,7 @@ public class NewsCrawler extends BreadthCrawler {
 				crawler.setThreads(50);
 				crawler.setTopN(50000);
 				crawler.setResumable(true);
-				crawler.start(2);
+				crawler.start(3);
 				File file = new File("crawl");
 				CommonUtil.deleteFile(file);
 				bf.saveBloomFilter();

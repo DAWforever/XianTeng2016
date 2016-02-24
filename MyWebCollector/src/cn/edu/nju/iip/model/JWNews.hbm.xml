@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="cn.edu.nju.iip.model.JWNews" table="JWNEWS">
+	<class name="cn.edu.nju.iip.model.JWNews" table="JW_RAW_NEWS">
 		<meta attribute="class-description">
 			This class contains the nju.iip.model.JWNews detail.
 		</meta>
