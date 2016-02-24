@@ -51,6 +51,11 @@
 			$(".modal").modal('hide');
 			
 		});
+		
+		$("input[type=image]").click(function(){
+				var tr = $(this).parent().parent();
+				$(tr).remove();
+		});
 
 	});
 </script>
@@ -64,7 +69,7 @@
 			<h1 class="site_title">
 				<a href="index.html">数据采集平台管理</a>
 			</h1>
-			<h2 class="section_title">Dashboard</h2>
+			<h2 class="section_title">Welcome</h2>
 			<div class="btn_view_site">
 				<ul><li class="icn_jump_back"><a href="login-1.jsp">退出</a></li></ul>
 			</div>
@@ -74,10 +79,10 @@
 
 
 	<aside id="sidebar" class="column">
-		<h3>数据源</h3>
+		<h3>数据源配置</h3>
 		<ul class="toggle">
-			<li class="icn_weiboo"><a href="#">微博</a></li>
-			<li class="icn_weixin"><a href="#">微信</a></li>
+			<li class="icn_weiboo"><a href="#">新闻</a></li>
+			<li class="icn_weixin"><a href="#">法院</a></li>
 			<li class="icn_else"><a href="#">其他</a></li>
 		</ul>
 		<h3>用户</h3>
@@ -100,11 +105,11 @@
 
 		<article class="module width_3_quarter">
 			<header>
-				<h3>微博数据源</h3>
+				<h3>新闻数据源</h3>
 			</header>
 			<div class="module_content">
 				<article class="stats_graph">
-					<img src="images/weibo.png" height="100" alt="" />
+					<h1>新闻类网站</h1>
 				</article>
 
 				<article class="stats_overview">
@@ -113,8 +118,8 @@
 						<p class="overview_count">453</p>
 					</div>
 					<div class="overview_previous">
-						<p class="overview_day">总微博数</p>
-						<p class="overview_count">5,676</p>
+						<p class="overview_day">总数</p>
+						<p class="overview_count">50,676</p>
 					</div>
 				</article>
 				<div class="clear"></div>
@@ -124,7 +129,7 @@
 
 		<article class="module width_3_quarter">
 			<header>
-				<h3 class="tabs_involved">待爬微博帐号管理</h3>
+				<h3 class="tabs_involved">待爬新闻URL管理</h3>
 			</header>
 
 			<div class="tab_container">
@@ -133,7 +138,7 @@
 						<thead>
 							<tr>
 								<th></th>
-								<th>微博帐号名</th>
+								<th>网站名</th>
 								<th>URL</th>
 								<th>添加时间</th>
 								<th>操作</th>
@@ -190,7 +195,7 @@
 			<!-- end of .tab_container -->
 			<div style="margin: 10px 0 10px 80%;">
 				<button type="button" class="btn btn-primary" id="weibo_add"
-					data-toggle="modal" data-target="#myModal">新增帐号</button>
+					data-toggle="modal" data-target="#myModal">新增URL</button>
 			</div>
 		</article>
 		<!-- end of content manager article -->
@@ -201,11 +206,11 @@
 
 		<article class="module width_3_quarter">
 			<header>
-				<h3>微信数据源</h3>
+				<h3>法院数据源</h3>
 			</header>
 			<div class="module_content">
 				<article class="stats_graph">
-					<img src="images/wechat.jpg" height="100" alt="" />
+					<h1>法院类网站</h1>
 				</article>
 				<article class="stats_overview">
 					<div class="overview_today">
@@ -213,7 +218,7 @@
 						<p class="overview_count">1,876</p>
 					</div>
 					<div class="overview_previous">
-						<p class="overview_day">总微信文章数</p>
+						<p class="overview_day">总数</p>
 						<p class="overview_count">20,163</p>
 					</div>
 				</article>
@@ -224,7 +229,7 @@
 
 		<article class="module width_3_quarter">
 			<header>
-				<h3 class="tabs_involved">待爬微信帐号管理</h3>
+				<h3 class="tabs_involved">待爬法院URL管理</h3>
 			</header>
 
 			<div class="tab_container">
@@ -233,7 +238,7 @@
 						<thead>
 							<tr>
 								<th></th>
-								<th>微信帐号名</th>
+								<th>网站名</th>
 								<th>URL</th>
 								<th>添加时间</th>
 								<th>操作</th>
