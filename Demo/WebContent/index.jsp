@@ -100,39 +100,47 @@
 						<h3 class="h3ttl">1.政府监管信息</h3>
 						<h4 class="v1_title">
 							<p>
+								共<a href="biaozhang.html" target="_blank">1&nbsp;</a>条信息
+							</p>
+							<a href="javascript:void(0);" onclick="return false;">1-1.通报表彰信息</a>
+						</h4>
+						<h4 class="v1_title">
+							<p>
 								共<a href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条信息
-								(合格<a href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条，风险信息<a
-									href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条)
 							</p>
-							<a href="javascript:void(0);" onclick="return false;">1-1.质量检查信息</a>
+							<a href="javascript:void(0);" onclick="return false;">1-2.行政处罚记录信息</a>
 						</h4>
 						<h4 class="v1_title">
 							<p>
-
-								共<a href="javascript:void(0)" target="_blank">0&nbsp;</a>条信息 (良好<a
-									href="javascript:void(0)" target="_blank">0&nbsp;</a>条，中性<a
-									href="javascript:void(0)" target="_blank">0&nbsp;</a>条，风险信息<a
-									href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条)
+								共<a href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条信息
 							</p>
-							<a href="javascript:void(0)" target="_blank">1-2.行政许可资质</a>
+							<a href="javascript:void(0);" onclick="return false;">1-3.通报批评记录信息</a>
 						</h4>
 						<h4 class="v1_title">
 							<p>
-								共<a href="javascript:void(0)" target="_blank">0&nbsp;</a>条信息 (良好<a
-									href="javascript:void(0)" target="_blank">0&nbsp;</a>条，中性<a
-									href="javascript:void(0)" target="_blank">0&nbsp;</a>条，风险信息<a
-									href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条)
+								共<a href="huojiang.html" target="_blank">1&nbsp;</a>条信息
 							</p>
-							<a href="javascript:void(0)" target="_blank">1-3.行政奖罚信息</a>
+							<a href="javascript:void(0);" onclick="return false;">1-4.获奖情况信息</a>
+						</h4>
+						<h4 class="v1_title">
+							<p>
+								共<a href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条信息
+							</p>
+							<a href="javascript:void(0);" onclick="return false;">1-5.违法犯罪行为记录信息</a>
+						</h4>
+						<h4 class="v1_title">
+							<p>
+								共<a href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条信息
+							</p>
+							<a href="javascript:void(0);" onclick="return false;">1-6.安全生产监管记录信息</a>
+						</h4>
+						<h4 class="v1_title">
+							<p>
+								共<a href="judge_list" target="_blank">${judge_doc_count}&nbsp;</a>条信息
+							</p>
+							<a href="javascript:void(0);" onclick="return false;">1-7.人民法院的判决信息</a>
 						</h4>
 						<h3 class="h3ttl">2.互联网相关信息</h3>
-						<h4 class="v1_title">
-							<p>
-
-								共<a href="judge_list" target="_blank"> ${judge_doc_count}&nbsp;</a>条信息
-							</p>
-							<a href="javascript:void(0);" onclick="return false;">2-1.人民法院的判决信息</a>
-						</h4>
 						<h4 class="v1_title">
 							<p>
 								共<a href="news_list?type=all" target="_blank">${count}&nbsp;</a>条信息 (良好<a
@@ -140,7 +148,7 @@
 									href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条，风险信息<a
 									href="news_list?type=negative" target="_blank">${neg_count}&nbsp;</a>条)
 							</p>
-							<a href="news_list.html" target="_blank">2-2.新闻媒体评价信息</a>
+							<a href="news_list.html" target="_blank">2-1.新闻媒体评价信息</a>
 						</h4>
 						<h4 class="v1_title">
 							<p>
@@ -149,7 +157,7 @@
 									href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条，风险信息<a
 									href="javascript:void(0);" onclick="return false;">0&nbsp;</a>条)
 							</p>
-							<a href="xinxiang.html" target="_blank">2-3.重庆市政府信箱相关信息</a>
+							<a href="xinxiang.html" target="_blank">2-2.重庆市政府信箱相关信息</a>
 						</h4>
 						<h3 class="h3ttl">3. 重庆交通APP评价信息</h3>
 						<h4 class="v1_title" id="tradeLendingh4"></h4>

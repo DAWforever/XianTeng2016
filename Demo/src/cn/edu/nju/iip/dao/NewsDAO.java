@@ -41,7 +41,7 @@ public class NewsDAO extends DAO{
 			begin();
 			Query q = getSession().createQuery("from JWNews where tag=:tag and sentiment=:sentiment");
 			q.setString("tag", tag);
-			q.setString("sentiment", "良好信息");
+			q.setString("sentiment", "1");
 			list = q.list();
 			commit();
 		}catch(Exception e) {
@@ -58,7 +58,7 @@ public class NewsDAO extends DAO{
 			begin();
 			Query q = getSession().createQuery("from JWNews where tag=:tag and sentiment=:sentiment");
 			q.setString("tag", tag);
-			q.setString("sentiment", "风险信息");
+			q.setString("sentiment", "2");
 			list = q.list();
 			commit();
 		}catch(Exception e) {
