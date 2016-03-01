@@ -1,287 +1,93 @@
-2016-02-20 16:30:08   INFO Version:37 -Hibernate Commons Annotations 3.2.0.Final
-2016-02-20 16:30:08   INFO Environment:603 -Hibernate 3.6.4.Final
-2016-02-20 16:30:08   INFO Environment:636 -hibernate.properties not found
-2016-02-20 16:30:08   INFO Environment:814 -Bytecode provider name : javassist
-2016-02-20 16:30:08   INFO Environment:695 -using JDK 1.4 java.sql.Timestamp handling
-2016-02-20 16:30:08   INFO Configuration:2156 -configuring from resource: /hibernate.cfg.xml
-2016-02-20 16:30:08   INFO Configuration:2175 -Configuration resource: /hibernate.cfg.xml
-2016-02-20 16:30:08   INFO Configuration:789 -Reading mappings from resource : nju/iip/dto/JWNews.hbm.xml
-2016-02-20 16:30:08   INFO Configuration:2297 -Configured SessionFactory: null
-2016-02-20 16:30:08   INFO HbmBinder:353 -Mapping class: nju.iip.dto.JWNews -> JWNEWS
-2016-02-20 16:30:08   INFO Configuration:1676 -Hibernate Validator not found: ignoring
-2016-02-20 16:30:08   INFO HibernateSearchEventListenerRegister:75 -Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
-2016-02-20 16:30:08   INFO ConnectionProviderFactory:173 -Initializing connection provider: org.hibernate.connection.C3P0ConnectionProvider
-2016-02-20 16:30:08   INFO C3P0ConnectionProvider:103 -C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://114.212.82.189/xianteng
-2016-02-20 16:30:08   INFO C3P0ConnectionProvider:104 -Connection properties: {user=root, password=****}
-2016-02-20 16:30:08   INFO C3P0ConnectionProvider:107 -autocommit mode: false
-2016-02-20 16:30:08   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_statement' and c3p0-style property 'c3p0.max_statement' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_statement' will be used and c3p0-style property 'c3p0.max_statement' will be ignored!
-2016-02-20 16:30:08   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.time_out' and c3p0-style property 'c3p0.time_out' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.time_out' will be used and c3p0-style property 'c3p0.time_out' will be ignored!
-2016-02-20 16:30:08   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.min_size' and c3p0-style property 'c3p0.min_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.min_size' will be used and c3p0-style property 'c3p0.min_size' will be ignored!
-2016-02-20 16:30:08   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_size' and c3p0-style property 'c3p0.max_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_size' will be used and c3p0-style property 'c3p0.max_size' will be ignored!
-2016-02-20 16:30:08   INFO MLog:80 -MLog clients using log4j logging.
-2016-02-20 16:30:09   INFO C3P0Registry:204 -Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
-2016-02-20 16:30:09   INFO AbstractPoolBackedDataSource:462 -Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@f6e76539 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@d7b3a84b [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge76h9e1yf52gbi7nmr|7ec23849, idleConnectionTestPeriod -> 0, initialPoolSize -> 2, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 5, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 2, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@7e07aaf6 [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yf52gbi7nmr|5262d3b6, jdbcUrl -> jdbc:mysql://114.212.82.189/xianteng, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yf52gbi7nmr|37d0df29, numHelperThreads -> 3 ]
-2016-02-20 16:30:10   INFO Dialect:135 -Using dialect: org.hibernate.dialect.MySQLDialect
-2016-02-20 16:30:10   INFO JdbcSupportLoader:108 -Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
-2016-02-20 16:30:10   INFO SettingsFactory:126 -Database ->
+2016-03-01 00:22:58   INFO Version:37 -Hibernate Commons Annotations 3.2.0.Final
+2016-03-01 00:22:58   INFO Environment:603 -Hibernate 3.6.4.Final
+2016-03-01 00:22:58   INFO Environment:636 -hibernate.properties not found
+2016-03-01 00:22:58   INFO Environment:814 -Bytecode provider name : javassist
+2016-03-01 00:22:58   INFO Environment:695 -using JDK 1.4 java.sql.Timestamp handling
+2016-03-01 00:22:58   INFO Configuration:2156 -configuring from resource: /hibernate.cfg.xml
+2016-03-01 00:22:58   INFO Configuration:2175 -Configuration resource: /hibernate.cfg.xml
+2016-03-01 00:22:58   INFO Configuration:789 -Reading mappings from resource : cn/edu/nju/iip/model/JWNews.hbm.xml
+2016-03-01 00:22:58   INFO Configuration:789 -Reading mappings from resource : cn/edu/nju/iip/model/JudgeDoc.hbm.xml
+2016-03-01 00:22:58   INFO Configuration:2297 -Configured SessionFactory: null
+2016-03-01 00:22:58   INFO HbmBinder:353 -Mapping class: cn.edu.nju.iip.model.JWNews -> JW_NEWS
+2016-03-01 00:22:58   INFO HbmBinder:353 -Mapping class: cn.edu.nju.iip.model.JudgeDoc -> JW_JUDGE_DOC
+2016-03-01 00:22:58   INFO Configuration:1676 -Hibernate Validator not found: ignoring
+2016-03-01 00:22:58   INFO HibernateSearchEventListenerRegister:75 -Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2016-03-01 00:22:58   INFO ConnectionProviderFactory:173 -Initializing connection provider: org.hibernate.connection.C3P0ConnectionProvider
+2016-03-01 00:22:58   INFO C3P0ConnectionProvider:103 -C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost/xianteng
+2016-03-01 00:22:58   INFO C3P0ConnectionProvider:104 -Connection properties: {user=root, password=****}
+2016-03-01 00:22:58   INFO C3P0ConnectionProvider:107 -autocommit mode: false
+2016-03-01 00:22:58   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_statement' and c3p0-style property 'c3p0.max_statement' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_statement' will be used and c3p0-style property 'c3p0.max_statement' will be ignored!
+2016-03-01 00:22:58   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.time_out' and c3p0-style property 'c3p0.time_out' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.time_out' will be used and c3p0-style property 'c3p0.time_out' will be ignored!
+2016-03-01 00:22:58   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.min_size' and c3p0-style property 'c3p0.min_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.min_size' will be used and c3p0-style property 'c3p0.min_size' will be ignored!
+2016-03-01 00:22:58   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_size' and c3p0-style property 'c3p0.max_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_size' will be used and c3p0-style property 'c3p0.max_size' will be ignored!
+2016-03-01 00:22:58   INFO MLog:80 -MLog clients using log4j logging.
+2016-03-01 00:22:59   INFO C3P0Registry:204 -Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
+2016-03-01 00:22:59   INFO AbstractPoolBackedDataSource:462 -Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@6707590f [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@aad0735a [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1bqon6k9fcpvqw6s6l09y|7a7fa68b, idleConnectionTestPeriod -> 0, initialPoolSize -> 2, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 5, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 2, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@45f13f6f [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> 1bqon6k9fcpvqw6s6l09y|71fcc032, jdbcUrl -> jdbc:mysql://localhost/xianteng, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1bqon6k9fcpvqw6s6l09y|6444e5b7, numHelperThreads -> 3 ]
+2016-03-01 00:22:59   INFO Dialect:135 -Using dialect: org.hibernate.dialect.MySQLDialect
+2016-03-01 00:22:59   INFO JdbcSupportLoader:108 -Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2016-03-01 00:22:59   INFO SettingsFactory:126 -Database ->
        name : MySQL
-    version : 5.6.28
+    version : 5.7.10-log
       major : 5
-      minor : 6
-2016-02-20 16:30:10   INFO SettingsFactory:132 -Driver ->
+      minor : 7
+2016-03-01 00:22:59   INFO SettingsFactory:132 -Driver ->
        name : MySQL Connector Java
     version : mysql-connector-java-5.1.38 ( Revision: fe541c166cec739c74cc727c5da96c1028b4834a )
       major : 5
       minor : 1
-2016-02-20 16:30:10   INFO TransactionFactoryFactory:62 -Using default transaction strategy (direct JDBC transactions)
-2016-02-20 16:30:10   INFO TransactionManagerLookupFactory:83 -No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
-2016-02-20 16:30:10   INFO SettingsFactory:179 -Automatic flush during beforeCompletion(): disabled
-2016-02-20 16:30:10   INFO SettingsFactory:183 -Automatic session close at end of transaction: disabled
-2016-02-20 16:30:10   INFO SettingsFactory:190 -JDBC batch size: 15
-2016-02-20 16:30:10   INFO SettingsFactory:193 -JDBC batch updates for versioned data: disabled
-2016-02-20 16:30:10   INFO SettingsFactory:198 -Scrollable result sets: enabled
-2016-02-20 16:30:10   INFO SettingsFactory:206 -JDBC3 getGeneratedKeys(): enabled
-2016-02-20 16:30:10   INFO SettingsFactory:214 -Connection release mode: auto
-2016-02-20 16:30:10   INFO SettingsFactory:238 -Maximum outer join fetch depth: 2
-2016-02-20 16:30:10   INFO SettingsFactory:241 -Default batch fetch size: 1
-2016-02-20 16:30:10   INFO SettingsFactory:245 -Generate SQL with comments: disabled
-2016-02-20 16:30:10   INFO SettingsFactory:249 -Order SQL updates by primary key: disabled
-2016-02-20 16:30:10   INFO SettingsFactory:253 -Order SQL inserts for batching: disabled
-2016-02-20 16:30:10   INFO SettingsFactory:431 -Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
-2016-02-20 16:30:10   INFO ASTQueryTranslatorFactory:47 -Using ASTQueryTranslatorFactory
-2016-02-20 16:30:10   INFO SettingsFactory:261 -Query language substitutions: {}
-2016-02-20 16:30:10   INFO SettingsFactory:266 -JPA-QL strict compliance: disabled
-2016-02-20 16:30:10   INFO SettingsFactory:271 -Second-level cache: enabled
-2016-02-20 16:30:10   INFO SettingsFactory:275 -Query cache: disabled
-2016-02-20 16:30:10   INFO SettingsFactory:406 -Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
-2016-02-20 16:30:10   INFO SettingsFactory:285 -Optimize cache for minimal puts: disabled
-2016-02-20 16:30:10   INFO SettingsFactory:294 -Structured second-level cache entries: disabled
-2016-02-20 16:30:10   INFO SettingsFactory:323 -Statistics: disabled
-2016-02-20 16:30:10   INFO SettingsFactory:327 -Deleted entity synthetic identifier rollback: disabled
-2016-02-20 16:30:10   INFO SettingsFactory:343 -Default entity-mode: pojo
-2016-02-20 16:30:10   INFO SettingsFactory:347 -Named query checking : enabled
-2016-02-20 16:30:10   INFO SettingsFactory:351 -Check Nullability in Core (should be disabled when Bean Validation is on): enabled
-2016-02-20 16:30:10   INFO SessionFactoryImpl:202 -building session factory
-2016-02-20 16:30:10   INFO BasicTypeRegistry:150 -Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@4b3788e1
-2016-02-20 16:30:10   INFO BasicTypeRegistry:150 -Type registration [clob] overrides previous : org.hibernate.type.ClobType@2afb925b
-2016-02-20 16:30:10   INFO BasicTypeRegistry:150 -Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@2afb925b
-2016-02-20 16:30:10   INFO BasicTypeRegistry:150 -Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@6a45aa68
-2016-02-20 16:30:10   INFO BasicTypeRegistry:150 -Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@3b6c85a
-2016-02-20 16:30:10   INFO BasicTypeRegistry:150 -Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@551b8e9d
-2016-02-20 16:30:10   INFO BasicTypeRegistry:150 -Type registration [blob] overrides previous : org.hibernate.type.BlobType@4301112
-2016-02-20 16:30:10   INFO BasicTypeRegistry:150 -Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@4301112
-2016-02-20 16:30:10   INFO BasicTypeRegistry:150 -Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@6fb0b6e3
-2016-02-20 16:30:10   INFO SessionFactoryObjectFactory:105 -Not binding factory to JNDI, no JNDI name configured
-2016-02-20 16:30:11   INFO NewsDAO:73 -list=468
-2016-02-20 16:30:13   INFO CommonUtil:31 -{"message":"api sdk throw exception! java.io.IOException: Server returned HTTP response code: 501 for URL: https://wenzhi.api.qcloud.com/v2/index.php","location":"com.qcloud.Common.Request:225","code":-2700}
-2016-02-20 16:30:13  ERROR CommonUtil:40 -getSentiment error
-org.json.JSONException: JSONObject["positive"] not found.
-	at org.json.JSONObject.get(JSONObject.java:422)
-	at org.json.JSONObject.getDouble(JSONObject.java:461)
-	at nju.iip.util.CommonUtil.getSentiment(CommonUtil.java:32)
-	at nju.iip.dao.NewsDAO.tagSentiment(NewsDAO.java:66)
-	at nju.iip.dao.NewsDAO.main(NewsDAO.java:75)
-2016-02-20 16:30:13   INFO CommonUtil:31 -{"message":"api sdk throw exception! java.io.IOException: Server returned HTTP response code: 501 for URL: https://wenzhi.api.qcloud.com/v2/index.php","location":"com.qcloud.Common.Request:225","code":-2700}
-2016-02-20 16:30:13  ERROR CommonUtil:40 -getSentiment error
-org.json.JSONException: JSONObject["positive"] not found.
-	at org.json.JSONObject.get(JSONObject.java:422)
-	at org.json.JSONObject.getDouble(JSONObject.java:461)
-	at nju.iip.util.CommonUtil.getSentiment(CommonUtil.java:32)
-	at nju.iip.dao.NewsDAO.tagSentiment(NewsDAO.java:66)
-	at nju.iip.dao.NewsDAO.main(NewsDAO.java:75)
-2016-02-20 16:30:14   INFO CommonUtil:31 -{"message":"api sdk throw exception! java.io.IOException: Server returned HTTP response code: 501 for URL: https://wenzhi.api.qcloud.com/v2/index.php","location":"com.qcloud.Common.Request:225","code":-2700}
-2016-02-20 16:30:14  ERROR CommonUtil:40 -getSentiment error
-org.json.JSONException: JSONObject["positive"] not found.
-	at org.json.JSONObject.get(JSONObject.java:422)
-	at org.json.JSONObject.getDouble(JSONObject.java:461)
-	at nju.iip.util.CommonUtil.getSentiment(CommonUtil.java:32)
-	at nju.iip.dao.NewsDAO.tagSentiment(NewsDAO.java:66)
-	at nju.iip.dao.NewsDAO.main(NewsDAO.java:75)
-2016-02-20 16:30:15   INFO CommonUtil:31 -{"message":"api sdk throw exception! java.io.IOException: Server returned HTTP response code: 501 for URL: https://wenzhi.api.qcloud.com/v2/index.php","location":"com.qcloud.Common.Request:225","code":-2700}
-2016-02-20 16:30:15  ERROR CommonUtil:40 -getSentiment error
-org.json.JSONException: JSONObject["positive"] not found.
-	at org.json.JSONObject.get(JSONObject.java:422)
-	at org.json.JSONObject.getDouble(JSONObject.java:461)
-	at nju.iip.util.CommonUtil.getSentiment(CommonUtil.java:32)
-	at nju.iip.dao.NewsDAO.tagSentiment(NewsDAO.java:66)
-	at nju.iip.dao.NewsDAO.main(NewsDAO.java:75)
-2016-02-20 16:30:16   INFO CommonUtil:31 -{"message":"","negative":0.38333332538605,"code":0,"positive":0.61666667461395}
-2016-02-20 16:30:16   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:17   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:18   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:19   INFO CommonUtil:31 -{"message":"","negative":0.077490329742432,"code":0,"positive":0.92250967025757}
-2016-02-20 16:30:20   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:21   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:22   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:23   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:24   INFO CommonUtil:31 -{"message":"","negative":0.18761144578457,"code":0,"positive":0.81238859891891}
-2016-02-20 16:30:24   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:25   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:26   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:27   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:27   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:28   INFO CommonUtil:31 -{"message":"","negative":0.4825125336647,"code":0,"positive":0.51748752593994}
-2016-02-20 16:30:29   INFO CommonUtil:31 -{"message":"","negative":0.26602911949158,"code":0,"positive":0.73397088050842}
-2016-02-20 16:30:30   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:30   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:31   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:32   INFO CommonUtil:31 -{"message":"","negative":0.39363703131676,"code":0,"positive":0.60636299848557}
-2016-02-20 16:30:33   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:33   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:34   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:35   INFO CommonUtil:31 -{"message":"","negative":0.37827038764954,"code":0,"positive":0.62172961235046}
-2016-02-20 16:30:36   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:37   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:38   INFO CommonUtil:31 -{"message":"","negative":0.3554819226265,"code":0,"positive":0.6445180773735}
-2016-02-20 16:30:38   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:39   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:40   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:40   INFO CommonUtil:31 -{"message":"","negative":0.26646849513054,"code":0,"positive":0.73353153467178}
-2016-02-20 16:30:41   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:42   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:43   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:43   INFO CommonUtil:31 -{"message":"","negative":0.32492491602898,"code":0,"positive":0.67507511377335}
-2016-02-20 16:30:44   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:44   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:45   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:46   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:46   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:47   INFO CommonUtil:31 -{"message":"","negative":0.28714579343796,"code":0,"positive":0.71285420656204}
-2016-02-20 16:30:48   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:49   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:49   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:50   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:50   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:51   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:52   INFO CommonUtil:31 -{"message":"","negative":0.26165717840195,"code":0,"positive":0.73834282159805}
-2016-02-20 16:30:53   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:53   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:54   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:55   INFO CommonUtil:31 -{"message":"","negative":0.82416343688965,"code":0,"positive":0.17583657801151}
-2016-02-20 16:30:55   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:56   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:57   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:57   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:58   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:59   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:30:59   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:31:00   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:31:01   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:31:01   INFO CommonUtil:31 -{"message":"","negative":0.66232991218567,"code":0,"positive":0.33767008781433}
-2016-02-20 16:31:02   INFO CommonUtil:31 -{"message":"","negative":0.37988591194153,"code":0,"positive":0.62011408805847}
-2016-02-20 16:31:03   INFO CommonUtil:31 -{"message":"","negative":0.46291488409042,"code":0,"positive":0.53708511590958}
-2016-02-20 16:31:03   INFO CommonUtil:31 -{"message":"","negative":0.40580108761787,"code":0,"positive":0.5941988825798}
-2016-02-20 16:31:04   INFO CommonUtil:31 -{"message":"","negative":0.63871741294861,"code":0,"positive":0.36128258705139}
-2016-02-20 16:31:05   INFO CommonUtil:31 -{"message":"","negative":0.46291488409042,"code":0,"positive":0.53708511590958}
-2016-02-20 16:31:05   INFO CommonUtil:31 -{"message":"","negative":0.40324500203133,"code":0,"positive":0.59675496816635}
-2016-02-20 16:31:06   INFO CommonUtil:31 -{"message":"","negative":0.39460963010788,"code":0,"positive":0.60539036989212}
-2016-02-20 16:31:07   INFO CommonUtil:31 -{"message":"","negative":0.28463128209114,"code":0,"positive":0.71536868810654}
-2016-02-20 16:31:08   INFO CommonUtil:31 -{"message":"","negative":0.32355886697769,"code":0,"positive":0.67644107341766}
-2016-02-20 16:31:09   INFO CommonUtil:31 -{"message":"","negative":0.37280732393265,"code":0,"positive":0.62719261646271}
-2016-02-20 16:31:10   INFO CommonUtil:31 -{"message":"","negative":0.6231107711792,"code":0,"positive":0.37688919901848}
-2016-02-20 16:31:11   INFO CommonUtil:31 -{"message":"","negative":0.46585723757744,"code":0,"positive":0.53414279222488}
-2016-02-20 16:31:11   INFO CommonUtil:31 -{"message":"","negative":0.52853220701218,"code":0,"positive":0.47146779298782}
-2016-02-20 16:31:12   INFO CommonUtil:31 -{"message":"","negative":0.56452089548111,"code":0,"positive":0.43547910451889}
-2016-02-20 16:31:13   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:31:13   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:31:14   INFO CommonUtil:31 -{"message":"","negative":0.47360029816628,"code":0,"positive":0.52639973163605}
-2016-02-20 16:31:15   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:31:15   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:31:16   INFO CommonUtil:31 -{"message":"","negative":0.33008137345314,"code":0,"positive":0.66991859674454}
-2016-02-20 16:31:17   INFO CommonUtil:31 -{"message":"","negative":0.53849405050278,"code":0,"positive":0.4615059196949}
-2016-02-20 16:31:18   INFO CommonUtil:31 -{"message":"","negative":0.384197473526,"code":0,"positive":0.61580258607864}
-2016-02-20 16:31:19   INFO CommonUtil:31 -{"message":"","negative":0.5,"code":0,"positive":0.5}
-2016-02-20 16:31:19   INFO CommonUtil:31 -{"message":"","negative":0.5,"code":0,"positive":0.5}
-2016-02-20 16:31:20   INFO CommonUtil:31 -{"message":"","negative":0.5,"code":0,"positive":0.5}
-2016-02-20 16:31:21   INFO CommonUtil:31 -{"message":"","negative":0.5,"code":0,"positive":0.5}
-2016-02-20 16:31:21   INFO CommonUtil:31 -{"message":"","negative":0.5,"code":0,"positive":0.5}
-2016-02-20 16:31:22   INFO CommonUtil:31 -{"message":"","negative":0.5,"code":0,"positive":0.5}
-2016-02-20 16:31:23   INFO CommonUtil:31 -{"message":"","negative":0.5,"code":0,"positive":0.5}
-2016-02-20 16:31:23   INFO CommonUtil:31 -{"message":"","negative":0.5,"code":0,"positive":0.5}
-2016-02-20 16:31:24   INFO CommonUtil:31 -{"message":"","negative":0.5,"code":0,"positive":0.5}
-2016-02-20 16:31:25   INFO CommonUtil:31 -{"message":"","negative":0.18158289790154,"code":0,"positive":0.81841707229614}
-2016-02-20 16:49:00   INFO Version:37 -Hibernate Commons Annotations 3.2.0.Final
-2016-02-20 16:49:00   INFO Environment:603 -Hibernate 3.6.4.Final
-2016-02-20 16:49:00   INFO Environment:636 -hibernate.properties not found
-2016-02-20 16:49:00   INFO Environment:814 -Bytecode provider name : javassist
-2016-02-20 16:49:00   INFO Environment:695 -using JDK 1.4 java.sql.Timestamp handling
-2016-02-20 16:49:00   INFO Configuration:2156 -configuring from resource: /hibernate.cfg.xml
-2016-02-20 16:49:00   INFO Configuration:2175 -Configuration resource: /hibernate.cfg.xml
-2016-02-20 16:49:01   INFO Configuration:789 -Reading mappings from resource : nju/iip/dto/JWNews.hbm.xml
-2016-02-20 16:49:01   INFO Configuration:2297 -Configured SessionFactory: null
-2016-02-20 16:49:01   INFO HbmBinder:353 -Mapping class: nju.iip.dto.JWNews -> JWNEWS
-2016-02-20 16:49:01   INFO Configuration:1676 -Hibernate Validator not found: ignoring
-2016-02-20 16:49:01   INFO HibernateSearchEventListenerRegister:75 -Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
-2016-02-20 16:49:01   INFO ConnectionProviderFactory:173 -Initializing connection provider: org.hibernate.connection.C3P0ConnectionProvider
-2016-02-20 16:49:01   INFO C3P0ConnectionProvider:103 -C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://114.212.82.189/xianteng
-2016-02-20 16:49:01   INFO C3P0ConnectionProvider:104 -Connection properties: {user=root, password=****}
-2016-02-20 16:49:01   INFO C3P0ConnectionProvider:107 -autocommit mode: false
-2016-02-20 16:49:01   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_statement' and c3p0-style property 'c3p0.max_statement' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_statement' will be used and c3p0-style property 'c3p0.max_statement' will be ignored!
-2016-02-20 16:49:01   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.time_out' and c3p0-style property 'c3p0.time_out' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.time_out' will be used and c3p0-style property 'c3p0.time_out' will be ignored!
-2016-02-20 16:49:01   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.min_size' and c3p0-style property 'c3p0.min_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.min_size' will be used and c3p0-style property 'c3p0.min_size' will be ignored!
-2016-02-20 16:49:01   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_size' and c3p0-style property 'c3p0.max_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_size' will be used and c3p0-style property 'c3p0.max_size' will be ignored!
-2016-02-20 16:49:01   INFO MLog:80 -MLog clients using log4j logging.
-2016-02-20 16:49:01   INFO C3P0Registry:204 -Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
-2016-02-20 16:49:02   INFO AbstractPoolBackedDataSource:462 -Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@bdf4903d [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@b60fc1c4 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge76h9e1yftcc94l44et|fd81a3, idleConnectionTestPeriod -> 0, initialPoolSize -> 2, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 5, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 2, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@dcc87a5f [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yftcc94l44et|56397bfb, jdbcUrl -> jdbc:mysql://114.212.82.189/xianteng, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yftcc94l44et|71eb195f, numHelperThreads -> 3 ]
-2016-02-20 16:49:02   INFO Dialect:135 -Using dialect: org.hibernate.dialect.MySQLDialect
-2016-02-20 16:49:02   INFO JdbcSupportLoader:108 -Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
-2016-02-20 16:49:02   INFO SettingsFactory:126 -Database ->
-       name : MySQL
-    version : 5.6.28
-      major : 5
-      minor : 6
-2016-02-20 16:49:02   INFO SettingsFactory:132 -Driver ->
-       name : MySQL Connector Java
-    version : mysql-connector-java-5.1.38 ( Revision: fe541c166cec739c74cc727c5da96c1028b4834a )
-      major : 5
-      minor : 1
-2016-02-20 16:49:02   INFO TransactionFactoryFactory:62 -Using default transaction strategy (direct JDBC transactions)
-2016-02-20 16:49:02   INFO TransactionManagerLookupFactory:83 -No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
-2016-02-20 16:49:02   INFO SettingsFactory:179 -Automatic flush during beforeCompletion(): disabled
-2016-02-20 16:49:02   INFO SettingsFactory:183 -Automatic session close at end of transaction: disabled
-2016-02-20 16:49:02   INFO SettingsFactory:190 -JDBC batch size: 15
-2016-02-20 16:49:02   INFO SettingsFactory:193 -JDBC batch updates for versioned data: disabled
-2016-02-20 16:49:02   INFO SettingsFactory:198 -Scrollable result sets: enabled
-2016-02-20 16:49:02   INFO SettingsFactory:206 -JDBC3 getGeneratedKeys(): enabled
-2016-02-20 16:49:02   INFO SettingsFactory:214 -Connection release mode: auto
-2016-02-20 16:49:02   INFO SettingsFactory:238 -Maximum outer join fetch depth: 2
-2016-02-20 16:49:02   INFO SettingsFactory:241 -Default batch fetch size: 1
-2016-02-20 16:49:02   INFO SettingsFactory:245 -Generate SQL with comments: disabled
-2016-02-20 16:49:02   INFO SettingsFactory:249 -Order SQL updates by primary key: disabled
-2016-02-20 16:49:02   INFO SettingsFactory:253 -Order SQL inserts for batching: disabled
-2016-02-20 16:49:02   INFO SettingsFactory:431 -Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
-2016-02-20 16:49:02   INFO ASTQueryTranslatorFactory:47 -Using ASTQueryTranslatorFactory
-2016-02-20 16:49:02   INFO SettingsFactory:261 -Query language substitutions: {}
-2016-02-20 16:49:02   INFO SettingsFactory:266 -JPA-QL strict compliance: disabled
-2016-02-20 16:49:02   INFO SettingsFactory:271 -Second-level cache: enabled
-2016-02-20 16:49:02   INFO SettingsFactory:275 -Query cache: disabled
-2016-02-20 16:49:02   INFO SettingsFactory:406 -Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
-2016-02-20 16:49:02   INFO SettingsFactory:285 -Optimize cache for minimal puts: disabled
-2016-02-20 16:49:02   INFO SettingsFactory:294 -Structured second-level cache entries: disabled
-2016-02-20 16:49:02   INFO SettingsFactory:323 -Statistics: disabled
-2016-02-20 16:49:02   INFO SettingsFactory:327 -Deleted entity synthetic identifier rollback: disabled
-2016-02-20 16:49:02   INFO SettingsFactory:343 -Default entity-mode: pojo
-2016-02-20 16:49:02   INFO SettingsFactory:347 -Named query checking : enabled
-2016-02-20 16:49:02   INFO SettingsFactory:351 -Check Nullability in Core (should be disabled when Bean Validation is on): enabled
-2016-02-20 16:49:02   INFO SessionFactoryImpl:202 -building session factory
-2016-02-20 16:49:02   INFO BasicTypeRegistry:150 -Type registration [blob] overrides previous : org.hibernate.type.BlobType@2afb925b
-2016-02-20 16:49:02   INFO BasicTypeRegistry:150 -Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@2afb925b
-2016-02-20 16:49:02   INFO BasicTypeRegistry:150 -Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@6a45aa68
-2016-02-20 16:49:02   INFO BasicTypeRegistry:150 -Type registration [clob] overrides previous : org.hibernate.type.ClobType@3b6c85a
-2016-02-20 16:49:02   INFO BasicTypeRegistry:150 -Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@3b6c85a
-2016-02-20 16:49:02   INFO BasicTypeRegistry:150 -Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@551b8e9d
-2016-02-20 16:49:02   INFO BasicTypeRegistry:150 -Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@4301112
-2016-02-20 16:49:02   INFO BasicTypeRegistry:150 -Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@6fb0b6e3
-2016-02-20 16:49:02   INFO BasicTypeRegistry:150 -Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@3ab72a5e
-2016-02-20 16:49:02   INFO SessionFactoryObjectFactory:105 -Not binding factory to JNDI, no JNDI name configured
-2016-02-20 16:49:02  ERROR ErrorCounter:56 -line 1:8: unexpected token: *
-2016-02-20 16:49:03   INFO NewsDAO:78 -NewsDAO-->updateSentiment
-org.hibernate.hql.ast.QuerySyntaxException: unexpected token: * near line 1, column 8 [delete * from nju.iip.dto.JWNews where tag is null]
-	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:54)
-	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:47)
-	at org.hibernate.hql.ast.ErrorCounter.throwQueryException(ErrorCounter.java:82)
-	at org.hibernate.hql.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:284)
-	at org.hibernate.hql.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:182)
+2016-03-01 00:22:59   INFO TransactionFactoryFactory:62 -Using default transaction strategy (direct JDBC transactions)
+2016-03-01 00:22:59   INFO TransactionManagerLookupFactory:83 -No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2016-03-01 00:22:59   INFO SettingsFactory:179 -Automatic flush during beforeCompletion(): disabled
+2016-03-01 00:22:59   INFO SettingsFactory:183 -Automatic session close at end of transaction: disabled
+2016-03-01 00:22:59   INFO SettingsFactory:190 -JDBC batch size: 15
+2016-03-01 00:22:59   INFO SettingsFactory:193 -JDBC batch updates for versioned data: disabled
+2016-03-01 00:22:59   INFO SettingsFactory:198 -Scrollable result sets: enabled
+2016-03-01 00:22:59   INFO SettingsFactory:206 -JDBC3 getGeneratedKeys(): enabled
+2016-03-01 00:22:59   INFO SettingsFactory:214 -Connection release mode: auto
+2016-03-01 00:22:59   INFO SettingsFactory:238 -Maximum outer join fetch depth: 2
+2016-03-01 00:22:59   INFO SettingsFactory:241 -Default batch fetch size: 1
+2016-03-01 00:22:59   INFO SettingsFactory:245 -Generate SQL with comments: disabled
+2016-03-01 00:22:59   INFO SettingsFactory:249 -Order SQL updates by primary key: disabled
+2016-03-01 00:22:59   INFO SettingsFactory:253 -Order SQL inserts for batching: disabled
+2016-03-01 00:22:59   INFO SettingsFactory:431 -Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2016-03-01 00:22:59   INFO ASTQueryTranslatorFactory:47 -Using ASTQueryTranslatorFactory
+2016-03-01 00:22:59   INFO SettingsFactory:261 -Query language substitutions: {}
+2016-03-01 00:22:59   INFO SettingsFactory:266 -JPA-QL strict compliance: disabled
+2016-03-01 00:22:59   INFO SettingsFactory:271 -Second-level cache: enabled
+2016-03-01 00:22:59   INFO SettingsFactory:275 -Query cache: disabled
+2016-03-01 00:22:59   INFO SettingsFactory:406 -Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2016-03-01 00:22:59   INFO SettingsFactory:285 -Optimize cache for minimal puts: disabled
+2016-03-01 00:22:59   INFO SettingsFactory:294 -Structured second-level cache entries: disabled
+2016-03-01 00:22:59   INFO SettingsFactory:323 -Statistics: disabled
+2016-03-01 00:22:59   INFO SettingsFactory:327 -Deleted entity synthetic identifier rollback: disabled
+2016-03-01 00:22:59   INFO SettingsFactory:343 -Default entity-mode: pojo
+2016-03-01 00:22:59   INFO SettingsFactory:347 -Named query checking : enabled
+2016-03-01 00:22:59   INFO SettingsFactory:351 -Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2016-03-01 00:22:59   INFO SessionFactoryImpl:202 -building session factory
+2016-03-01 00:22:59   INFO BasicTypeRegistry:150 -Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@7184b7db
+2016-03-01 00:22:59   INFO BasicTypeRegistry:150 -Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@4042c516
+2016-03-01 00:22:59   INFO BasicTypeRegistry:150 -Type registration [clob] overrides previous : org.hibernate.type.ClobType@5f99484f
+2016-03-01 00:22:59   INFO BasicTypeRegistry:150 -Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@5f99484f
+2016-03-01 00:22:59   INFO BasicTypeRegistry:150 -Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@485a6b91
+2016-03-01 00:22:59   INFO BasicTypeRegistry:150 -Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@284c21b3
+2016-03-01 00:22:59   INFO BasicTypeRegistry:150 -Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@1e388370
+2016-03-01 00:22:59   INFO BasicTypeRegistry:150 -Type registration [blob] overrides previous : org.hibernate.type.BlobType@103d3d90
+2016-03-01 00:22:59   INFO BasicTypeRegistry:150 -Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@103d3d90
+2016-03-01 00:23:00   INFO SessionFactoryObjectFactory:105 -Not binding factory to JNDI, no JNDI name configured
+2016-03-01 00:23:00  ERROR BiaoZhangDAO:36 -getJudgeDoc failed!
+org.hibernate.hql.ast.QuerySyntaxException: BiaoZhangData is not mapped [from BiaoZhangData where Corp_Name=:Corp_Name]
+	at org.hibernate.hql.ast.util.SessionFactoryHelper.requireClassPersister(SessionFactoryHelper.java:180)
+	at org.hibernate.hql.ast.tree.FromElementFactory.addFromElement(FromElementFactory.java:111)
+	at org.hibernate.hql.ast.tree.FromClause.addFromElement(FromClause.java:93)
+	at org.hibernate.hql.ast.HqlSqlWalker.createFromElement(HqlSqlWalker.java:327)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromElement(HqlSqlBaseWalker.java:3441)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromElementList(HqlSqlBaseWalker.java:3325)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromClause(HqlSqlBaseWalker.java:733)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.query(HqlSqlBaseWalker.java:584)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.selectStatement(HqlSqlBaseWalker.java:301)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.statement(HqlSqlBaseWalker.java:244)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.analyze(QueryTranslatorImpl.java:254)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:185)
 	at org.hibernate.hql.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:136)
 	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:101)
 	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:80)
@@ -289,301 +95,163 @@ org.hibernate.hql.ast.QuerySyntaxException: unexpected token: * near line 1, col
 	at org.hibernate.impl.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:156)
 	at org.hibernate.impl.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:135)
 	at org.hibernate.impl.SessionImpl.createQuery(SessionImpl.java:1770)
-	at nju.iip.dao.NewsDAO.delete(NewsDAO.java:73)
-	at nju.iip.dao.NewsDAO.main(NewsDAO.java:84)
-2016-02-20 16:49:32   INFO Version:37 -Hibernate Commons Annotations 3.2.0.Final
-2016-02-20 16:49:32   INFO Environment:603 -Hibernate 3.6.4.Final
-2016-02-20 16:49:32   INFO Environment:636 -hibernate.properties not found
-2016-02-20 16:49:32   INFO Environment:814 -Bytecode provider name : javassist
-2016-02-20 16:49:32   INFO Environment:695 -using JDK 1.4 java.sql.Timestamp handling
-2016-02-20 16:49:32   INFO Configuration:2156 -configuring from resource: /hibernate.cfg.xml
-2016-02-20 16:49:32   INFO Configuration:2175 -Configuration resource: /hibernate.cfg.xml
-2016-02-20 16:49:32   INFO Configuration:789 -Reading mappings from resource : nju/iip/dto/JWNews.hbm.xml
-2016-02-20 16:49:32   INFO Configuration:2297 -Configured SessionFactory: null
-2016-02-20 16:49:32   INFO HbmBinder:353 -Mapping class: nju.iip.dto.JWNews -> JWNEWS
-2016-02-20 16:49:32   INFO Configuration:1676 -Hibernate Validator not found: ignoring
-2016-02-20 16:49:32   INFO HibernateSearchEventListenerRegister:75 -Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
-2016-02-20 16:49:32   INFO ConnectionProviderFactory:173 -Initializing connection provider: org.hibernate.connection.C3P0ConnectionProvider
-2016-02-20 16:49:32   INFO C3P0ConnectionProvider:103 -C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://114.212.82.189/xianteng
-2016-02-20 16:49:32   INFO C3P0ConnectionProvider:104 -Connection properties: {user=root, password=****}
-2016-02-20 16:49:32   INFO C3P0ConnectionProvider:107 -autocommit mode: false
-2016-02-20 16:49:32   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_statement' and c3p0-style property 'c3p0.max_statement' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_statement' will be used and c3p0-style property 'c3p0.max_statement' will be ignored!
-2016-02-20 16:49:32   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.time_out' and c3p0-style property 'c3p0.time_out' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.time_out' will be used and c3p0-style property 'c3p0.time_out' will be ignored!
-2016-02-20 16:49:32   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.min_size' and c3p0-style property 'c3p0.min_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.min_size' will be used and c3p0-style property 'c3p0.min_size' will be ignored!
-2016-02-20 16:49:32   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_size' and c3p0-style property 'c3p0.max_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_size' will be used and c3p0-style property 'c3p0.max_size' will be ignored!
-2016-02-20 16:49:32   INFO MLog:80 -MLog clients using log4j logging.
-2016-02-20 16:49:33   INFO C3P0Registry:204 -Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
-2016-02-20 16:49:33   INFO AbstractPoolBackedDataSource:462 -Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@84da7c28 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@d2c5ac6f [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge76h9e1yfu0kd1na2nel|fd81a3, idleConnectionTestPeriod -> 0, initialPoolSize -> 2, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 5, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 2, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@a3ae664a [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yfu0kd1na2nel|56397bfb, jdbcUrl -> jdbc:mysql://114.212.82.189/xianteng, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yfu0kd1na2nel|71eb195f, numHelperThreads -> 3 ]
-2016-02-20 16:49:33   INFO Dialect:135 -Using dialect: org.hibernate.dialect.MySQLDialect
-2016-02-20 16:49:33   INFO JdbcSupportLoader:108 -Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
-2016-02-20 16:49:33   INFO SettingsFactory:126 -Database ->
+	at cn.edu.nju.iip.dao.BiaoZhangDAO.getBiaoZhangDataList(BiaoZhangDAO.java:30)
+	at cn.edu.nju.iip.dao.BiaoZhangDAO.main(BiaoZhangDAO.java:43)
+2016-03-01 00:23:31   INFO Version:37 -Hibernate Commons Annotations 3.2.0.Final
+2016-03-01 00:23:31   INFO Environment:603 -Hibernate 3.6.4.Final
+2016-03-01 00:23:31   INFO Environment:636 -hibernate.properties not found
+2016-03-01 00:23:31   INFO Environment:814 -Bytecode provider name : javassist
+2016-03-01 00:23:31   INFO Environment:695 -using JDK 1.4 java.sql.Timestamp handling
+2016-03-01 00:23:31   INFO Configuration:2156 -configuring from resource: /hibernate.cfg.xml
+2016-03-01 00:23:31   INFO Configuration:2175 -Configuration resource: /hibernate.cfg.xml
+2016-03-01 00:23:31   INFO Configuration:789 -Reading mappings from resource : cn/edu/nju/iip/model/JWNews.hbm.xml
+2016-03-01 00:23:31   INFO Configuration:789 -Reading mappings from resource : cn/edu/nju/iip/model/JudgeDoc.hbm.xml
+2016-03-01 00:23:31   INFO Configuration:789 -Reading mappings from resource : cn/edu/nju/iip/model/BiaoZhangData.hbm.xml
+2016-03-01 00:23:31   INFO Configuration:2297 -Configured SessionFactory: null
+2016-03-01 00:23:31   INFO HbmBinder:353 -Mapping class: cn.edu.nju.iip.model.JWNews -> JW_NEWS
+2016-03-01 00:23:31   INFO HbmBinder:353 -Mapping class: cn.edu.nju.iip.model.JudgeDoc -> JW_JUDGE_DOC
+2016-03-01 00:23:31   INFO HbmBinder:353 -Mapping class: cn.edu.nju.iip.model.BiaoZhangData -> JW_BiaoZhang
+2016-03-01 00:23:31   INFO Configuration:1676 -Hibernate Validator not found: ignoring
+2016-03-01 00:23:31   INFO HibernateSearchEventListenerRegister:75 -Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2016-03-01 00:23:31   INFO ConnectionProviderFactory:173 -Initializing connection provider: org.hibernate.connection.C3P0ConnectionProvider
+2016-03-01 00:23:31   INFO C3P0ConnectionProvider:103 -C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost/xianteng
+2016-03-01 00:23:31   INFO C3P0ConnectionProvider:104 -Connection properties: {user=root, password=****}
+2016-03-01 00:23:31   INFO C3P0ConnectionProvider:107 -autocommit mode: false
+2016-03-01 00:23:31   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_statement' and c3p0-style property 'c3p0.max_statement' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_statement' will be used and c3p0-style property 'c3p0.max_statement' will be ignored!
+2016-03-01 00:23:31   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.time_out' and c3p0-style property 'c3p0.time_out' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.time_out' will be used and c3p0-style property 'c3p0.time_out' will be ignored!
+2016-03-01 00:23:31   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.min_size' and c3p0-style property 'c3p0.min_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.min_size' will be used and c3p0-style property 'c3p0.min_size' will be ignored!
+2016-03-01 00:23:31   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_size' and c3p0-style property 'c3p0.max_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_size' will be used and c3p0-style property 'c3p0.max_size' will be ignored!
+2016-03-01 00:23:32   INFO MLog:80 -MLog clients using log4j logging.
+2016-03-01 00:23:32   INFO C3P0Registry:204 -Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
+2016-03-01 00:23:32   INFO AbstractPoolBackedDataSource:462 -Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@7980cd5b [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@7bef610c [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1bqon6k9fcpwgdthtdwvd|3636417f, idleConnectionTestPeriod -> 0, initialPoolSize -> 2, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 5, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 2, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@2af05afb [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> 1bqon6k9fcpwgdthtdwvd|6b46a226, jdbcUrl -> jdbc:mysql://localhost/xianteng, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1bqon6k9fcpwgdthtdwvd|512255a, numHelperThreads -> 3 ]
+2016-03-01 00:23:32   INFO Dialect:135 -Using dialect: org.hibernate.dialect.MySQLDialect
+2016-03-01 00:23:32   INFO JdbcSupportLoader:108 -Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2016-03-01 00:23:32   INFO SettingsFactory:126 -Database ->
        name : MySQL
-    version : 5.6.28
+    version : 5.7.10-log
       major : 5
-      minor : 6
-2016-02-20 16:49:33   INFO SettingsFactory:132 -Driver ->
+      minor : 7
+2016-03-01 00:23:32   INFO SettingsFactory:132 -Driver ->
        name : MySQL Connector Java
     version : mysql-connector-java-5.1.38 ( Revision: fe541c166cec739c74cc727c5da96c1028b4834a )
       major : 5
       minor : 1
-2016-02-20 16:49:33   INFO TransactionFactoryFactory:62 -Using default transaction strategy (direct JDBC transactions)
-2016-02-20 16:49:33   INFO TransactionManagerLookupFactory:83 -No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
-2016-02-20 16:49:33   INFO SettingsFactory:179 -Automatic flush during beforeCompletion(): disabled
-2016-02-20 16:49:33   INFO SettingsFactory:183 -Automatic session close at end of transaction: disabled
-2016-02-20 16:49:33   INFO SettingsFactory:190 -JDBC batch size: 15
-2016-02-20 16:49:33   INFO SettingsFactory:193 -JDBC batch updates for versioned data: disabled
-2016-02-20 16:49:33   INFO SettingsFactory:198 -Scrollable result sets: enabled
-2016-02-20 16:49:33   INFO SettingsFactory:206 -JDBC3 getGeneratedKeys(): enabled
-2016-02-20 16:49:33   INFO SettingsFactory:214 -Connection release mode: auto
-2016-02-20 16:49:33   INFO SettingsFactory:238 -Maximum outer join fetch depth: 2
-2016-02-20 16:49:33   INFO SettingsFactory:241 -Default batch fetch size: 1
-2016-02-20 16:49:33   INFO SettingsFactory:245 -Generate SQL with comments: disabled
-2016-02-20 16:49:33   INFO SettingsFactory:249 -Order SQL updates by primary key: disabled
-2016-02-20 16:49:33   INFO SettingsFactory:253 -Order SQL inserts for batching: disabled
-2016-02-20 16:49:33   INFO SettingsFactory:431 -Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
-2016-02-20 16:49:33   INFO ASTQueryTranslatorFactory:47 -Using ASTQueryTranslatorFactory
-2016-02-20 16:49:33   INFO SettingsFactory:261 -Query language substitutions: {}
-2016-02-20 16:49:33   INFO SettingsFactory:266 -JPA-QL strict compliance: disabled
-2016-02-20 16:49:33   INFO SettingsFactory:271 -Second-level cache: enabled
-2016-02-20 16:49:33   INFO SettingsFactory:275 -Query cache: disabled
-2016-02-20 16:49:33   INFO SettingsFactory:406 -Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
-2016-02-20 16:49:33   INFO SettingsFactory:285 -Optimize cache for minimal puts: disabled
-2016-02-20 16:49:33   INFO SettingsFactory:294 -Structured second-level cache entries: disabled
-2016-02-20 16:49:33   INFO SettingsFactory:323 -Statistics: disabled
-2016-02-20 16:49:33   INFO SettingsFactory:327 -Deleted entity synthetic identifier rollback: disabled
-2016-02-20 16:49:33   INFO SettingsFactory:343 -Default entity-mode: pojo
-2016-02-20 16:49:33   INFO SettingsFactory:347 -Named query checking : enabled
-2016-02-20 16:49:33   INFO SettingsFactory:351 -Check Nullability in Core (should be disabled when Bean Validation is on): enabled
-2016-02-20 16:49:33   INFO SessionFactoryImpl:202 -building session factory
-2016-02-20 16:49:33   INFO BasicTypeRegistry:150 -Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@4b3788e1
-2016-02-20 16:49:33   INFO BasicTypeRegistry:150 -Type registration [clob] overrides previous : org.hibernate.type.ClobType@2afb925b
-2016-02-20 16:49:33   INFO BasicTypeRegistry:150 -Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@2afb925b
-2016-02-20 16:49:33   INFO BasicTypeRegistry:150 -Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@6a45aa68
-2016-02-20 16:49:33   INFO BasicTypeRegistry:150 -Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@3b6c85a
-2016-02-20 16:49:33   INFO BasicTypeRegistry:150 -Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@551b8e9d
-2016-02-20 16:49:33   INFO BasicTypeRegistry:150 -Type registration [blob] overrides previous : org.hibernate.type.BlobType@4301112
-2016-02-20 16:49:33   INFO BasicTypeRegistry:150 -Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@4301112
-2016-02-20 16:49:33   INFO BasicTypeRegistry:150 -Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@6fb0b6e3
-2016-02-20 16:49:34   INFO SessionFactoryObjectFactory:105 -Not binding factory to JNDI, no JNDI name configured
-2016-02-20 18:07:32   INFO Version:37 -Hibernate Commons Annotations 3.2.0.Final
-2016-02-20 18:07:32   INFO Environment:603 -Hibernate 3.6.4.Final
-2016-02-20 18:07:32   INFO Environment:636 -hibernate.properties not found
-2016-02-20 18:07:32   INFO Environment:814 -Bytecode provider name : javassist
-2016-02-20 18:07:32   INFO Environment:695 -using JDK 1.4 java.sql.Timestamp handling
-2016-02-20 18:07:33   INFO Configuration:2156 -configuring from resource: /hibernate.cfg.xml
-2016-02-20 18:07:33   INFO Configuration:2175 -Configuration resource: /hibernate.cfg.xml
-2016-02-20 18:07:33   INFO Configuration:789 -Reading mappings from resource : nju/iip/dto/JWNews.hbm.xml
-2016-02-20 18:07:33   INFO Configuration:2297 -Configured SessionFactory: null
-2016-02-20 18:07:33   INFO HbmBinder:353 -Mapping class: nju.iip.dto.JWNews -> JWNEWS
-2016-02-20 18:07:33   INFO Configuration:1676 -Hibernate Validator not found: ignoring
-2016-02-20 18:07:33   INFO HibernateSearchEventListenerRegister:75 -Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
-2016-02-20 18:07:33   INFO ConnectionProviderFactory:173 -Initializing connection provider: org.hibernate.connection.C3P0ConnectionProvider
-2016-02-20 18:07:33   INFO C3P0ConnectionProvider:103 -C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://114.212.82.189/xianteng
-2016-02-20 18:07:33   INFO C3P0ConnectionProvider:104 -Connection properties: {user=root, password=****}
-2016-02-20 18:07:33   INFO C3P0ConnectionProvider:107 -autocommit mode: false
-2016-02-20 18:07:33   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_statement' and c3p0-style property 'c3p0.max_statement' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_statement' will be used and c3p0-style property 'c3p0.max_statement' will be ignored!
-2016-02-20 18:07:33   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.time_out' and c3p0-style property 'c3p0.time_out' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.time_out' will be used and c3p0-style property 'c3p0.time_out' will be ignored!
-2016-02-20 18:07:33   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.min_size' and c3p0-style property 'c3p0.min_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.min_size' will be used and c3p0-style property 'c3p0.min_size' will be ignored!
-2016-02-20 18:07:33   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_size' and c3p0-style property 'c3p0.max_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_size' will be used and c3p0-style property 'c3p0.max_size' will be ignored!
-2016-02-20 18:07:33   INFO MLog:80 -MLog clients using log4j logging.
-2016-02-20 18:07:33   INFO C3P0Registry:204 -Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
-2016-02-20 18:07:34   INFO AbstractPoolBackedDataSource:462 -Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@cc707b95 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@7ce2aca9 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge76h9e1yimc571jtkkv9|72e0f928, idleConnectionTestPeriod -> 0, initialPoolSize -> 2, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 5, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 2, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@cbef5217 [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yimc571jtkkv9|2761df2a, jdbcUrl -> jdbc:mysql://114.212.82.189/xianteng, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yimc571jtkkv9|43819455, numHelperThreads -> 3 ]
-2016-02-20 18:07:34   INFO Dialect:135 -Using dialect: org.hibernate.dialect.MySQLDialect
-2016-02-20 18:07:34   INFO JdbcSupportLoader:108 -Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
-2016-02-20 18:07:34   INFO SettingsFactory:126 -Database ->
+2016-03-01 00:23:32   INFO TransactionFactoryFactory:62 -Using default transaction strategy (direct JDBC transactions)
+2016-03-01 00:23:32   INFO TransactionManagerLookupFactory:83 -No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2016-03-01 00:23:32   INFO SettingsFactory:179 -Automatic flush during beforeCompletion(): disabled
+2016-03-01 00:23:32   INFO SettingsFactory:183 -Automatic session close at end of transaction: disabled
+2016-03-01 00:23:32   INFO SettingsFactory:190 -JDBC batch size: 15
+2016-03-01 00:23:32   INFO SettingsFactory:193 -JDBC batch updates for versioned data: disabled
+2016-03-01 00:23:32   INFO SettingsFactory:198 -Scrollable result sets: enabled
+2016-03-01 00:23:32   INFO SettingsFactory:206 -JDBC3 getGeneratedKeys(): enabled
+2016-03-01 00:23:32   INFO SettingsFactory:214 -Connection release mode: auto
+2016-03-01 00:23:32   INFO SettingsFactory:238 -Maximum outer join fetch depth: 2
+2016-03-01 00:23:32   INFO SettingsFactory:241 -Default batch fetch size: 1
+2016-03-01 00:23:32   INFO SettingsFactory:245 -Generate SQL with comments: disabled
+2016-03-01 00:23:32   INFO SettingsFactory:249 -Order SQL updates by primary key: disabled
+2016-03-01 00:23:32   INFO SettingsFactory:253 -Order SQL inserts for batching: disabled
+2016-03-01 00:23:32   INFO SettingsFactory:431 -Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2016-03-01 00:23:32   INFO ASTQueryTranslatorFactory:47 -Using ASTQueryTranslatorFactory
+2016-03-01 00:23:32   INFO SettingsFactory:261 -Query language substitutions: {}
+2016-03-01 00:23:32   INFO SettingsFactory:266 -JPA-QL strict compliance: disabled
+2016-03-01 00:23:32   INFO SettingsFactory:271 -Second-level cache: enabled
+2016-03-01 00:23:32   INFO SettingsFactory:275 -Query cache: disabled
+2016-03-01 00:23:32   INFO SettingsFactory:406 -Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2016-03-01 00:23:32   INFO SettingsFactory:285 -Optimize cache for minimal puts: disabled
+2016-03-01 00:23:32   INFO SettingsFactory:294 -Structured second-level cache entries: disabled
+2016-03-01 00:23:32   INFO SettingsFactory:323 -Statistics: disabled
+2016-03-01 00:23:32   INFO SettingsFactory:327 -Deleted entity synthetic identifier rollback: disabled
+2016-03-01 00:23:32   INFO SettingsFactory:343 -Default entity-mode: pojo
+2016-03-01 00:23:32   INFO SettingsFactory:347 -Named query checking : enabled
+2016-03-01 00:23:32   INFO SettingsFactory:351 -Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2016-03-01 00:23:32   INFO SessionFactoryImpl:202 -building session factory
+2016-03-01 00:23:32   INFO BasicTypeRegistry:150 -Type registration [clob] overrides previous : org.hibernate.type.ClobType@5f99484f
+2016-03-01 00:23:32   INFO BasicTypeRegistry:150 -Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@5f99484f
+2016-03-01 00:23:32   INFO BasicTypeRegistry:150 -Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@485a6b91
+2016-03-01 00:23:32   INFO BasicTypeRegistry:150 -Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@284c21b3
+2016-03-01 00:23:32   INFO BasicTypeRegistry:150 -Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@1e388370
+2016-03-01 00:23:32   INFO BasicTypeRegistry:150 -Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@103d3d90
+2016-03-01 00:23:32   INFO BasicTypeRegistry:150 -Type registration [blob] overrides previous : org.hibernate.type.BlobType@2494c144
+2016-03-01 00:23:32   INFO BasicTypeRegistry:150 -Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@2494c144
+2016-03-01 00:23:32   INFO BasicTypeRegistry:150 -Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@221c6a1f
+2016-03-01 00:23:32   INFO SessionFactoryObjectFactory:105 -Not binding factory to JNDI, no JNDI name configured
+2016-03-01 00:23:33   INFO BiaoZhangDAO:43 -4
+2016-03-01 00:23:44   INFO Version:37 -Hibernate Commons Annotations 3.2.0.Final
+2016-03-01 00:23:44   INFO Environment:603 -Hibernate 3.6.4.Final
+2016-03-01 00:23:44   INFO Environment:636 -hibernate.properties not found
+2016-03-01 00:23:44   INFO Environment:814 -Bytecode provider name : javassist
+2016-03-01 00:23:44   INFO Environment:695 -using JDK 1.4 java.sql.Timestamp handling
+2016-03-01 00:23:44   INFO Configuration:2156 -configuring from resource: /hibernate.cfg.xml
+2016-03-01 00:23:44   INFO Configuration:2175 -Configuration resource: /hibernate.cfg.xml
+2016-03-01 00:23:44   INFO Configuration:789 -Reading mappings from resource : cn/edu/nju/iip/model/JWNews.hbm.xml
+2016-03-01 00:23:44   INFO Configuration:789 -Reading mappings from resource : cn/edu/nju/iip/model/JudgeDoc.hbm.xml
+2016-03-01 00:23:44   INFO Configuration:789 -Reading mappings from resource : cn/edu/nju/iip/model/BiaoZhangData.hbm.xml
+2016-03-01 00:23:44   INFO Configuration:2297 -Configured SessionFactory: null
+2016-03-01 00:23:44   INFO HbmBinder:353 -Mapping class: cn.edu.nju.iip.model.JWNews -> JW_NEWS
+2016-03-01 00:23:44   INFO HbmBinder:353 -Mapping class: cn.edu.nju.iip.model.JudgeDoc -> JW_JUDGE_DOC
+2016-03-01 00:23:44   INFO HbmBinder:353 -Mapping class: cn.edu.nju.iip.model.BiaoZhangData -> JW_BiaoZhang
+2016-03-01 00:23:44   INFO Configuration:1676 -Hibernate Validator not found: ignoring
+2016-03-01 00:23:44   INFO HibernateSearchEventListenerRegister:75 -Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+2016-03-01 00:23:44   INFO ConnectionProviderFactory:173 -Initializing connection provider: org.hibernate.connection.C3P0ConnectionProvider
+2016-03-01 00:23:44   INFO C3P0ConnectionProvider:103 -C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost/xianteng
+2016-03-01 00:23:44   INFO C3P0ConnectionProvider:104 -Connection properties: {user=root, password=****}
+2016-03-01 00:23:44   INFO C3P0ConnectionProvider:107 -autocommit mode: false
+2016-03-01 00:23:44   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_statement' and c3p0-style property 'c3p0.max_statement' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_statement' will be used and c3p0-style property 'c3p0.max_statement' will be ignored!
+2016-03-01 00:23:44   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.time_out' and c3p0-style property 'c3p0.time_out' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.time_out' will be used and c3p0-style property 'c3p0.time_out' will be ignored!
+2016-03-01 00:23:44   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.min_size' and c3p0-style property 'c3p0.min_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.min_size' will be used and c3p0-style property 'c3p0.min_size' will be ignored!
+2016-03-01 00:23:44   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_size' and c3p0-style property 'c3p0.max_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_size' will be used and c3p0-style property 'c3p0.max_size' will be ignored!
+2016-03-01 00:23:44   INFO MLog:80 -MLog clients using log4j logging.
+2016-03-01 00:23:44   INFO C3P0Registry:204 -Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
+2016-03-01 00:23:44   INFO AbstractPoolBackedDataSource:462 -Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@332e5fe [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@f7816d65 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1bqon6k9fcpwpzv6qe73f|240614a7, idleConnectionTestPeriod -> 0, initialPoolSize -> 2, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 5, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 2, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@3ab8ef3 [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> 1bqon6k9fcpwpzv6qe73f|6a3fa3cf, jdbcUrl -> jdbc:mysql://localhost/xianteng, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1bqon6k9fcpwpzv6qe73f|6a523a4f, numHelperThreads -> 3 ]
+2016-03-01 00:23:45   INFO Dialect:135 -Using dialect: org.hibernate.dialect.MySQLDialect
+2016-03-01 00:23:45   INFO JdbcSupportLoader:108 -Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2016-03-01 00:23:45   INFO SettingsFactory:126 -Database ->
        name : MySQL
-    version : 5.6.28
+    version : 5.7.10-log
       major : 5
-      minor : 6
-2016-02-20 18:07:34   INFO SettingsFactory:132 -Driver ->
+      minor : 7
+2016-03-01 00:23:45   INFO SettingsFactory:132 -Driver ->
        name : MySQL Connector Java
     version : mysql-connector-java-5.1.38 ( Revision: fe541c166cec739c74cc727c5da96c1028b4834a )
       major : 5
       minor : 1
-2016-02-20 18:07:34   INFO TransactionFactoryFactory:62 -Using default transaction strategy (direct JDBC transactions)
-2016-02-20 18:07:34   INFO TransactionManagerLookupFactory:83 -No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
-2016-02-20 18:07:34   INFO SettingsFactory:179 -Automatic flush during beforeCompletion(): disabled
-2016-02-20 18:07:34   INFO SettingsFactory:183 -Automatic session close at end of transaction: disabled
-2016-02-20 18:07:34   INFO SettingsFactory:190 -JDBC batch size: 15
-2016-02-20 18:07:34   INFO SettingsFactory:193 -JDBC batch updates for versioned data: disabled
-2016-02-20 18:07:34   INFO SettingsFactory:198 -Scrollable result sets: enabled
-2016-02-20 18:07:34   INFO SettingsFactory:206 -JDBC3 getGeneratedKeys(): enabled
-2016-02-20 18:07:34   INFO SettingsFactory:214 -Connection release mode: auto
-2016-02-20 18:07:34   INFO SettingsFactory:238 -Maximum outer join fetch depth: 2
-2016-02-20 18:07:34   INFO SettingsFactory:241 -Default batch fetch size: 1
-2016-02-20 18:07:34   INFO SettingsFactory:245 -Generate SQL with comments: disabled
-2016-02-20 18:07:34   INFO SettingsFactory:249 -Order SQL updates by primary key: disabled
-2016-02-20 18:07:34   INFO SettingsFactory:253 -Order SQL inserts for batching: disabled
-2016-02-20 18:07:34   INFO SettingsFactory:431 -Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
-2016-02-20 18:07:34   INFO ASTQueryTranslatorFactory:47 -Using ASTQueryTranslatorFactory
-2016-02-20 18:07:34   INFO SettingsFactory:261 -Query language substitutions: {}
-2016-02-20 18:07:34   INFO SettingsFactory:266 -JPA-QL strict compliance: disabled
-2016-02-20 18:07:34   INFO SettingsFactory:271 -Second-level cache: enabled
-2016-02-20 18:07:34   INFO SettingsFactory:275 -Query cache: disabled
-2016-02-20 18:07:34   INFO SettingsFactory:406 -Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
-2016-02-20 18:07:34   INFO SettingsFactory:285 -Optimize cache for minimal puts: disabled
-2016-02-20 18:07:34   INFO SettingsFactory:294 -Structured second-level cache entries: disabled
-2016-02-20 18:07:34   INFO SettingsFactory:323 -Statistics: disabled
-2016-02-20 18:07:34   INFO SettingsFactory:327 -Deleted entity synthetic identifier rollback: disabled
-2016-02-20 18:07:34   INFO SettingsFactory:343 -Default entity-mode: pojo
-2016-02-20 18:07:34   INFO SettingsFactory:347 -Named query checking : enabled
-2016-02-20 18:07:34   INFO SettingsFactory:351 -Check Nullability in Core (should be disabled when Bean Validation is on): enabled
-2016-02-20 18:07:34   INFO SessionFactoryImpl:202 -building session factory
-2016-02-20 18:07:34   INFO BasicTypeRegistry:150 -Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@7392d289
-2016-02-20 18:07:34   INFO BasicTypeRegistry:150 -Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@2c3c5ba6
-2016-02-20 18:07:34   INFO BasicTypeRegistry:150 -Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@2ea505fa
-2016-02-20 18:07:34   INFO BasicTypeRegistry:150 -Type registration [clob] overrides previous : org.hibernate.type.ClobType@542b7802
-2016-02-20 18:07:34   INFO BasicTypeRegistry:150 -Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@542b7802
-2016-02-20 18:07:34   INFO BasicTypeRegistry:150 -Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@71d3f679
-2016-02-20 18:07:34   INFO BasicTypeRegistry:150 -Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@12dabc51
-2016-02-20 18:07:34   INFO BasicTypeRegistry:150 -Type registration [blob] overrides previous : org.hibernate.type.BlobType@56817382
-2016-02-20 18:07:34   INFO BasicTypeRegistry:150 -Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@56817382
-2016-02-20 18:07:34   INFO SessionFactoryObjectFactory:105 -Not binding factory to JNDI, no JNDI name configured
-2016-02-20 18:07:53   INFO Version:37 -Hibernate Commons Annotations 3.2.0.Final
-2016-02-20 18:07:53   INFO Environment:603 -Hibernate 3.6.4.Final
-2016-02-20 18:07:53   INFO Environment:636 -hibernate.properties not found
-2016-02-20 18:07:53   INFO Environment:814 -Bytecode provider name : javassist
-2016-02-20 18:07:53   INFO Environment:695 -using JDK 1.4 java.sql.Timestamp handling
-2016-02-20 18:07:53   INFO Configuration:2156 -configuring from resource: /hibernate.cfg.xml
-2016-02-20 18:07:53   INFO Configuration:2175 -Configuration resource: /hibernate.cfg.xml
-2016-02-20 18:07:53   INFO Configuration:789 -Reading mappings from resource : nju/iip/dto/JWNews.hbm.xml
-2016-02-20 18:07:53   INFO Configuration:2297 -Configured SessionFactory: null
-2016-02-20 18:07:53   INFO HbmBinder:353 -Mapping class: nju.iip.dto.JWNews -> JWNEWS
-2016-02-20 18:07:53   INFO Configuration:1676 -Hibernate Validator not found: ignoring
-2016-02-20 18:07:53   INFO HibernateSearchEventListenerRegister:75 -Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
-2016-02-20 18:07:53   INFO ConnectionProviderFactory:173 -Initializing connection provider: org.hibernate.connection.C3P0ConnectionProvider
-2016-02-20 18:07:53   INFO C3P0ConnectionProvider:103 -C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://114.212.82.189/xianteng
-2016-02-20 18:07:53   INFO C3P0ConnectionProvider:104 -Connection properties: {user=root, password=****}
-2016-02-20 18:07:53   INFO C3P0ConnectionProvider:107 -autocommit mode: false
-2016-02-20 18:07:53   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_statement' and c3p0-style property 'c3p0.max_statement' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_statement' will be used and c3p0-style property 'c3p0.max_statement' will be ignored!
-2016-02-20 18:07:53   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.time_out' and c3p0-style property 'c3p0.time_out' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.time_out' will be used and c3p0-style property 'c3p0.time_out' will be ignored!
-2016-02-20 18:07:53   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.min_size' and c3p0-style property 'c3p0.min_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.min_size' will be used and c3p0-style property 'c3p0.min_size' will be ignored!
-2016-02-20 18:07:53   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_size' and c3p0-style property 'c3p0.max_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_size' will be used and c3p0-style property 'c3p0.max_size' will be ignored!
-2016-02-20 18:07:53   INFO MLog:80 -MLog clients using log4j logging.
-2016-02-20 18:07:54   INFO C3P0Registry:204 -Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
-2016-02-20 18:07:54   INFO AbstractPoolBackedDataSource:462 -Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@b7c294a4 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@b5eddf88 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge76h9e1yimrqnz6kfrn|1d8b0f64, idleConnectionTestPeriod -> 0, initialPoolSize -> 2, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 5, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 2, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@71bfca9d [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yimrqnz6kfrn|5aa1f7f5, jdbcUrl -> jdbc:mysql://114.212.82.189/xianteng, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yimrqnz6kfrn|46bf784b, numHelperThreads -> 3 ]
-2016-02-20 18:07:54   INFO Dialect:135 -Using dialect: org.hibernate.dialect.MySQLDialect
-2016-02-20 18:07:54   INFO JdbcSupportLoader:108 -Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
-2016-02-20 18:07:54   INFO SettingsFactory:126 -Database ->
-       name : MySQL
-    version : 5.6.28
-      major : 5
-      minor : 6
-2016-02-20 18:07:54   INFO SettingsFactory:132 -Driver ->
-       name : MySQL Connector Java
-    version : mysql-connector-java-5.1.38 ( Revision: fe541c166cec739c74cc727c5da96c1028b4834a )
-      major : 5
-      minor : 1
-2016-02-20 18:07:54   INFO TransactionFactoryFactory:62 -Using default transaction strategy (direct JDBC transactions)
-2016-02-20 18:07:54   INFO TransactionManagerLookupFactory:83 -No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
-2016-02-20 18:07:54   INFO SettingsFactory:179 -Automatic flush during beforeCompletion(): disabled
-2016-02-20 18:07:54   INFO SettingsFactory:183 -Automatic session close at end of transaction: disabled
-2016-02-20 18:07:54   INFO SettingsFactory:190 -JDBC batch size: 15
-2016-02-20 18:07:54   INFO SettingsFactory:193 -JDBC batch updates for versioned data: disabled
-2016-02-20 18:07:54   INFO SettingsFactory:198 -Scrollable result sets: enabled
-2016-02-20 18:07:54   INFO SettingsFactory:206 -JDBC3 getGeneratedKeys(): enabled
-2016-02-20 18:07:54   INFO SettingsFactory:214 -Connection release mode: auto
-2016-02-20 18:07:54   INFO SettingsFactory:238 -Maximum outer join fetch depth: 2
-2016-02-20 18:07:54   INFO SettingsFactory:241 -Default batch fetch size: 1
-2016-02-20 18:07:54   INFO SettingsFactory:245 -Generate SQL with comments: disabled
-2016-02-20 18:07:54   INFO SettingsFactory:249 -Order SQL updates by primary key: disabled
-2016-02-20 18:07:54   INFO SettingsFactory:253 -Order SQL inserts for batching: disabled
-2016-02-20 18:07:54   INFO SettingsFactory:431 -Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
-2016-02-20 18:07:54   INFO ASTQueryTranslatorFactory:47 -Using ASTQueryTranslatorFactory
-2016-02-20 18:07:54   INFO SettingsFactory:261 -Query language substitutions: {}
-2016-02-20 18:07:54   INFO SettingsFactory:266 -JPA-QL strict compliance: disabled
-2016-02-20 18:07:54   INFO SettingsFactory:271 -Second-level cache: enabled
-2016-02-20 18:07:54   INFO SettingsFactory:275 -Query cache: disabled
-2016-02-20 18:07:54   INFO SettingsFactory:406 -Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
-2016-02-20 18:07:54   INFO SettingsFactory:285 -Optimize cache for minimal puts: disabled
-2016-02-20 18:07:54   INFO SettingsFactory:294 -Structured second-level cache entries: disabled
-2016-02-20 18:07:54   INFO SettingsFactory:323 -Statistics: disabled
-2016-02-20 18:07:54   INFO SettingsFactory:327 -Deleted entity synthetic identifier rollback: disabled
-2016-02-20 18:07:54   INFO SettingsFactory:343 -Default entity-mode: pojo
-2016-02-20 18:07:54   INFO SettingsFactory:347 -Named query checking : enabled
-2016-02-20 18:07:54   INFO SettingsFactory:351 -Check Nullability in Core (should be disabled when Bean Validation is on): enabled
-2016-02-20 18:07:54   INFO SessionFactoryImpl:202 -building session factory
-2016-02-20 18:07:54   INFO BasicTypeRegistry:150 -Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@b49b29d
-2016-02-20 18:07:54   INFO BasicTypeRegistry:150 -Type registration [clob] overrides previous : org.hibernate.type.ClobType@136d6735
-2016-02-20 18:07:54   INFO BasicTypeRegistry:150 -Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@136d6735
-2016-02-20 18:07:54   INFO BasicTypeRegistry:150 -Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@7392d289
-2016-02-20 18:07:54   INFO BasicTypeRegistry:150 -Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@2c3c5ba6
-2016-02-20 18:07:54   INFO BasicTypeRegistry:150 -Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@2ea505fa
-2016-02-20 18:07:54   INFO BasicTypeRegistry:150 -Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@542b7802
-2016-02-20 18:07:54   INFO BasicTypeRegistry:150 -Type registration [blob] overrides previous : org.hibernate.type.BlobType@71d3f679
-2016-02-20 18:07:54   INFO BasicTypeRegistry:150 -Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@71d3f679
-2016-02-20 18:07:54   INFO SessionFactoryObjectFactory:105 -Not binding factory to JNDI, no JNDI name configured
-2016-02-20 18:08:31   INFO Version:37 -Hibernate Commons Annotations 3.2.0.Final
-2016-02-20 18:08:31   INFO Environment:603 -Hibernate 3.6.4.Final
-2016-02-20 18:08:31   INFO Environment:636 -hibernate.properties not found
-2016-02-20 18:08:31   INFO Environment:814 -Bytecode provider name : javassist
-2016-02-20 18:08:31   INFO Environment:695 -using JDK 1.4 java.sql.Timestamp handling
-2016-02-20 18:08:32   INFO Configuration:2156 -configuring from resource: /hibernate.cfg.xml
-2016-02-20 18:08:32   INFO Configuration:2175 -Configuration resource: /hibernate.cfg.xml
-2016-02-20 18:08:32   INFO Configuration:789 -Reading mappings from resource : nju/iip/dto/JWNews.hbm.xml
-2016-02-20 18:08:32   INFO Configuration:2297 -Configured SessionFactory: null
-2016-02-20 18:08:32   INFO HbmBinder:353 -Mapping class: nju.iip.dto.JWNews -> JWNEWS
-2016-02-20 18:08:32   INFO Configuration:1676 -Hibernate Validator not found: ignoring
-2016-02-20 18:08:32   INFO HibernateSearchEventListenerRegister:75 -Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
-2016-02-20 18:08:32   INFO ConnectionProviderFactory:173 -Initializing connection provider: org.hibernate.connection.C3P0ConnectionProvider
-2016-02-20 18:08:32   INFO C3P0ConnectionProvider:103 -C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://114.212.82.189/xianteng
-2016-02-20 18:08:32   INFO C3P0ConnectionProvider:104 -Connection properties: {user=root, password=****}
-2016-02-20 18:08:32   INFO C3P0ConnectionProvider:107 -autocommit mode: false
-2016-02-20 18:08:32   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_statement' and c3p0-style property 'c3p0.max_statement' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_statement' will be used and c3p0-style property 'c3p0.max_statement' will be ignored!
-2016-02-20 18:08:32   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.time_out' and c3p0-style property 'c3p0.time_out' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.time_out' will be used and c3p0-style property 'c3p0.time_out' will be ignored!
-2016-02-20 18:08:32   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.min_size' and c3p0-style property 'c3p0.min_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.min_size' will be used and c3p0-style property 'c3p0.min_size' will be ignored!
-2016-02-20 18:08:32   WARN C3P0ConnectionProvider:232 -Both hibernate-style property 'hibernate.c3p0.max_size' and c3p0-style property 'c3p0.max_size' have been set in hibernate.properties. Hibernate-style property 'hibernate.c3p0.max_size' will be used and c3p0-style property 'c3p0.max_size' will be ignored!
-2016-02-20 18:08:32   INFO MLog:80 -MLog clients using log4j logging.
-2016-02-20 18:08:32   INFO C3P0Registry:204 -Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
-2016-02-20 18:08:32   INFO AbstractPoolBackedDataSource:462 -Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@4de85682 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@91b170cd [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge76h9e1yinlnglid1s3|7a7fa68b, idleConnectionTestPeriod -> 0, initialPoolSize -> 2, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 5, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 2, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@f6be449 [ description -> null, driverClass -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yinlnglid1s3|8ae4d15, jdbcUrl -> jdbc:mysql://114.212.82.189/xianteng, properties -> {user=******, password=******} ], preferredTestQuery -> null, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1hge76h9e1yinlnglid1s3|6444e5b7, numHelperThreads -> 3 ]
-2016-02-20 18:08:33   INFO Dialect:135 -Using dialect: org.hibernate.dialect.MySQLDialect
-2016-02-20 18:08:33   INFO JdbcSupportLoader:108 -Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
-2016-02-20 18:08:33   INFO SettingsFactory:126 -Database ->
-       name : MySQL
-    version : 5.6.28
-      major : 5
-      minor : 6
-2016-02-20 18:08:33   INFO SettingsFactory:132 -Driver ->
-       name : MySQL Connector Java
-    version : mysql-connector-java-5.1.38 ( Revision: fe541c166cec739c74cc727c5da96c1028b4834a )
-      major : 5
-      minor : 1
-2016-02-20 18:08:33   INFO TransactionFactoryFactory:62 -Using default transaction strategy (direct JDBC transactions)
-2016-02-20 18:08:33   INFO TransactionManagerLookupFactory:83 -No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
-2016-02-20 18:08:33   INFO SettingsFactory:179 -Automatic flush during beforeCompletion(): disabled
-2016-02-20 18:08:33   INFO SettingsFactory:183 -Automatic session close at end of transaction: disabled
-2016-02-20 18:08:33   INFO SettingsFactory:190 -JDBC batch size: 15
-2016-02-20 18:08:33   INFO SettingsFactory:193 -JDBC batch updates for versioned data: disabled
-2016-02-20 18:08:33   INFO SettingsFactory:198 -Scrollable result sets: enabled
-2016-02-20 18:08:33   INFO SettingsFactory:206 -JDBC3 getGeneratedKeys(): enabled
-2016-02-20 18:08:33   INFO SettingsFactory:214 -Connection release mode: auto
-2016-02-20 18:08:33   INFO SettingsFactory:238 -Maximum outer join fetch depth: 2
-2016-02-20 18:08:33   INFO SettingsFactory:241 -Default batch fetch size: 1
-2016-02-20 18:08:33   INFO SettingsFactory:245 -Generate SQL with comments: disabled
-2016-02-20 18:08:33   INFO SettingsFactory:249 -Order SQL updates by primary key: disabled
-2016-02-20 18:08:33   INFO SettingsFactory:253 -Order SQL inserts for batching: disabled
-2016-02-20 18:08:33   INFO SettingsFactory:431 -Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
-2016-02-20 18:08:33   INFO ASTQueryTranslatorFactory:47 -Using ASTQueryTranslatorFactory
-2016-02-20 18:08:33   INFO SettingsFactory:261 -Query language substitutions: {}
-2016-02-20 18:08:33   INFO SettingsFactory:266 -JPA-QL strict compliance: disabled
-2016-02-20 18:08:33   INFO SettingsFactory:271 -Second-level cache: enabled
-2016-02-20 18:08:33   INFO SettingsFactory:275 -Query cache: disabled
-2016-02-20 18:08:33   INFO SettingsFactory:406 -Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
-2016-02-20 18:08:33   INFO SettingsFactory:285 -Optimize cache for minimal puts: disabled
-2016-02-20 18:08:33   INFO SettingsFactory:294 -Structured second-level cache entries: disabled
-2016-02-20 18:08:33   INFO SettingsFactory:323 -Statistics: disabled
-2016-02-20 18:08:33   INFO SettingsFactory:327 -Deleted entity synthetic identifier rollback: disabled
-2016-02-20 18:08:33   INFO SettingsFactory:343 -Default entity-mode: pojo
-2016-02-20 18:08:33   INFO SettingsFactory:347 -Named query checking : enabled
-2016-02-20 18:08:33   INFO SettingsFactory:351 -Check Nullability in Core (should be disabled when Bean Validation is on): enabled
-2016-02-20 18:08:33   INFO SessionFactoryImpl:202 -building session factory
-2016-02-20 18:08:33   INFO BasicTypeRegistry:150 -Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@71d3f679
-2016-02-20 18:08:33   INFO BasicTypeRegistry:150 -Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@12dabc51
-2016-02-20 18:08:33   INFO BasicTypeRegistry:150 -Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@56817382
-2016-02-20 18:08:33   INFO BasicTypeRegistry:150 -Type registration [clob] overrides previous : org.hibernate.type.ClobType@4cc6882c
-2016-02-20 18:08:33   INFO BasicTypeRegistry:150 -Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@4cc6882c
-2016-02-20 18:08:33   INFO BasicTypeRegistry:150 -Type registration [blob] overrides previous : org.hibernate.type.BlobType@7e162814
-2016-02-20 18:08:33   INFO BasicTypeRegistry:150 -Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@7e162814
-2016-02-20 18:08:33   INFO BasicTypeRegistry:150 -Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@60a179b7
-2016-02-20 18:08:33   INFO BasicTypeRegistry:150 -Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@93e0ef1
-2016-02-20 18:08:33   INFO SessionFactoryObjectFactory:105 -Not binding factory to JNDI, no JNDI name configured
+2016-03-01 00:23:45   INFO TransactionFactoryFactory:62 -Using default transaction strategy (direct JDBC transactions)
+2016-03-01 00:23:45   INFO TransactionManagerLookupFactory:83 -No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2016-03-01 00:23:45   INFO SettingsFactory:179 -Automatic flush during beforeCompletion(): disabled
+2016-03-01 00:23:45   INFO SettingsFactory:183 -Automatic session close at end of transaction: disabled
+2016-03-01 00:23:45   INFO SettingsFactory:190 -JDBC batch size: 15
+2016-03-01 00:23:45   INFO SettingsFactory:193 -JDBC batch updates for versioned data: disabled
+2016-03-01 00:23:45   INFO SettingsFactory:198 -Scrollable result sets: enabled
+2016-03-01 00:23:45   INFO SettingsFactory:206 -JDBC3 getGeneratedKeys(): enabled
+2016-03-01 00:23:45   INFO SettingsFactory:214 -Connection release mode: auto
+2016-03-01 00:23:45   INFO SettingsFactory:238 -Maximum outer join fetch depth: 2
+2016-03-01 00:23:45   INFO SettingsFactory:241 -Default batch fetch size: 1
+2016-03-01 00:23:45   INFO SettingsFactory:245 -Generate SQL with comments: disabled
+2016-03-01 00:23:45   INFO SettingsFactory:249 -Order SQL updates by primary key: disabled
+2016-03-01 00:23:45   INFO SettingsFactory:253 -Order SQL inserts for batching: disabled
+2016-03-01 00:23:45   INFO SettingsFactory:431 -Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2016-03-01 00:23:45   INFO ASTQueryTranslatorFactory:47 -Using ASTQueryTranslatorFactory
+2016-03-01 00:23:45   INFO SettingsFactory:261 -Query language substitutions: {}
+2016-03-01 00:23:45   INFO SettingsFactory:266 -JPA-QL strict compliance: disabled
+2016-03-01 00:23:45   INFO SettingsFactory:271 -Second-level cache: enabled
+2016-03-01 00:23:45   INFO SettingsFactory:275 -Query cache: disabled
+2016-03-01 00:23:45   INFO SettingsFactory:406 -Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+2016-03-01 00:23:45   INFO SettingsFactory:285 -Optimize cache for minimal puts: disabled
+2016-03-01 00:23:45   INFO SettingsFactory:294 -Structured second-level cache entries: disabled
+2016-03-01 00:23:45   INFO SettingsFactory:323 -Statistics: disabled
+2016-03-01 00:23:45   INFO SettingsFactory:327 -Deleted entity synthetic identifier rollback: disabled
+2016-03-01 00:23:45   INFO SettingsFactory:343 -Default entity-mode: pojo
+2016-03-01 00:23:45   INFO SettingsFactory:347 -Named query checking : enabled
+2016-03-01 00:23:45   INFO SettingsFactory:351 -Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+2016-03-01 00:23:45   INFO SessionFactoryImpl:202 -building session factory
+2016-03-01 00:23:45   INFO BasicTypeRegistry:150 -Type registration [clob] overrides previous : org.hibernate.type.ClobType@5f99484f
+2016-03-01 00:23:45   INFO BasicTypeRegistry:150 -Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@5f99484f
+2016-03-01 00:23:45   INFO BasicTypeRegistry:150 -Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@485a6b91
+2016-03-01 00:23:45   INFO BasicTypeRegistry:150 -Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@284c21b3
+2016-03-01 00:23:45   INFO BasicTypeRegistry:150 -Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@1e388370
+2016-03-01 00:23:45   INFO BasicTypeRegistry:150 -Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@103d3d90
+2016-03-01 00:23:45   INFO BasicTypeRegistry:150 -Type registration [blob] overrides previous : org.hibernate.type.BlobType@2494c144
+2016-03-01 00:23:45   INFO BasicTypeRegistry:150 -Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@2494c144
+2016-03-01 00:23:45   INFO BasicTypeRegistry:150 -Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@221c6a1f
+2016-03-01 00:23:45   INFO SessionFactoryObjectFactory:105 -Not binding factory to JNDI, no JNDI name configured
+2016-03-01 00:23:45   INFO BiaoZhangDAO:43 -4

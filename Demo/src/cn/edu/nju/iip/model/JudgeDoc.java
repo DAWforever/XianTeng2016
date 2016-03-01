@@ -7,6 +7,10 @@ package cn.edu.nju.iip.model;
  */
 public class JudgeDoc {
 	
+	private String content;
+	
+	private String title;
+	
 	private int id;
 	//执行法院
 	private String courtName;
@@ -31,6 +35,18 @@ public class JudgeDoc {
 	
 	
 	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public String getIname() {
 		return iname;
 	}

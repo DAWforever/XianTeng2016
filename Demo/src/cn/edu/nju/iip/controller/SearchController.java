@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.edu.nju.iip.dao.BiaoZhangDAO;
 import cn.edu.nju.iip.dao.JudgeDocDAO;
 import cn.edu.nju.iip.dao.NewsDAO;
+import cn.edu.nju.iip.model.BiaoZhangData;
 import cn.edu.nju.iip.model.JWNews;
 import cn.edu.nju.iip.model.JudgeDoc;
 
@@ -26,6 +28,9 @@ public class SearchController {
 	
 	@Autowired
 	private JudgeDocDAO judgeDocDAO;
+	
+	@Autowired
+	private BiaoZhangDAO biaoZhangDAO;
 	
 	/**
 	 * 根据type 选择特定搜索
@@ -41,16 +46,19 @@ public class SearchController {
 		List<JWNews> pos_list = newsDAO.getPosNews(query);
 		List<JWNews> neg_list = newsDAO.getNegNews(query);
 		List<JWNews> list = newsDAO.getAllNews(query);
+		List<BiaoZhangData> BiaoZhanglist = biaoZhangDAO.getBiaoZhangDataList(query);
 		List<JudgeDoc> judge_list = judgeDocDAO.getJudgeDoc(query);
 		request.getSession().setAttribute("judge_list", judge_list);
 		request.getSession().setAttribute("news", list);
 		request.getSession().setAttribute("pos_news", pos_list);
 		request.getSession().setAttribute("neg_news", neg_list);
+		request.getSession().setAttribute("BiaoZhanglist", BiaoZhanglist);
 		request.getSession().setAttribute("unitName", query);
 		model.addAttribute("count", list.size());
 		model.addAttribute("pos_count", pos_list.size());
 		model.addAttribute("neg_count", neg_list.size());
 		model.addAttribute("judge_doc_count", judge_list.size());
+		model.addAttribute("BiaoZhanglist_size", BiaoZhanglist.size());
 		model.addAttribute("unitName", query);
 		return "index.jsp";
 	}
@@ -92,6 +100,41 @@ public class SearchController {
 	}
 	
 	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/biaozhang_list")
+	public String getBiaoZhangList(Model model,HttpServletRequest request) {
+		logger.info("getBiaoZhangList called");
+		List<BiaoZhangData> BiaoZhanglist = (List<BiaoZhangData>) request.getSession().getAttribute("BiaoZhanglist");
+		logger.info("list isze="+BiaoZhanglist.size());
+		logger.info("list isze="+BiaoZhanglist.get(0).getTitle());
+		String unitName = (String) request.getSession().getAttribute("unitName");
+		model.addAttribute("unitName",unitName);
+		model.addAttribute("BiaoZhanglist",BiaoZhanglist);
+		return "biaozhang_list.jsp";
+		
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/get_BiaoZhang")
+	public String getBiaoZhang(String id,Model model,HttpServletRequest request) {
+		logger.info("getBiaoZhang called");
+		logger.info("id="+id);
+		List<BiaoZhangData> list = (List<BiaoZhangData>) request.getSession().getAttribute("BiaoZhanglist");
+		String unitName = (String) request.getSession().getAttribute("unitName");
+		BiaoZhangData temp = new BiaoZhangData();
+		for(BiaoZhangData data:list) {
+			if(id.equals(data.getId()+"")) {
+				temp = data;
+			}
+		}
+		model.addAttribute("doc",temp);
+		logger.info("title="+temp.getTitle());
+		model.addAttribute("unitName",unitName);
+		return "biaozhang.jsp";
+	}
+	
+	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/get_doc")
 	public String getDoc(String id,Model model,HttpServletRequest request) {
 		logger.info("getDoc called");
@@ -105,6 +148,7 @@ public class SearchController {
 			}
 		}
 		model.addAttribute("doc",temp);
+		logger.info("title="+temp.getTitle());
 		model.addAttribute("unitName",unitName);
 		return "judge.jsp";
 	}

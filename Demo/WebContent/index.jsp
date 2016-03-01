@@ -100,7 +100,7 @@
 						<h3 class="h3ttl">1.政府监管信息</h3>
 						<h4 class="v1_title">
 							<p>
-								共<a href="biaozhang.html" target="_blank">1&nbsp;</a>条信息
+								共<a href="biaozhang_list" target="_blank"> ${BiaoZhanglist_size}&nbsp;</a>条信息
 							</p>
 							<a href="javascript:void(0);" onclick="return false;">1-1.通报表彰信息</a>
 						</h4>

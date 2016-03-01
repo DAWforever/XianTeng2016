@@ -17,25 +17,29 @@
 			</div>
 			<div class="company_dl company_act_photo">
 				<dl>
-					<dt>法定代表人或者负责人姓名：</dt>
-					<dd>${doc.businessEntity}&nbsp;</dd>
-					<dt>省份：</dt>
-					<dd>${doc.areaName}&nbsp;</dd>
+					<dt>当事人：</dt>
+					<dd>${doc.iname}&nbsp;</dd>
+					<dt>判决标题：</dt>
+					<dd>${doc.title}&nbsp;</dd>
 					<dt>判决文号：</dt>
 					<dd>${doc.caseCode}&nbsp;</dd>
-					<dt>生效法律文书确定的义务：</dt>
-					<dd>${doc.duty}</dd>
-					<dt>被执行人的履行情况：</dt>
-					<dd>${doc.performance}</dd>
-					<dt>失信被执行人行为具体情形：</dt>
-					<dd>${doc.disruptTypeName}</dd>
+					<dt>判决内容：</dt>
+					<dd id="content">${doc.content}</dd>
 					<dt>判决法院：</dt>
 					<dd>${doc.courtName}</dd>
-					<dt>判决时间：</dt>
+					<dt>发布时间：</dt>
 					<dd>${doc.publishDate}&nbsp;</dd>
 				</dl>
 			</div>
 		</div>
 	</div>
 </body>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
+var content = $("dd#content").text();
+var key = "${unitName}";
+var a = new RegExp(key,"g");
+content = content.replace(a,("<span style='color:#b70000'>" + key + "</span>"))
+$("dd#content").html(content);
+</script>
 </html>
