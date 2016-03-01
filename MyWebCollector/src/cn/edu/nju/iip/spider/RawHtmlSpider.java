@@ -29,26 +29,27 @@ public class RawHtmlSpider extends BreadthCrawler{
 	 */
 	public RawHtmlSpider(String crawlPath, boolean autoParse) {
 		super(crawlPath, autoParse);
-		for(int i=1;i<=13;i++) {
-			this.addSeed("http://www.cq-l-tax.gov.cn/zwgk/ssgg/nsxyajgg/index_"+i+".html");
+		for(int i=1;i<=220;i++) {
+			this.addSeed("http://zizhan.mot.gov.cn/zfxxgk/249/list_4557_"+i+".htm");
 		}
-		this.addSeed("http://www.cq-l-tax.gov.cn/zwgk/ssgg/nsxyajgg/");
+		this.addSeed("http://zizhan.mot.gov.cn/zfxxgk/249/list_4557.htm");
 	//	this.addRegex("http://www.cqgs.gov.cn/gzfw/gg/.*htm");
 	//	this.addRegex("http://www.cqgs12315.cn/gzfw/gg/default.*htm");
-		this.addRegex("http://www.cq-l-tax.gov.cn/zwgk/ssgg/nsxyajgg/\\d{5}.*html");
+		this.addRegex("http://zizhan.mot.gov.cn/.*html");
 	}
 
 	public void visit(Page page, CrawlDatums next) {
 		String url = page.getUrl();
-		 if (page.matchUrl("http://www.cq-l-tax.gov.cn/zwgk/ssgg/nsxyajgg/\\d{5}.*html")) {
+		 if (page.matchUrl("http://zizhan.mot.gov.cn/.*html")) {
 	            Document doc = page.getDoc();
 	            RawHtml rawhtml = new RawHtml();
-	            rawhtml.setContent(doc.select("body").text());
+	            rawhtml.setContent(doc.select("div.continfo").text());
 	            rawhtml.setUrl(url);
-	            rawhtml.setSource("重庆市地方税务局");
+	            rawhtml.setSource("中华人民共和国交通运输部");
 	            rawhtml.setCrawltime(CommonUtil.getTime());
+	            rawhtml.setType("政府监管");
 	            rawHtmlDao.saveRawHtml(rawhtml);
-	           // logger.info("content="+doc.select("body").text());
+	            logger.info("content="+doc.select("div.continfo").text());
 	            count++;
 	     }
 	}

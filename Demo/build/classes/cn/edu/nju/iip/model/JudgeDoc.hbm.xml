@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.edu.nju.iip.model.JudgeDoc" table="JW_JUDGE_DOC">
+		<meta attribute="class-description">
+			This class contains the nju.iip.model.JudgeDoc detail.
+		</meta>
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+		<property name="courtName" column="courtName" type="string" />
+		<property name="caseCode" column="caseCode" type="string" />
+		<property name="cardNum" column="cardNum" type="string" />
+		<property name="areaName" column="areaName" type="string" />
+		<property name="businessEntity" column="businessEntity" type="string" />
+		<property name="duty" column="duty" type="string" />
+		<property name="performance" column="performance" type="string" />
+		<property name="disruptTypeName" column="disruptTypeName" type="string" />
+		<property name="publishDate" column="publishDate" type="string" />
+		<property name="iname" column="iname" type="string" />
+		<property name="content" column="content" type="string" />
+		<property name="title" column="title" type="string" />
+	</class>
+</hibernate-mapping>
