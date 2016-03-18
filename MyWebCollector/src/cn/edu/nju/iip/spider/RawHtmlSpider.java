@@ -1,4 +1,7 @@
 package cn.edu.nju.iip.spider;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +18,16 @@ public class RawHtmlSpider extends BreadthCrawler{
 	
 	private static final Logger logger = LoggerFactory.getLogger(RawHtmlSpider.class);
 	
-	private RawHtmlDAO rawHtmlDao = new RawHtmlDAO();
+	//private RawHtmlDAO rawHtmlDao = new RawHtmlDAO();
 	
 	private int count = 0;
 	
+	private HashMap<String,ArrayList<String>> map = CommonUtil.importGovUrl();
+	private ArrayList<String> seed_url_list = map.get("seed_url_list");
+	private ArrayList<String> content_regex_list = map.get("content_regex_list");
+	private ArrayList<String> page_regex_list = map.get("page_regex_list");
+	
+
 	/**
 	 * @param crawlPath
 	 *            crawlPath is the path of the directory which maintains
@@ -29,36 +38,39 @@ public class RawHtmlSpider extends BreadthCrawler{
 	 */
 	public RawHtmlSpider(String crawlPath, boolean autoParse) {
 		super(crawlPath, autoParse);
-		for(int i=1;i<=220;i++) {
-			this.addSeed("http://zizhan.mot.gov.cn/zfxxgk/249/list_4557_"+i+".htm");
+		for(String seed_url:seed_url_list) {
+			this.addSeed(seed_url);
 		}
-		this.addSeed("http://zizhan.mot.gov.cn/zfxxgk/249/list_4557.htm");
-	//	this.addRegex("http://www.cqgs.gov.cn/gzfw/gg/.*htm");
-	//	this.addRegex("http://www.cqgs12315.cn/gzfw/gg/default.*htm");
-		this.addRegex("http://zizhan.mot.gov.cn/.*html");
+		for(String content_regex:content_regex_list) {
+			this.addRegex(content_regex);
+		}
+		for(String page_regex:page_regex_list) {
+			this.addRegex(page_regex);
+		}
+	}
+	
+	public boolean isContentUrl(Page page) {
+		boolean flag = false;
+		for(String content_regex:content_regex_list) {
+			if(page.matchUrl(content_regex)) {
+				flag = true;
+			}
+		}
+		return flag;
 	}
 
 	public void visit(Page page, CrawlDatums next) {
-		String url = page.getUrl();
-		 if (page.matchUrl("http://zizhan.mot.gov.cn/.*html")) {
+		 if (isContentUrl(page)) {
 	            Document doc = page.getDoc();
-	            RawHtml rawhtml = new RawHtml();
-	            rawhtml.setContent(doc.select("div.continfo").text());
-	            rawhtml.setUrl(url);
-	            rawhtml.setSource("中华人民共和国交通运输部");
-	            rawhtml.setCrawltime(CommonUtil.getTime());
-	            rawhtml.setType("政府监管");
-	            rawHtmlDao.saveRawHtml(rawhtml);
-	            logger.info("content="+doc.select("div.continfo").text());
+	            logger.info("content="+doc.text());
 	            count++;
 	     }
 	}
-	
 	public static void main(String[] args) throws Exception {
 		RawHtmlSpider crawler = new RawHtmlSpider("crawl", true);
         crawler.setThreads(50);
-        crawler.setTopN(1000);
-        crawler.start(25);
+        crawler.setTopN(50000);
+        crawler.start(100);
         logger.info("count="+crawler.count);
     }
 

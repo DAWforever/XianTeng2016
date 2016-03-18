@@ -16,7 +16,7 @@ public class RawHtml {
 	private String crawltime;
 	
 	private String source;
-	
+	//政府监管还是新闻媒体
 	private String type;
 	
 	
@@ -28,6 +28,7 @@ public class RawHtml {
 	public void setSource(String source) {
 		this.source = source;
 	}
+	
 
 	public int getId() {
 		return id;

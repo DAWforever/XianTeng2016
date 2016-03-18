@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import jxl.Sheet;
@@ -101,6 +102,39 @@ public class CommonUtil {
 		}
 		return list;
 	}
+	
+	public static HashMap<String,ArrayList<String>> importGovUrl() {
+		Workbook workbook = null;
+		HashMap<String,ArrayList<String>> map = new HashMap<String,ArrayList<String>>();
+		ArrayList<String> seed_url_list = new ArrayList<String>();
+		ArrayList<String> content_regex_list = new ArrayList<String>();
+		ArrayList<String> page_regex_list = new ArrayList<String>();
+		try {
+			workbook = Workbook.getWorkbook(new File(System
+					.getProperty("user.dir") + "/resources/省级住房和城乡建设厅.xls"));
+		} catch (Exception e) {
+			logger.error("importGovUrl error!", e);
+		}
+		Sheet sheet = workbook.getSheet(0);
+		int rowCount = sheet.getRows();
+		for (int i = 1; i < rowCount; i++) {
+			String seed_url = sheet.getCell(2, i).getContents().trim();
+			String content_regex = sheet.getCell(4, i).getContents().trim();
+			String page_regex = sheet.getCell(5, i).getContents().trim();
+			String isStatic = sheet.getCell(3, i).getContents().trim();
+			if(isStatic.equals("是")) {
+				seed_url_list.add(seed_url);
+				content_regex_list.add(content_regex);
+				page_regex_list.add(page_regex);
+			}
+		}
+		map.put("seed_url_list", seed_url_list);
+		map.put("content_regex_list", content_regex_list);
+		map.put("page_regex_list", page_regex_list);
+		return map;
+	}
+	
+	
 
 	/**
 	 * 获取当前时间
@@ -171,8 +205,7 @@ public class CommonUtil {
 		}
 	}
 	public static void main(String[] args) {
-		readTxt();
-		//importUrl();
+		importGovUrl();
 
 	}
 

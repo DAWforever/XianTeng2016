@@ -8,8 +8,10 @@
 		<meta attribute="class-description">
 			This class contains the nju.iip.model.RawHtml detail.
 		</meta>
-		<id name="id" type="int" column="id">
-			<generator class="native" />
+		<id name="id"  column="id" type="integer">
+			<generator class="sequence">
+              <param name="sequence">WQ_Sequence</param>
+            </generator>
 		</id>
 		<property name="url" column="url" type="string" />
 		<property name="content" column="content" type="string" />
