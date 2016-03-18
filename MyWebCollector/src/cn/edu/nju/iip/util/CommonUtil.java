@@ -111,7 +111,7 @@ public class CommonUtil {
 		ArrayList<String> page_regex_list = new ArrayList<String>();
 		try {
 			workbook = Workbook.getWorkbook(new File(System
-					.getProperty("user.dir") + "/resources/省级住房和城乡建设厅.xls"));
+					.getProperty("user.dir") + "/resources/URL_Sample.xls"));
 		} catch (Exception e) {
 			logger.error("importGovUrl error!", e);
 		}
@@ -119,8 +119,8 @@ public class CommonUtil {
 		int rowCount = sheet.getRows();
 		for (int i = 1; i < rowCount; i++) {
 			String seed_url = sheet.getCell(2, i).getContents().trim();
-			String content_regex = sheet.getCell(4, i).getContents().trim();
-			String page_regex = sheet.getCell(5, i).getContents().trim();
+			String content_regex = sheet.getCell(4, i).getContents().trim().replace("\\\\", "\\");
+			String page_regex = sheet.getCell(5, i).getContents().trim().replace("\\\\", "\\");
 			String isStatic = sheet.getCell(3, i).getContents().trim();
 			if(isStatic.equals("是")) {
 				seed_url_list.add(seed_url);

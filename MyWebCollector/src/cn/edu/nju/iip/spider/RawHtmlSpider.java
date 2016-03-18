@@ -41,8 +41,8 @@ public class RawHtmlSpider extends BreadthCrawler{
 		for(String seed_url:seed_url_list) {
 			this.addSeed(seed_url);
 		}
-		for(String content_regex:content_regex_list) {
-			this.addRegex(content_regex);
+		for(String page_regex:content_regex_list) {
+			this.addRegex(page_regex);
 		}
 		for(String page_regex:page_regex_list) {
 			this.addRegex(page_regex);
@@ -54,6 +54,7 @@ public class RawHtmlSpider extends BreadthCrawler{
 		for(String content_regex:content_regex_list) {
 			if(page.matchUrl(content_regex)) {
 				flag = true;
+				break;
 			}
 		}
 		return flag;
@@ -66,11 +67,12 @@ public class RawHtmlSpider extends BreadthCrawler{
 	            count++;
 	     }
 	}
+	
 	public static void main(String[] args) throws Exception {
 		RawHtmlSpider crawler = new RawHtmlSpider("crawl", true);
         crawler.setThreads(50);
         crawler.setTopN(50000);
-        crawler.start(100);
+        crawler.start(500);
         logger.info("count="+crawler.count);
     }
 
