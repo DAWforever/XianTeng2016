@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.nju.iip.model.RawHtml;
-import cn.edu.nju.iip.util.FileUtil;
 
 
 public class RawHtmlDAO extends DAO implements Runnable{
@@ -41,16 +40,15 @@ public class RawHtmlDAO extends DAO implements Runnable{
 			try{
 				Page page = Queue.take();
 				RawHtml rawHtml = new RawHtml();
+				//String attachment = FileUtil.ReadDoc(page.getUrl(), page.getHtml()).replaceAll("[\\n\\t\\s]", "");
 				String attachment = "";
 				rawHtml.setAttachment(attachment);
-				rawHtml.setContent(page.getHtml());
+				rawHtml.setContent(page.getDoc().text()+attachment);
 				rawHtml.setSource(page.getMetaData("source"));
 				rawHtml.setUrl(page.getUrl());
 				rawHtml.setType(page.getMetaData("type"));
 				rawHtml.setCrawltime(new Date());
 				saveRawHtml(rawHtml);
-				page = null;
-				rawHtml = null;
 			}catch (Exception e) {
 				logger.info("RawHtmlDAO run() failed", e);
 			}

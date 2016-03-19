@@ -1,36 +1,33 @@
 package cn.edu.nju.iip.spider;
-import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.plugin.berkeley.BreadthCrawler;
 import cn.edu.nju.iip.BloomFilter.BloomFactory;
 import cn.edu.nju.iip.dao.RawHtmlDAO;
+import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.model.Url;
 import cn.edu.nju.iip.util.CommonUtil;
+import cn.edu.nju.iip.util.HtmlDocParse;
 
 
-public class RawHtmlSpider extends BreadthCrawler implements Runnable{
+public class RawHtmlSpider extends BreadthCrawler {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RawHtmlSpider.class);
 	
-	private BlockingQueue<Page> PageQueue;
 	
 	private static BloomFactory bf = BloomFactory.getInstance();
 
 	private  Set<String> seed_set = new HashSet<String>();
+	
+	private RawHtmlDAO dao = new RawHtmlDAO();
 	
 	private int count = 0;
 	
@@ -51,9 +48,9 @@ public class RawHtmlSpider extends BreadthCrawler implements Runnable{
 	 *            if autoParse is true,BreadthCrawler will auto extract links
 	 *            which match regex rules from pag
 	 */
-	public RawHtmlSpider(String crawlPath, boolean autoParse,BlockingQueue<Page> PageQueue) {
+	public RawHtmlSpider(String crawlPath, boolean autoParse) {
 		super(crawlPath, autoParse);
-		this.PageQueue = PageQueue;
+		logger.info("种子URL共:"+seed_url_list.size()+"个");
 		for(Url seed_url:seed_url_list) {
 			this.addSeed(new CrawlDatum(seed_url.getLink()).putMetaData("source",seed_url.getWebname()).putMetaData("type", seed_url.getCategory()));
 			seed_set.add(seed_url.getLink());
@@ -91,8 +88,17 @@ public class RawHtmlSpider extends BreadthCrawler implements Runnable{
 			//是正文url就将页面本地持久化
 			if (isContentUrl(page)) {
 				 try{
-					 PageQueue.put(page);
-			         count++;
+					    RawHtml rawHtml = new RawHtml();
+					    HtmlDocParse docParse = new HtmlDocParse(page.getUrl(),page.getHtml());
+						String attachment = docParse.getDocsContent();
+						rawHtml.setAttachment(attachment);
+						rawHtml.setContent(page.getDoc().text()+attachment);
+						rawHtml.setSource(page.getMetaData("source"));
+						rawHtml.setUrl(page.getUrl());
+						rawHtml.setType(page.getMetaData("type"));
+						rawHtml.setCrawltime(new Date());
+						dao.saveRawHtml(rawHtml);
+			            count++;
 				 }catch(Exception e) {
 					 logger.info("visit failed", e);
 				 }
@@ -109,27 +115,14 @@ public class RawHtmlSpider extends BreadthCrawler implements Runnable{
 			data.putMetaData("type", type);
 		}
 	}
-	public void run() {
-		try {
-			this.setThreads(50);
-			this.setTopN(50000);
-			this.start(500);
-			File file = new File("crawl");
-			CommonUtil.deleteFile(file);
-			bf.saveBloomFilter();
-			logger.info("count="+this.count);
-		}catch(Exception e) {
-			 logger.info("RawHtmlSpider run failed", e);
-		}
-	}
+	
+	
 	public static void main(String[] args) throws Exception {
-		BlockingQueue<Page> PageQueue = new LinkedBlockingQueue<Page>();
-		RawHtmlSpider crawler = new RawHtmlSpider("crawl",true,PageQueue);
-        ExecutorService service = Executors.newCachedThreadPool();
-        for(int i=0;i<10;i++) {
-        	RawHtmlDAO RD = new RawHtmlDAO(PageQueue);
-        	service.execute(RD);
-        }
-        service.execute(crawler);
+		RawHtmlSpider crawler = new RawHtmlSpider("crawl",true);
+		crawler.setThreads(50);
+		crawler.setTopN(50000);
+		crawler.start(1000);
+		bf.saveBloomFilter();
+		logger.info("count="+crawler.count);
     }
 }

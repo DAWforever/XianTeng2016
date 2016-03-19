@@ -6,12 +6,11 @@
 <hibernate-mapping>
 	<class name="cn.edu.nju.iip.model.RawHtml" table="JW_RAW_DATA">
 		<meta attribute="class-description">
-			This class contains the nju.iip.model.RawHtml detail.
+			This class contains the nju.iip.model.RawHtml
+			detail.
 		</meta>
-		<id name="id"  column="id" type="integer">
-			<generator class="sequence">
-              <param name="sequence">WQ_Sequence</param>
-            </generator>
+		<id name="id" type="int" column="id">
+			<generator class="native" />
 		</id>
 		<property name="url" column="url" type="string" />
 		<property name="content" column="content" type="string" />

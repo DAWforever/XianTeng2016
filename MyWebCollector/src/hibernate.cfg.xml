@@ -5,21 +5,21 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.dialect">
-			org.hibernate.dialect.Oracle10gDialect
+			org.hibernate.dialect.MySQLDialect
 		</property>
 		<property name="hibernate.connection.driver_class">
-			oracle.jdbc.driver.OracleDriver
+			com.mysql.jdbc.Driver
 		</property>
 
 		<!-- Assume test is the database name -->
 		<property name="hibernate.connection.url">
-			 jdbc:oracle:thin:@114.212.83.246:1521:orcl
+			jdbc:mysql://114.212.82.189/xianteng
 		</property>
 		<property name="hibernate.connection.username">
-			WQ
+			root
 		</property>
 		<property name="hibernate.connection.password">
-			iipconfig
+			root
 		</property>
 
 		<property name="c3p0.min_size">2</property> <!--在连接池中可用数据库连接的最小数目 -->
