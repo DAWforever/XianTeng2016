@@ -22,8 +22,7 @@ import cn.edu.nju.iip.model.Url;
 
 public class CommonUtil {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(CommonUtil.class);
+	private static final Logger logger = LoggerFactory.getLogger(CommonUtil.class);
 
 	/**
 	 * 从excel导入url信息
@@ -103,27 +102,33 @@ public class CommonUtil {
 		return list;
 	}
 	
-	public static HashMap<String,ArrayList<String>> importGovUrl() {
+	public static HashMap<String,ArrayList<?>> importGovUrl() {
 		Workbook workbook = null;
-		HashMap<String,ArrayList<String>> map = new HashMap<String,ArrayList<String>>();
-		ArrayList<String> seed_url_list = new ArrayList<String>();
+		HashMap<String,ArrayList<?>> map = new HashMap<String,ArrayList<?>>();
+		ArrayList<Url> seed_url_list = new ArrayList<Url>();
 		ArrayList<String> content_regex_list = new ArrayList<String>();
 		ArrayList<String> page_regex_list = new ArrayList<String>();
 		try {
 			workbook = Workbook.getWorkbook(new File(System
-					.getProperty("user.dir") + "/resources/URL_Sample.xls"));
+					.getProperty("user.dir") + "/resources/税务局url.xls"));
 		} catch (Exception e) {
 			logger.error("importGovUrl error!", e);
 		}
 		Sheet sheet = workbook.getSheet(0);
 		int rowCount = sheet.getRows();
 		for (int i = 1; i < rowCount; i++) {
+			Url Url = new Url();
 			String seed_url = sheet.getCell(2, i).getContents().trim();
+			String webName = sheet.getCell(0, i).getContents().trim();
+			String type = "政府监管类信息";
+			Url.setLink(seed_url);
+			Url.setWebname(webName);
+			Url.setCategory(type);
 			String content_regex = sheet.getCell(4, i).getContents().trim().replace("\\\\", "\\");
 			String page_regex = sheet.getCell(5, i).getContents().trim().replace("\\\\", "\\");
 			String isStatic = sheet.getCell(3, i).getContents().trim();
 			if(isStatic.equals("是")) {
-				seed_url_list.add(seed_url);
+				seed_url_list.add(Url);
 				content_regex_list.add(content_regex);
 				page_regex_list.add(page_regex);
 			}

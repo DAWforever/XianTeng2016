@@ -1,5 +1,6 @@
 package cn.edu.nju.iip.spider;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -92,7 +93,7 @@ public class PostSpider {
 			rawHtml.setContent(content);
 			rawHtml.setSource(source);
 			rawHtml.setUrl(url);
-			rawHtml.setCrawltime(CommonUtil.getTime());
+			//rawHtml.setCrawltime(new Date());
 			rawHtml.setType(type);
 			dao.saveRawHtml(rawHtml);
 		}catch(Exception e) {

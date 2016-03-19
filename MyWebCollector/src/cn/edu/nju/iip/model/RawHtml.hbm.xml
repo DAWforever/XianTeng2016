@@ -16,7 +16,8 @@
 		<property name="url" column="url" type="string" />
 		<property name="content" column="content" type="string" />
 		<property name="source" column="source" type="string" />
-		<property name="crawltime" column="crawltime" type="string" />
+		<property name="crawltime" column="crawltime" type="timestamp" />
 		<property name="type" column="type" type="string" />
+		<property name="attachment" column="attachment" type="string" />
 	</class>
 </hibernate-mapping>

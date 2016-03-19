@@ -73,7 +73,7 @@ public class BloomFactory {
 		BloomFactory bf = BloomFactory.getInstance();
 		//bf.add("午间分享】这...双十一前工作量应该不低吧....http://t.cn/RUpPWw6");
 		//bf.saveBloomFilter();
-		System.out.println(bf.contains("午间分享】这...双十一前工作量应该不低吧....http://t.cn/RUpPWw6")+bf.path);
+		System.out.println(bf.contains("http://www.ynjzyxh.com/wj_gg_s.asp?CN=3&page=1"));
 	}
 	
 }

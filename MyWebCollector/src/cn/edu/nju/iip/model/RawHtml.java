@@ -1,5 +1,7 @@
 package cn.edu.nju.iip.model;
 
+import java.util.Date;
+
 /**
  * 
  * @author mrpod2g
@@ -13,13 +15,23 @@ public class RawHtml {
 	
 	private String content;
 	
-	private String crawltime;
+	private Date crawltime;
 	
 	private String source;
 	//政府监管还是新闻媒体
 	private String type;
+	//附件内容
+	private String attachment;
 	
 	
+
+	public String getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(String attachment) {
+		this.attachment = attachment;
+	}
 
 	public String getSource() {
 		return source;
@@ -54,11 +66,11 @@ public class RawHtml {
 		this.content = content;
 	}
 
-	public String getCrawltime() {
+	public Date getCrawltime() {
 		return crawltime;
 	}
 
-	public void setCrawltime(String crawltime) {
+	public void setCrawltime(Date crawltime) {
 		this.crawltime = crawltime;
 	}
 
