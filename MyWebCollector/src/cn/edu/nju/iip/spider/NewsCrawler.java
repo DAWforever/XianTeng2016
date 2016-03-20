@@ -1,6 +1,7 @@
 package cn.edu.nju.iip.spider;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,7 +21,9 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.plugin.berkeley.BreadthCrawler;
 import cn.edu.nju.iip.BloomFilter.BloomFactory;
 import cn.edu.nju.iip.dao.NewsDAO;
+import cn.edu.nju.iip.dao.RawHtmlDAO;
 import cn.edu.nju.iip.model.JWNews;
+import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.model.Url;
 import cn.edu.nju.iip.util.CommonUtil;
 
@@ -33,11 +36,11 @@ public class NewsCrawler extends BreadthCrawler {
 
 	private static final Logger logger = LoggerFactory.getLogger(NewsCrawler.class);
 
-	private BlockingQueue<JWNews> NewsQueue;
-
 	private static BloomFactory bf = BloomFactory.getInstance();
 
 	private static Set<String> seed_set = new HashSet<String>();
+	
+	private RawHtmlDAO Dao = new RawHtmlDAO();
 	
 	private static int count;
 
@@ -53,17 +56,13 @@ public class NewsCrawler extends BreadthCrawler {
 		super(crawlPath, autoParse);
 		count = 0;
 		List<Url> list = CommonUtil.importFromXls();
+		logger.info("种子URL共:"+list.size()+"个");
 		for (Url url : list) {
-			this.addSeed(new CrawlDatum(url.getLink()).putMetaData("source",
-					url.getWebname()));
+			this.addSeed(new CrawlDatum(url.getLink()).putMetaData("source",url.getWebname()).putMetaData("type", url.getCategory()));
+			this.addRegex(CommonUtil.extractSourceUrl(url.getLink())+".*");
+			logger.info(CommonUtil.extractSourceUrl(url.getLink())+".*");
 			seed_set.add(url.getLink());
 		}
-		this.addRegex(".*");
-		this.addRegex("-.*\\.(jpg|png|gif).*");
-		this.addRegex("-.*\\.com/?");
-		this.addRegex("-.*\\.cn/?");
-		this.addRegex("-.*\\.net/?");
-		this.addRegex("-.*#.*");
 	}
 
 	public void visit(Page page, CrawlDatums next) {
@@ -73,17 +72,17 @@ public class NewsCrawler extends BreadthCrawler {
 		} else {
 			if (!seed_set.contains(url)) {
 				bf.add(url);
-				count++;
 				try {
 					News news = ContentExtractor.getNewsByHtml(page.getHtml());
-					JWNews jwnews = new JWNews();
-					jwnews.setContent(news.getContent().trim());
-					jwnews.setSentiment(0);
-					jwnews.setSource(page.getMetaData("source"));
-					jwnews.setUrl(url);
-					jwnews.setTitle(news.getTitle());
-					jwnews.setCrawltime(CommonUtil.getTime());
-					NewsQueue.put(jwnews);
+					RawHtml rawHtml = new RawHtml();
+					rawHtml.setContent(news.getTitle()+"#"+news.getContent());
+					rawHtml.setSource(page.getMetaData("source"));
+					rawHtml.setUrl(url);
+					rawHtml.setCrawltime(new Date());
+					rawHtml.setType(page.getMetaData("type"));
+					rawHtml.setAttachment("");
+					Dao.saveRawHtml(rawHtml);
+					count++;
 				} catch (Exception e) {
 					logger.info("visit failed", e);
 				}
@@ -94,27 +93,20 @@ public class NewsCrawler extends BreadthCrawler {
 	public void afterVisit(Page page, CrawlDatums next) {
 		super.afterVisit(page, next);
 		String source = page.getMetaData("source");
+		String type = page.getMetaData("type");
 		for (CrawlDatum data : next) {
 			data.putMetaData("source", source);
+			data.putMetaData("type", type);
 		}
 	}
 
-	public BlockingQueue<JWNews> getNewsQueue() {
-		return NewsQueue;
-	}
-
-	public void setNewsQueue(BlockingQueue<JWNews> newsQueue) {
-		NewsQueue = newsQueue;
-	}
-
-	public static void startNewsCrawler(BlockingQueue<JWNews> newsQueue) {
+	public static void startNewsCrawler() {
 		while (true) {
 			logger.info("*************NewsCrawler begin*********************");
 			NewsCrawler crawler = new NewsCrawler("crawl", true);
 			try {
-				crawler.setNewsQueue(newsQueue);
 				crawler.setThreads(50);
-				crawler.setTopN(50000);
+				crawler.setTopN(500000);
 				crawler.setResumable(true);
 				crawler.start(3);
 				File file = new File("crawl");
@@ -123,7 +115,7 @@ public class NewsCrawler extends BreadthCrawler {
 				logger.info("新增新闻:"+count);
 				logger.info("*************NewsCrawler finish*********************");
 				logger.info("*************start sleep*********************");
-				Thread.sleep(3 * 60 * 60 * 1000);
+				Thread.sleep(12 * 60 * 60 * 1000);
 			} catch (Exception e) {
 				logger.info("NewsCrawler run() error", e);
 			}
@@ -132,11 +124,7 @@ public class NewsCrawler extends BreadthCrawler {
 	}
 
 	public static void main(String[] args) throws Exception {
-		BlockingQueue<JWNews> NewsQueue = new LinkedBlockingQueue<JWNews>();
-		ExecutorService service = Executors.newCachedThreadPool();
-		NewsDAO newsDao = new NewsDAO(NewsQueue);
-		service.execute(newsDao);
-		startNewsCrawler(NewsQueue);
+		startNewsCrawler();
 	}
 
 }

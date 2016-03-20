@@ -121,7 +121,7 @@ public class RawHtmlSpider extends BreadthCrawler {
 		RawHtmlSpider crawler = new RawHtmlSpider("crawl",true);
 		crawler.setThreads(50);
 		crawler.setTopN(50000);
-		crawler.start(1000);
+		crawler.start(1500);
 		bf.saveBloomFilter();
 		logger.info("count="+crawler.count);
     }

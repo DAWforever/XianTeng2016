@@ -32,18 +32,19 @@ public class CommonUtil {
 		List<Url> url_list = new ArrayList<Url>();
 		try {
 			workbook = Workbook.getWorkbook(new File(System
-					.getProperty("user.dir") + "/resources/url_source_V3.1.xls"));
+					.getProperty("user.dir") + "/resources/媒体评价类数据源.xls"));
 		} catch (Exception e) {
 			logger.error("importFromXls error!", e);
 		}
-		Sheet sheet = workbook.getSheet(1);
+		Sheet sheet = workbook.getSheet(0);
 		int rowCount = sheet.getRows();
 		for (int i = 1; i < rowCount; i++) {
 			Url Url = new Url();
-			String webname = sheet.getCell(1, i).getContents().trim();
-			String link = sheet.getCell(4, i).getContents();
+			String webname = sheet.getCell(0, i).getContents().trim();
+			String link = sheet.getCell(3, i).getContents().trim();
 			Url.setLink(link);
 			Url.setWebname(webname);
+			Url.setCategory("媒体评价类信息");
 			url_list.add(Url);
 		}
 		workbook.close();
@@ -55,9 +56,28 @@ public class CommonUtil {
 	 * 
 	 * @return
 	 */
-	public static String extractSourceUrl() {
+	public static String extractSourceUrl(String url) {
 		String source_url = null;
-
+		try{
+			if(url.contains(".com")) {
+				int index = url.indexOf(".com");
+				source_url = url.substring(0,index+4);
+			}
+			else if(url.contains(".cn")) {
+				int index = url.indexOf(".cn");
+				source_url = url.substring(0,index+3);
+			}
+			else if(url.contains(".net")) {
+				int index = url.indexOf(".net");
+				source_url = url.substring(0,index+4);
+			}
+			else if(url.contains(".org")) {
+				int index = url.indexOf(".org");
+				source_url = url.substring(0,index+4);
+			}
+		}catch(Exception e) {
+			logger.error("extractSourceUrl error!", e);
+		}
 		return source_url;
 	}
 
@@ -86,17 +106,14 @@ public class CommonUtil {
 		List<String> list = new ArrayList<String>();
 		try {
 			workbook = Workbook.getWorkbook(new File(System
-					.getProperty("user.dir") + "/resources/url_source_V3.1.xls"));
+					.getProperty("user.dir") + "/resources/媒体评价类数据源.xls"));
 		} catch (Exception e) {
 			logger.error("importFromXls error!", e);
 		}
-		Sheet sheet = workbook.getSheet(2);
+		Sheet sheet = workbook.getSheet(0);
 		int rowCount = sheet.getRows();
 		for (int i = 1; i < rowCount; i++) {
-			String url = sheet.getCell(4, i).getContents().trim();
-			if(url.endsWith("/")){
-				url = url.substring(0,url.length()-1);
-			}
+			String url = sheet.getCell(3, i).getContents().trim();
 			list.add(url);
 		}
 		return list;
@@ -210,7 +227,11 @@ public class CommonUtil {
 		}
 	}
 	public static void main(String[] args) {
-		importGovUrl();
+		List<String> list = importUrl();
+		for(String url:list) {
+			logger.info(extractSourceUrl(url));
+		}
+		
 
 	}
 
