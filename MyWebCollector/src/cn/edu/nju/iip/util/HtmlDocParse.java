@@ -2,6 +2,7 @@ package cn.edu.nju.iip.util;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,8 +94,9 @@ public class HtmlDocParse {
 	// 读取xlsx
 	public String readEXCEL2007(String file) {
 		String content = "";
+		XSSFWorkbook workbook = null;
 		try {
-			XSSFWorkbook workbook = new XSSFWorkbook(file);
+			workbook = new XSSFWorkbook(file);
 			for (int numSheets = 0; numSheets < workbook.getNumberOfSheets(); numSheets++) {
 				if (null != workbook.getSheetAt(numSheets)) {
 					XSSFSheet aSheet = workbook.getSheetAt(numSheets);
@@ -110,10 +112,17 @@ public class HtmlDocParse {
 						}
 					}
 				}
-				workbook.close();
 			}
 		} catch (Exception e) {
 			logger.error("readEXCEL2007 error!",e);
+		}finally {
+			try {
+				if(workbook!=null) {
+					workbook.close();
+				}
+			} catch (IOException e) {
+				logger.error("readEXCEL2007 close error!",e);
+			}
 		}
 		return content.replaceAll("[\\t\\d\\s]+", "");
 	}
@@ -124,9 +133,16 @@ public class HtmlDocParse {
 		try {
 			wordExtractor = new WordExtractor(new FileInputStream(new File(destionationFilePath)));
 			content = wordExtractor.getText();
-			wordExtractor.close();
 		} catch (Exception e) {
 			logger.error("readWORD error!",e);
+		}finally{
+			try {
+				if(wordExtractor!=null) {
+					wordExtractor.close();
+				}
+			} catch (IOException e) {
+				logger.error("readWORD close error!",e);
+			}
 		}
 		return content.replaceAll("[\\t\\d\\s]+", "");
 	}
@@ -134,12 +150,20 @@ public class HtmlDocParse {
 	// 读取docx文件
 	public String readWORD2007(String destionationFilePath) {
 		String content = "";
+		XWPFWordExtractor Extractor = null;
 		try {
-			XWPFWordExtractor Extractor = new XWPFWordExtractor(POIXMLDocument.openPackage(destionationFilePath));
+			Extractor = new XWPFWordExtractor(POIXMLDocument.openPackage(destionationFilePath));
 			content = Extractor.getText();
-			Extractor.close();
 		} catch (Exception e) {
 			logger.error("readWORD2007 error!",e);
+		}finally{
+			try {
+				if(Extractor!=null) {
+					Extractor.close();
+				}
+			} catch (IOException e) {
+				logger.error("readWORD2007 close error!",e);
+			}
 		}
 		return content.replaceAll("[\\t\\d\\s]+", "");
 	}

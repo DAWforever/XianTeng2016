@@ -127,11 +127,11 @@ public class CommonUtil {
 			String content_regex = sheet.getCell(4, i).getContents().trim().replace("\\\\", "\\");
 			String page_regex = sheet.getCell(5, i).getContents().trim().replace("\\\\", "\\");
 			String isStatic = sheet.getCell(3, i).getContents().trim();
-			if(isStatic.equals("是")) {
+			//if(isStatic.equals("是")) {
 				seed_url_list.add(Url);
 				content_regex_list.add(content_regex);
 				page_regex_list.add(page_regex);
-			}
+			//}
 		}
 		map.put("seed_url_list", seed_url_list);
 		map.put("content_regex_list", content_regex_list);

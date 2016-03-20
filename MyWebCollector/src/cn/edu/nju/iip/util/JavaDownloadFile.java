@@ -4,6 +4,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +16,7 @@ public class JavaDownloadFile {
 	public static void main(String[] args) {
 		try {
 			JavaDownloadFile downloader = new JavaDownloadFile();
-			downloader.download("http://www.jxds.gov.cn/resource2/vfs/publish/001027003007001001/20150908135603806.doc", "D:\\doc");
+			downloader.download("http://www.jxds.gov.cn/resource2/vfs/publish/001027003007001001/20150908135603806.doc", "D:\\");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -34,7 +36,11 @@ public class JavaDownloadFile {
 		
 		// Open connection to the file
         URL url = new URL(fileURL);
-        InputStream is = url.openStream();
+        URLConnection myurlcon = url.openConnection();
+        myurlcon.setConnectTimeout(5000);
+        myurlcon.setReadTimeout(10000);
+        InputStream is = myurlcon.getInputStream();
+        
         // Stream to the destionation file
         String destionationFilePath = destinationDirectory + "/" + downloadedFileName;
         FileOutputStream fos = new FileOutputStream(destionationFilePath);
