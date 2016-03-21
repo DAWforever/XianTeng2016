@@ -36,7 +36,7 @@ public class HtmlDocParse {
 
 	private JavaDownloadFile downloader = new JavaDownloadFile();
 
-	private String destinationDirectory = "D:\\doc";
+	private String destinationDirectory = Config.getValue("destinationDirectory");
 
 	public HtmlDocParse(String url, String html) {
 		this.url = url;

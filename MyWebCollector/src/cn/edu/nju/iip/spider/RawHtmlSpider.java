@@ -1,11 +1,14 @@
 package cn.edu.nju.iip.spider;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
 import cn.edu.hfut.dmic.webcollector.model.Page;
@@ -15,6 +18,7 @@ import cn.edu.nju.iip.dao.RawHtmlDAO;
 import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.model.Url;
 import cn.edu.nju.iip.util.CommonUtil;
+import cn.edu.nju.iip.util.Config;
 import cn.edu.nju.iip.util.HtmlDocParse;
 
 
@@ -119,10 +123,12 @@ public class RawHtmlSpider extends BreadthCrawler {
 	
 	public static void main(String[] args) throws Exception {
 		RawHtmlSpider crawler = new RawHtmlSpider("crawl",true);
-		crawler.setThreads(50);
-		crawler.setTopN(50000);
-		crawler.start(1500);
+		crawler.setThreads(Integer.valueOf(Config.getValue("crawl_thread_num")));
+		crawler.setTopN(Integer.valueOf(Config.getValue("crawl_TopN")));
+		crawler.start(Integer.valueOf(Config.getValue("crawl_depth")));
 		bf.saveBloomFilter();
 		logger.info("count="+crawler.count);
+		File file = new File("crawl");
+		CommonUtil.deleteFile(file);
     }
 }
