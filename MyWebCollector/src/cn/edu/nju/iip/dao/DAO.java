@@ -48,13 +48,13 @@ public class DAO {
 		try {
 			getSession().getTransaction().rollback();
 		}catch(HibernateException e) {
-			logger.info("rollback failed!",e);
+			logger.error("rollback failed!",e);
 		}
 		
 		try {
 			getSession().close();
 		}catch(HibernateException e) {
-			logger.info("close session failed!",e);
+			logger.error("close session failed!",e);
 		}
 		
 		DAO.SESSION_LOCAL.set(null);

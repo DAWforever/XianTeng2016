@@ -44,6 +44,10 @@ public class JudgesOnlineSpider implements Runnable{
 	public JudgesOnlineSpider(BlockingQueue<String> NameQueue) {
 		this.NameQueue = NameQueue;
 	}
+	
+	public JudgesOnlineSpider(String unitName) {
+		this.unitName = unitName;
+	}
 
 
 	public String getRespondJson(int index) {
@@ -52,7 +56,9 @@ public class JudgesOnlineSpider implements Runnable{
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		try {
 			HttpPost post = new HttpPost(url);
+			post.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0");
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("Direction", "asc"));
 			params.add(new BasicNameValuePair("Index", index + ""));
 			params.add(new BasicNameValuePair("Order", "法院层级"));
 			params.add(new BasicNameValuePair("Page", "20"));
@@ -63,6 +69,7 @@ public class JudgesOnlineSpider implements Runnable{
 			result = result.replace("\\", "").replace("n", "");
 			int pos = result.indexOf("]");
 			result = result.substring(1, pos + 1);
+			logger.info("result="+result);
 		} catch (Exception e) {
 			logger.error("getRespondJson error", e);
 		}
@@ -86,11 +93,15 @@ public class JudgesOnlineSpider implements Runnable{
 		JudgeDoc judgeDoc = new JudgeDoc();
 		try {
 			String courtName = jsonObject.getString("法院名称");
+			logger.info("courtName="+courtName);
 			String caseCode = jsonObject.getString("案号");
+			logger.info("caseCode="+caseCode);
 			String iname = unitName;
 			String publishDate = jsonObject.getString("裁判日期");
+			logger.info("publishDate="+publishDate);
 			String content = jsonObject.getString("DocCotet");
 			String title = jsonObject.getString("案件名称");
+			logger.info("title="+title);
 			judgeDoc.setCaseCode(caseCode);
 			judgeDoc.setCourtName(courtName);
 			judgeDoc.setIname(iname);
@@ -111,7 +122,7 @@ public class JudgesOnlineSpider implements Runnable{
 			for (int i = 1; i < size; i++) {
 				JSONObject jsonObject = array.getJSONObject(i);
 				JudgeDoc doc = getJudgeDoc(jsonObject);
-				dao.saveJudgeDoc(doc);
+				//dao.saveJudgeDoc(doc);
 			}
 		} catch (Exception e) {
 			logger.error("SaveJudgeDocList error", e);
@@ -135,15 +146,16 @@ public class JudgesOnlineSpider implements Runnable{
 	}
 
 	public static void main(String[] args) {
-		List<String> list = CommonUtil.importUnitName();
-		BlockingQueue<String> NameQueue = new LinkedBlockingQueue<String>();
-		NameQueue.addAll(list);
-		ExecutorService service = Executors.newCachedThreadPool();
-		for(int i=0;i<20;i++) {
-			JudgesOnlineSpider spider = new JudgesOnlineSpider(NameQueue);
-			service.execute(spider);
-		}
-		
+//		List<String> list = CommonUtil.importUnitName();
+//		BlockingQueue<String> NameQueue = new LinkedBlockingQueue<String>();
+//		NameQueue.addAll(list);
+//		ExecutorService service = Executors.newCachedThreadPool();
+//		for(int i=0;i<20;i++) {
+//			JudgesOnlineSpider spider = new JudgesOnlineSpider(NameQueue);
+//			service.execute(spider);
+//		}
+		JudgesOnlineSpider spider = new JudgesOnlineSpider("浙江东方市政园林工程有限公司");
+		spider.saveAllDoc();
 	}
 
 	

@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import cn.edu.hfut.dmic.contentextractor.ContentExtractor;
 import cn.edu.hfut.dmic.contentextractor.News;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
@@ -51,13 +53,10 @@ public class NewsCrawler extends BreadthCrawler {
 		List<Url> list = CommonUtil.importFromXls();
 		logger.info("种子URL共:"+list.size()+"个");
 		for (Url url : list) {
-			if(url.getLink().contains("cq.qq")) {
 			this.addSeed(new CrawlDatum(url.getLink()).putMetaData("source",url.getWebname()).putMetaData("type", url.getCategory()));
 			this.addRegex(CommonUtil.extractSourceUrl(url.getLink())+".*");
 			logger.info(CommonUtil.extractSourceUrl(url.getLink())+".*");
 			seed_set.add(url.getLink());
-			}
-			
 		}
 	}
 
@@ -80,7 +79,7 @@ public class NewsCrawler extends BreadthCrawler {
 					Dao.saveRawHtml(rawHtml);
 					count++;
 				} catch (Exception e) {
-					logger.info("visit failed", e);
+					logger.error("visit failed", e);
 				}
 			}
 		}
@@ -96,7 +95,8 @@ public class NewsCrawler extends BreadthCrawler {
 		}
 	}
 
-	public static void startNewsCrawler() throws Exception {
+	public static void startNewsCrawler(){
+		try{
 			logger.info("*************NewsCrawler begin*********************");
 			NewsCrawler crawler = new NewsCrawler("crawl", true);
 			crawler.setThreads(Integer.valueOf(Config.getValue("crawl_thread_num")));
@@ -107,12 +107,11 @@ public class NewsCrawler extends BreadthCrawler {
 			File file = new File("crawl");
 			CommonUtil.deleteFile(file);
 			logger.info("*************NewsCrawler finish*********************");
-			
-
+		}catch(Exception e) {
+			logger.error("startNewsCrawler run() failed", e);
+		}
 	}
 
 	public static void main(String[] args) throws Exception {
-		startNewsCrawler();
 	}
-
 }

@@ -104,7 +104,7 @@ public class RawHtmlSpider extends BreadthCrawler {
 						dao.saveRawHtml(rawHtml);
 			            count++;
 				 }catch(Exception e) {
-					 logger.info("visit failed", e);
+					 logger.error("visit failed", e);
 				 }
 		     }
 		}
@@ -122,13 +122,23 @@ public class RawHtmlSpider extends BreadthCrawler {
 	
 	
 	public static void main(String[] args) throws Exception {
-		RawHtmlSpider crawler = new RawHtmlSpider("crawl",true);
-		crawler.setThreads(Integer.valueOf(Config.getValue("crawl_thread_num")));
-		crawler.setTopN(Integer.valueOf(Config.getValue("crawl_TopN")));
-		crawler.start(Integer.valueOf(Config.getValue("crawl_depth")));
-		bf.saveBloomFilter();
-		logger.info("count="+crawler.count);
-		File file = new File("crawl");
-		CommonUtil.deleteFile(file);
+		
     }
+	
+	public static void startRawHtmlCrawler() {
+		try{
+			logger.info("************RawHtmlSpider start************");
+			RawHtmlSpider crawler = new RawHtmlSpider("crawl",true);
+			crawler.setThreads(Integer.valueOf(Config.getValue("crawl_thread_num")));
+			crawler.setTopN(Integer.valueOf(Config.getValue("crawl_TopN")));
+			crawler.start(Integer.valueOf(Config.getValue("crawl_depth")));
+			bf.saveBloomFilter();
+			logger.info("count="+crawler.count);
+			File file = new File("crawl");
+			CommonUtil.deleteFile(file);
+			logger.info("************RawHtmlSpider finish************");
+		}catch(Exception e) {
+			logger.error("startRawHtmlCrawler run() failed", e);
+		}
+	}
 }

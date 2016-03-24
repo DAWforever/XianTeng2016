@@ -39,7 +39,7 @@ public class NewsDAO extends DAO implements Runnable{
 				JWNews news = NewsQueue.take();
 				saveNews(news);
 			}catch (Exception e) {
-				logger.info("NewsDAO run() failed", e);
+				logger.error("NewsDAO run() failed", e);
 			}
 		}
 	}

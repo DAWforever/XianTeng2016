@@ -71,9 +71,9 @@ public class BloomFactory {
 	
 	public static void main(String[] args) {
 		BloomFactory bf = BloomFactory.getInstance();
-		//bf.add("午间分享】这...双十一前工作量应该不低吧....http://t.cn/RUpPWw6");
+		//bf.add("http://bbs.cqdj520.cn/forum.php?mod=forumdisplay&fid=68&filter=author&orderby=dateline&typeid=542");
 		//bf.saveBloomFilter();
-		System.out.println(bf.contains("http://www.zjjs.com.cn/n17/n26/n52/n78/c260020/content.html"));
+		System.out.println(bf.contains("http://www.hebgs.gov.cn/Yw/yp/ygs_bszn_content.asp?ArticleID=68464"));
 	}
 	
 }

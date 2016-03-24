@@ -49,11 +49,11 @@ public class JavaDownloadFile {
         byte[] buffer = new byte[4096];
         int bytesRead = 0;
         
-        logger.info("Downloading " + downloadedFileName);
+        logger.debug("Downloading " + downloadedFileName);
         while ((bytesRead = is.read(buffer)) != -1) {
         	fos.write(buffer,0,bytesRead);
         }
-        logger.info("done!");
+        logger.debug("done!");
  
         // Close destination stream
         fos.close();

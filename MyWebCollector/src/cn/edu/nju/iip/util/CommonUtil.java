@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,8 @@ import cn.edu.nju.iip.model.Url;
 public class CommonUtil {
 
 	private static final Logger logger = LoggerFactory.getLogger(CommonUtil.class);
+	
+	public static final int one_day_millseconds = 24 * 60 * 60 * 1000;
 
 	/**
 	 * 从excel导入url信息
@@ -187,7 +190,7 @@ public class CommonUtil {
 				logger.info("所删除的文件不存在！");
 			}
 		}catch(Exception e) {
-			logger.info("deleteFile error",e);
+			logger.error("deleteFile error",e);
 		}
 		
 	}
@@ -228,9 +231,21 @@ public class CommonUtil {
 			// 关闭文件
 			book.close();
 		} catch (Exception e) {
-			logger.info("readTxt error", e);
+			logger.error("readTxt error", e);
 		}
 	}
+	
+	public static long getDelayTime() {
+		Calendar c = Calendar.getInstance();
+		long currentTime = c.getTimeInMillis();
+		c.set(Calendar.HOUR_OF_DAY, Integer.valueOf(Config.getValue("start_hour")));
+	    c.set(Calendar.MINUTE, 0);
+	    c.set(Calendar.SECOND, 0);
+	    long executeTime = c.getTimeInMillis();
+		return executeTime - currentTime < 0 ? (executeTime - currentTime + one_day_millseconds)
+	            : (executeTime - currentTime);
+	}
+	
 	public static void main(String[] args) {
 		List<String> list = importUrl();
 		for(String url:list) {
