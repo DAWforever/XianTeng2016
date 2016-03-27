@@ -62,12 +62,9 @@ public class SearchCrawler implements Runnable{
 					News news = ContentExtractor.getNewsByHtml(newsHtml);
 					JWNews jwnews = new JWNews();
 					jwnews.setContent(news.getContent().trim());
-					jwnews.setSentiment(0);
 					jwnews.setUrl(link);
 					jwnews.setSource(source);
 					jwnews.setTitle(title);
-					jwnews.setCrawltime(CommonUtil.getTime());
-					jwnews.setTag(unitName);
 					newsDAO.saveNews(jwnews);
 				}
 				//UrlQueue.put(url);

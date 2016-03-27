@@ -4,19 +4,19 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="cn.edu.nju.iip.model.JWNews" table="JW_NEWS">
+	<class name="cn.edu.nju.iip.model.JWNews" table="JW_NEWS_DATA">
 		<meta attribute="class-description">
 			This class contains the nju.iip.model.JWNews detail.
 		</meta>
-		<id name="id" type="int" column="id">
-			<generator class="native" />
+		<id name="id"  column="ID" type="integer">
+			<generator class="sequence">
+              <param name="sequence">WQ_Sequence</param>
+            </generator>
 		</id>
-		<property name="url" column="url" type="string" />
-		<property name="title" column="title" type="string" />
-		<property name="content" column="content" type="string" />
-		<property name="source" column="source" type="string" />
-		<property name="sentiment" column="sentiment" type="int" />
-		<property name="crawltime" column="crawltime" type="string" />
-		<property name="tag" column="tag" type="string" />
+		<property name="url" column="URL" type="string" />
+		<property name="title" column="TITLE" type="string" />
+		<property name="content" column="CONTENT" type="string" />
+		<property name="source" column="SOURCE" type="string" />
+		<property name="crawltime" column="CRAWLTIME" type="timestamp" />
 	</class>
 </hibernate-mapping>

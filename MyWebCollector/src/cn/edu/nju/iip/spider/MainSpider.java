@@ -20,8 +20,8 @@ public class MainSpider implements Runnable{
 
 	public void run() {
 		try{
-			RawHtmlSpider.startRawHtmlCrawler();
-			//NewsCrawler.startNewsCrawler();
+			//RawHtmlSpider.startRawHtmlCrawler();
+			NewsCrawler.startNewsCrawler();
 		}catch(Exception e) {
 			logger.error("MainSpider run() failed", e);
 		}

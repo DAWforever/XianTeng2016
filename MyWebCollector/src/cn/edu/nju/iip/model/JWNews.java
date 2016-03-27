@@ -1,5 +1,7 @@
 package cn.edu.nju.iip.model;
 
+import java.util.Date;
+
 public class JWNews {
 
 	private int id;
@@ -8,21 +10,18 @@ public class JWNews {
 	private String content;
 	// 来源
 	private String source;
-	// 正面还是负面
-	private int sentiment;
 	// 抓取时间
-	private String crawltime;
-	//标签
-	private String tag;
+	private Date crawltime;
 	
 	
 	
-	public String getTag() {
-		return tag;
+
+	public Date getCrawltime() {
+		return crawltime;
 	}
 
-	public void setTag(String tag) {
-		this.tag = tag;
+	public void setCrawltime(Date crawltime) {
+		this.crawltime = crawltime;
 	}
 
 	public String getUrl() {
@@ -65,20 +64,5 @@ public class JWNews {
 		this.source = source;
 	}
 
-	public int getSentiment() {
-		return sentiment;
-	}
-
-	public void setSentiment(int sentiment) {
-		this.sentiment = sentiment;
-	}
-
-	public String getCrawltime() {
-		return crawltime;
-	}
-
-	public void setCrawltime(String crawltime) {
-		this.crawltime = crawltime;
-	}
 
 }

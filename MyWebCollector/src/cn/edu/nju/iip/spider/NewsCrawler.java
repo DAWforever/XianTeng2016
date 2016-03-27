@@ -16,8 +16,8 @@ import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.plugin.berkeley.BreadthCrawler;
 import cn.edu.nju.iip.BloomFilter.BloomFactory;
-import cn.edu.nju.iip.dao.RawHtmlDAO;
-import cn.edu.nju.iip.model.RawHtml;
+import cn.edu.nju.iip.dao.NewsDAO;
+import cn.edu.nju.iip.model.JWNews;
 import cn.edu.nju.iip.model.Url;
 import cn.edu.nju.iip.util.CommonUtil;
 import cn.edu.nju.iip.util.Config;
@@ -35,7 +35,7 @@ public class NewsCrawler extends BreadthCrawler {
 
 	private static Set<String> seed_set = new HashSet<String>();
 	
-	private RawHtmlDAO Dao = new RawHtmlDAO();
+	private NewsDAO Dao = new NewsDAO();
 	
 	private static int count;
 
@@ -53,7 +53,7 @@ public class NewsCrawler extends BreadthCrawler {
 		List<Url> list = CommonUtil.importFromXls();
 		logger.info("种子URL共:"+list.size()+"个");
 		for (Url url : list) {
-			this.addSeed(new CrawlDatum(url.getLink()).putMetaData("source",url.getWebname()).putMetaData("type", url.getCategory()));
+			this.addSeed(new CrawlDatum(url.getLink()).putMetaData("source",url.getWebname()));
 			this.addRegex(CommonUtil.extractSourceUrl(url.getLink())+".*");
 			logger.info(CommonUtil.extractSourceUrl(url.getLink())+".*");
 			seed_set.add(url.getLink());
@@ -69,14 +69,13 @@ public class NewsCrawler extends BreadthCrawler {
 				bf.add(url);
 				try {
 					News news = ContentExtractor.getNewsByHtml(page.getHtml());
-					RawHtml rawHtml = new RawHtml();
-					rawHtml.setContent(news.getTitle()+"#"+news.getContent());
-					rawHtml.setSource(page.getMetaData("source"));
-					rawHtml.setUrl(url);
-					rawHtml.setCrawltime(new Date());
-					rawHtml.setType(page.getMetaData("type"));
-					rawHtml.setAttachment("");
-					Dao.saveRawHtml(rawHtml);
+					JWNews jwnews = new JWNews();
+					jwnews.setContent(news.getContent());
+					jwnews.setTitle(news.getTitle());
+					jwnews.setSource(page.getMetaData("source"));
+					jwnews.setUrl(url);
+					jwnews.setCrawltime(new Date());
+					Dao.saveNews(jwnews);
 					count++;
 				} catch (Exception e) {
 					logger.error("visit failed", e);
