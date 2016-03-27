@@ -15,6 +15,8 @@ public class RawHtml {
 	
 	private String content;
 	
+	private String title;
+	
 	private Date crawltime;
 	
 	private String source;
@@ -24,6 +26,14 @@ public class RawHtml {
 	private String attachment;
 	
 	
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	public String getAttachment() {
 		return attachment;

@@ -15,13 +15,13 @@ public class MainSpider implements Runnable{
 		ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1);
 		long delayTime = CommonUtil.getDelayTime();//延迟时间
 		MainSpider spider = new MainSpider();
-		executorService.scheduleWithFixedDelay(spider, delayTime, CommonUtil.one_day_millseconds,TimeUnit.MILLISECONDS);
+		executorService.scheduleAtFixedRate(spider, 0, CommonUtil.one_day_millseconds,TimeUnit.MILLISECONDS);
 	}
 
 	public void run() {
 		try{
 			RawHtmlSpider.startRawHtmlCrawler();
-			NewsCrawler.startNewsCrawler();
+			//NewsCrawler.startNewsCrawler();
 		}catch(Exception e) {
 			logger.error("MainSpider run() failed", e);
 		}

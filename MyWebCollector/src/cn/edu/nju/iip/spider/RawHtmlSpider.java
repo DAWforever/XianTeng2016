@@ -9,6 +9,8 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.edu.hfut.dmic.contentextractor.ContentExtractor;
+import cn.edu.hfut.dmic.contentextractor.News;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
 import cn.edu.hfut.dmic.webcollector.model.Page;
@@ -94,9 +96,11 @@ public class RawHtmlSpider extends BreadthCrawler {
 				 try{
 					    RawHtml rawHtml = new RawHtml();
 					    HtmlDocParse docParse = new HtmlDocParse(page.getUrl(),page.getHtml());
+					    News news = ContentExtractor.getNewsByHtml(page.getHtml());
 						String attachment = docParse.getDocsContent();
 						rawHtml.setAttachment(attachment);
 						rawHtml.setContent(page.getDoc().text()+attachment);
+						rawHtml.setTitle(news.getTitle());
 						rawHtml.setSource(page.getMetaData("source"));
 						rawHtml.setUrl(page.getUrl());
 						rawHtml.setType(page.getMetaData("type"));
@@ -122,7 +126,7 @@ public class RawHtmlSpider extends BreadthCrawler {
 	
 	
 	public static void main(String[] args) throws Exception {
-		
+		startRawHtmlCrawler();
     }
 	
 	public static void startRawHtmlCrawler() {
