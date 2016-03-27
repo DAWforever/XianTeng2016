@@ -42,7 +42,7 @@ public class TagProcess implements Runnable{
 	}
 	
 	public void tagAll() {
-		List<String> unitNameList = CommonUtil.importUnitName();
+		List<String> unitNameList = CommonUtil.importConsShipUnitName();
 		for(String unitName:unitNameList) {
 			tagOne(unitName,"construct:com");
 		}
@@ -50,17 +50,17 @@ public class TagProcess implements Runnable{
 	
 	public static void main(String[] args) {
 		BlockingQueue<String> NameQueue = new LinkedBlockingQueue<String>();
-//		List<String> unitNameList = CommonUtil.importUnitName();
-//		NameQueue.addAll(unitNameList);
-//		logger.info("count="+unitNameList.size());
-//		ExecutorService service = Executors.newCachedThreadPool();
-//		for(int i=0;i<5;i++) {
-//			TagProcess process = new TagProcess(NameQueue);
-//			service.execute(process);
-//		}
-//		service.shutdown();
-		TagProcess process = new TagProcess(NameQueue);
-		process.tagOne("处罚","credit");
+		List<String> unitNameList = CommonUtil.importConsShipUnitName();
+		NameQueue.addAll(unitNameList);
+		logger.info("count="+unitNameList.size());
+		ExecutorService service = Executors.newCachedThreadPool();
+		for(int i=0;i<5;i++) {
+			TagProcess process = new TagProcess(NameQueue);
+			service.execute(process);
+		}
+		service.shutdown();
+//		TagProcess process = new TagProcess(NameQueue);
+//		process.tagOne("处罚","credit");
 	}
 
 	@Override
