@@ -15,8 +15,7 @@ public class Config {
 	static 
 	{
 			try {
-				String path = Config.class.getClassLoader().getResource("").toURI().getPath();   
-				config = new PropertiesConfiguration(path+"config.properties");
+				config = new PropertiesConfiguration("conf/config.properties");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -39,6 +38,6 @@ public class Config {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(getValue("DBURL"));
+		System.out.println(getValue("start_hour"));
 	}
 }

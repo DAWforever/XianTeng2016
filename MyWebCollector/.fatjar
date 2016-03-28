@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Mon Mar 28 19:18:20 CST 2016
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=WebCollector_fat.jar
+manifest.mergeall=true
+manifest.mainclass=cn.edu.nju.iip.spider.RawHtmlSpider
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

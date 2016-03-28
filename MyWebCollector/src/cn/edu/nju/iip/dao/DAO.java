@@ -1,6 +1,8 @@
 package cn.edu.nju.iip.dao;
 
 
+import java.io.File;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,7 +18,7 @@ public class DAO {
 	@SuppressWarnings("rawtypes")
 	private static final ThreadLocal SESSION_LOCAL = new ThreadLocal();
 	
-	private static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+	private static final SessionFactory sessionFactory = new Configuration().configure(new File("conf/hibernate.cfg.xml")).buildSessionFactory();
 	
 	protected DAO() {
 	}
