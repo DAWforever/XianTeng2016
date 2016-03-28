@@ -76,7 +76,7 @@ public class TagProcess implements Runnable{
 		service.shutdown();
 	}
 	
-	public static void main(String[] args) {
+	public static void tag_process_main() {
 		TagProcessMain("水运建设企业","construct");
 		TagProcessMain("公路建设企业","construct");
 		TagProcessMain("道路运输企业","transport");
