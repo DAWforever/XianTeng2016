@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.edu.nju.iip.model.HJQK" table="HJQK">
+		<meta attribute="class-description">
+		This class contains the nju.iip.model.HJQK
+			detail.
+		</meta>
+		<id name="award_id"  column="AWARD_ID" type="string">
+			<generator class="uuid.hex" />
+		</id>
+		<property name="corp_Id" column="CORP_ID" type="string" />
+		<property name="name" column="NAME" type="string" />
+		<property name="year" column="YEAR" type="string" />
+		<property name="type_Name" column="TYPE_NAME" type="string" />
+		<property name="industry" column="INDUSTRY" type="string" />
+		<property name="unit" column="UNIT" type="string" />
+		<property name="pDate" column="PDATE" type="timestamp" />
+		<property name="cdate" column="CDATE" type="timestamp" />
+		<property name="content" column="CONTENT" type="string" />
+		<property name="data_Source" column="DATA_SOURCE" type="string" />
+	</class>
+</hibernate-mapping>
