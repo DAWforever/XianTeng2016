@@ -60,6 +60,7 @@ public class NewsCrawler extends BreadthCrawler {
 		}
 	}
 
+	@Override
 	public void visit(Page page, CrawlDatums next) {
 		String url = page.getUrl();
 		if (bf.contains(url)) {
@@ -84,6 +85,7 @@ public class NewsCrawler extends BreadthCrawler {
 		}
 	}
 
+	@Override
 	public void afterVisit(Page page, CrawlDatums next) {
 		super.afterVisit(page, next);
 		String source = page.getMetaData("source");

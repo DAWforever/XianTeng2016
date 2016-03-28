@@ -1,6 +1,6 @@
 package cn.edu.nju.iip.main;
 
-import java.util.List;
+import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,58 +23,64 @@ public class TagProcess implements Runnable{
 	
 	private BlockingQueue<String> NameQueue;
 	
-	public TagProcess(BlockingQueue<String> NameQueue) {
+	//实体标签分类 construct or transport
+	private String tag_type;
+	
+	
+	public TagProcess(BlockingQueue<String> NameQueue,String tag_type) {
 		this.NameQueue = NameQueue;
+		this.tag_type = tag_type;
 	}
 	
-	public void tagOne(String tag_name,String tag_type) {
-		String query = "\""+tag_name+"\"";
-		Jedis jedis = JedisPoolUtils.getInstance().getJedis();
-		QueryResponse rsp = SolrImpl.queryDocuments(query);
-		SolrDocumentList list = rsp.getResults();
-		logger.info(tag_name+" "+list.getNumFound()+"");
-        for (SolrDocument solrDocument : list) {
-        	String id = "jw_raw_data:"+(String) solrDocument.getFieldValue("id");
-            jedis.sadd(id, tag_type+":"+tag_name);
-            jedis.sadd(tag_type+":"+tag_name, id);
-        }
-        JedisPoolUtils.getInstance().returnRes(jedis);
-	}
-	
-	public void tagAll() {
-		List<String> unitNameList = CommonUtil.importConsShipUnitName();
-		for(String unitName:unitNameList) {
-			tagOne(unitName,"construct:com");
+	public void tagOne(String tag_name) {
+		try{
+			String query = "\""+tag_name+"\"";
+			Jedis jedis = JedisPoolUtils.getInstance().getJedis();
+			QueryResponse rsp = SolrImpl.queryDocuments(query);
+			SolrDocumentList list = rsp.getResults();
+	        for (SolrDocument solrDocument : list) {
+	        	String id = "jw_gov_data:"+(String) solrDocument.getFieldValue("id");
+	            jedis.sadd(id, tag_type+":"+tag_name);
+	            jedis.sadd(tag_type+":"+tag_name, id);
+	        }
+	        JedisPoolUtils.getInstance().returnRes(jedis);
+		}catch(Exception e) {
+			logger.error("tagOne error",e);
 		}
+	
 	}
 	
-	public static void main(String[] args) {
-		BlockingQueue<String> NameQueue = new LinkedBlockingQueue<String>();
-		List<String> unitNameList = CommonUtil.importConsShipUnitName();
-		NameQueue.addAll(unitNameList);
-		logger.info("count="+unitNameList.size());
-		ExecutorService service = Executors.newCachedThreadPool();
-		for(int i=0;i<5;i++) {
-			TagProcess process = new TagProcess(NameQueue);
-			service.execute(process);
-		}
-		service.shutdown();
-//		TagProcess process = new TagProcess(NameQueue);
-//		process.tagOne("处罚","credit");
-	}
-
 	@Override
 	public void run() {
 		while(true) {
 			String unitName = NameQueue.poll();
 			if(unitName!=null) {
-				tagOne(unitName,"construct:com");
+				tagOne(unitName);
 			}
 			else {
 				break;
 			}
 		}
-		
+	}
+	
+	public static void TagProcessMain(String tag_name,String tag_type) {
+		BlockingQueue<String> NameQueue = new LinkedBlockingQueue<String>();
+		Set<String> unitNameSet= CommonUtil.getUnitNameSet(tag_name);
+		NameQueue.addAll(unitNameSet);
+		logger.info(tag_name+" count="+unitNameSet.size());
+		ExecutorService service = Executors.newCachedThreadPool();
+		for(int i=0;i<5;i++) {
+			TagProcess process = new TagProcess(NameQueue,tag_type);
+			service.execute(process);
+		}
+		service.shutdown();
+	}
+	
+	public static void main(String[] args) {
+		TagProcessMain("水运建设企业","construct");
+		TagProcessMain("公路建设企业","construct");
+		TagProcessMain("道路运输企业","transport");
+		TagProcessMain("信用相关标签","credit");
 	}
 
 }

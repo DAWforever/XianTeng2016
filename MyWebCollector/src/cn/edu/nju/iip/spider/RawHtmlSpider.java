@@ -80,6 +80,7 @@ public class RawHtmlSpider extends BreadthCrawler {
 		return flag;
 	}
 
+	@Override
 	public void visit(Page page, CrawlDatums next) {
 		String url = page.getUrl();
 		//若bloom过滤器里已存在则跳过
@@ -113,7 +114,7 @@ public class RawHtmlSpider extends BreadthCrawler {
 		     }
 		}
 	}
-	
+	@Override
 	public void afterVisit(Page page, CrawlDatums next) {
 		super.afterVisit(page, next);
 		String source = page.getMetaData("source");

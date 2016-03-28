@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="cn.edu.nju.iip.model.RawHtml" table="JW_RAW_DATA">
+	<class name="cn.edu.nju.iip.model.RawHtml" table="JW_GOV_DATA">
 		<meta attribute="class-description">
 			This class contains the nju.iip.model.RawHtml
 			detail.
