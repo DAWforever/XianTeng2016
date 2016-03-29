@@ -30,6 +30,7 @@
 		<!-- List of XML mapping files -->
 		<mapping resource="cn/edu/nju/iip/model/RawHtml.hbm.xml" />
 		<mapping resource="cn/edu/nju/iip/model/TBBZ.hbm.xml" />
+		<mapping resource="cn/edu/nju/iip/model/TBPPJL.hbm.xml" />
 		<mapping resource="cn/edu/nju/iip/model/HJQK.hbm.xml" />
 
 	</session-factory>

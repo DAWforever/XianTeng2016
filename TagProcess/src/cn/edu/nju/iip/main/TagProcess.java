@@ -5,13 +5,11 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
-
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import redis.clients.jedis.Jedis;
 import cn.edu.nju.iip.redis.JedisPoolUtils;
 import cn.edu.nju.iip.solr.SolrImpl;
@@ -81,6 +79,10 @@ public class TagProcess implements Runnable{
 		TagProcessMain("公路建设企业","construct");
 		TagProcessMain("道路运输企业","transport");
 		TagProcessMain("信用相关标签","credit");
+	}
+	
+	public static void main(String[] args) throws Exception {
+		tag_process_main();
 	}
 
 }

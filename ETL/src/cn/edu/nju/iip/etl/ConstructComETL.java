@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,17 +16,17 @@ import cn.edu.nju.iip.dao.DAO;
 import cn.edu.nju.iip.dao.HJQKDAO;
 import cn.edu.nju.iip.dao.RawHtmlDAO;
 import cn.edu.nju.iip.dao.TBBZDAO;
+import cn.edu.nju.iip.dao.TBPPJLDAO;
 import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.redis.JedisPoolUtils;
 import cn.edu.nju.iip.util.CommonUtil;
 
 /**
  * 公路水运建设市场从业企业ETL tool
- * 对应总集成表：TBBZ
  * @author wangqiang
  *
  */
-public class ConstructComETL {
+public class ConstructComETL implements Runnable{
 	
 	private static final Logger logger = LoggerFactory.getLogger(ConstructComETL.class);
 	//所属行业
@@ -104,11 +106,13 @@ public class ConstructComETL {
 			for(RawHtml raw_html:list) {
 				raw_html.setUnitName(unitName);
 				raw_html.setIndustry(industry);
-				dao.saveData(raw_html);
-				Jedis jedis = JedisPoolUtils.getInstance().getJedis();
-				jedis.sadd("already_taged_id:"+unitName+"-"+credit_tag, "jw_gov_data:"+raw_html.getId());
-				JedisPoolUtils.getInstance().returnRes(jedis);
-				count++;
+				boolean flag = dao.saveData(raw_html);
+				if(flag) {
+					Jedis jedis = JedisPoolUtils.getInstance().getJedis();
+					jedis.sadd("already_taged_id:"+unitName+"-"+credit_tag, "jw_gov_data:"+raw_html.getId());
+					JedisPoolUtils.getInstance().returnRes(jedis);
+					count++;
+				}
 			}
 		}catch(Exception e) {
 			logger.error("ConstructComETL saveData error",e);
@@ -128,14 +132,39 @@ public class ConstructComETL {
 	}
 	
 	public static void ConstructComETLMain() {
+		ExecutorService Service = Executors.newCachedThreadPool();
 		ConstructComETL roadTBBZetl = new ConstructComETL(CommonUtil.getUnitNameSet("公路建设企业"),"公路建设市场","表彰",new TBBZDAO());
-		roadTBBZetl.ETLToTable();
+		Service.execute(roadTBBZetl);
+		
 		ConstructComETL roadHJQKetl = new ConstructComETL(CommonUtil.getUnitNameSet("公路建设企业"),"公路建设市场","获奖",new HJQKDAO());
-		roadHJQKetl.ETLToTable();
+		Service.execute(roadHJQKetl);
+		
+		ConstructComETL roadTBPPJLetl = new ConstructComETL(CommonUtil.getUnitNameSet("公路建设企业"),"公路建设市场","批评",new TBPPJLDAO());
+		Service.execute(roadTBPPJLetl);
+		
 		ConstructComETL shipTBBZetl = new ConstructComETL(CommonUtil.getUnitNameSet("水运建设企业"),"水运建设市场","表彰",new TBBZDAO());
-		shipTBBZetl.ETLToTable();
+		Service.execute(shipTBBZetl);
+		
 		ConstructComETL shipHJQKetl = new ConstructComETL(CommonUtil.getUnitNameSet("水运建设企业"),"水运建设市场","获奖",new HJQKDAO());
-		shipHJQKetl.ETLToTable();
+		Service.execute(shipHJQKetl);
+		
+		ConstructComETL shipTBPPJLetl = new ConstructComETL(CommonUtil.getUnitNameSet("水运建设企业"),"水运建设市场","批评",new TBPPJLDAO());
+		Service.execute(shipTBPPJLetl);
+		Service.shutdown();
+		
+	}
+	
+	public static void main(String[] args) throws Exception {
+		ConstructComETLMain();
+	}
+
+	@Override
+	public void run() {
+		try{
+			ETLToTable();
+		}catch(Exception e) {
+			logger.error("ConstructComETL run() error",e);
+		}
 		
 	}
 

@@ -25,8 +25,8 @@ public class DAO {
 	protected DAO() {
 	}
 	
-	public void saveData(RawHtml raw_html) {
-		
+	public boolean saveData(RawHtml raw_html) {
+		return false;
 	}
 	
 	/**

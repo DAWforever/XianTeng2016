@@ -21,14 +21,13 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 	
 
     @Override
-	public void saveData(RawHtml raw_html) {
+	public boolean saveData(RawHtml raw_html) {
 		try{
 			TBBZ BData = new TBBZ();
 			BData.setIssue_Date(raw_html.getCrawltime());
 			BData.setcDate(new Date());
 			BData.setTitle(raw_html.getTitle());
-			int length = raw_html.getContent().length();
-			BData.setContent(raw_html.getContent().substring(0,length>1000?1000:length));
+			BData.setContent(raw_html.getContent());
 			BData.setIndustry(raw_html.getIndustry());
 			BData.setUnit(raw_html.getSource());
 			BData.setData_Source(raw_html.getUrl());
@@ -36,10 +35,12 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 			begin();
 			getSession().save(BData);
 			commit();
+			return true;
 		}catch(Exception e) {
 			rollback();
 			logger.error("TBBZDAO saveData failed!",e);
 		}
+		return false;
 	}
 	
 	@SuppressWarnings("unchecked")
