@@ -30,7 +30,7 @@ public class ConstructComETL implements Runnable{
 	
 	private static final Logger logger = LoggerFactory.getLogger(ConstructComETL.class);
 	//所属行业
-	private String industry;
+	private String unitType;
 	//企业名称list
 	private Set<String> unitNameSet;
 	//信用相关标签
@@ -48,9 +48,9 @@ public class ConstructComETL implements Runnable{
 	 * @param INDUSTRY 所属行业
 	 * @param credit_tag 相关信用标签
 	 */
-	public ConstructComETL(Set<String> unitNameSet,String industry,String credit_tag,DAO dao) {
-		this.unitNameSet = unitNameSet;
-		this.industry = industry;
+	public ConstructComETL(String unitType,String credit_tag,DAO dao) {
+		this.unitNameSet = CommonUtil.getUnitNameSet(unitType);
+		this.unitType = unitType;
 		this.credit_tag = credit_tag;
 		this.dao = dao;
 	}
@@ -66,7 +66,7 @@ public class ConstructComETL implements Runnable{
 		try{
 			Jedis jedis = JedisPoolUtils.getInstance().getJedis();
 			Set<String> already_taged_id_set = jedis.smembers("already_taged_id:"+unitName+"-"+credit_tag);
-			id_set = jedis.sinter("construct:"+unitName,"credit:"+credit_tag);
+			id_set = jedis.sinter(unitType+":"+unitName,"信用相关标签:"+credit_tag);
 			Iterator<String> it = id_set.iterator();
 			while(it.hasNext()) {
 				String raw_data_id = it.next();
@@ -105,11 +105,11 @@ public class ConstructComETL implements Runnable{
 		try{
 			for(RawHtml raw_html:list) {
 				raw_html.setUnitName(unitName);
-				raw_html.setIndustry(industry);
+				raw_html.setIndustry(unitType);
 				boolean flag = dao.saveData(raw_html);
 				if(flag) {
 					Jedis jedis = JedisPoolUtils.getInstance().getJedis();
-					jedis.sadd("already_taged_id:"+unitName+"-"+credit_tag, "jw_gov_data:"+raw_html.getId());
+					jedis.sadd("already_taged_id:"+unitName+"-"+credit_tag, "jw_raw_data:"+raw_html.getId());
 					JedisPoolUtils.getInstance().returnRes(jedis);
 					count++;
 				}
@@ -128,27 +128,27 @@ public class ConstructComETL implements Runnable{
 			List<RawHtml> raw_htm_list = getRawHtmlList(id_set);
 			saveData(raw_htm_list,unitName);
 		}
-		logger.info(industry+"-"+credit_tag+" ETL finish! new add data size:"+count);
+		logger.info(unitType+"-"+credit_tag+" ETL finish! new add data size:"+count);
 	}
 	
 	public static void ConstructComETLMain() {
 		ExecutorService Service = Executors.newCachedThreadPool();
-		ConstructComETL roadTBBZetl = new ConstructComETL(CommonUtil.getUnitNameSet("公路建设企业"),"公路建设市场","表彰",new TBBZDAO());
+		ConstructComETL roadTBBZetl = new ConstructComETL("公路建设企业","表彰",new TBBZDAO());
 		Service.execute(roadTBBZetl);
 		
-		ConstructComETL roadHJQKetl = new ConstructComETL(CommonUtil.getUnitNameSet("公路建设企业"),"公路建设市场","获奖",new HJQKDAO());
+		ConstructComETL roadHJQKetl = new ConstructComETL("公路建设企业","获奖",new HJQKDAO());
 		Service.execute(roadHJQKetl);
 		
-		ConstructComETL roadTBPPJLetl = new ConstructComETL(CommonUtil.getUnitNameSet("公路建设企业"),"公路建设市场","批评",new TBPPJLDAO());
+		ConstructComETL roadTBPPJLetl = new ConstructComETL("公路建设企业","批评",new TBPPJLDAO());
 		Service.execute(roadTBPPJLetl);
 		
-		ConstructComETL shipTBBZetl = new ConstructComETL(CommonUtil.getUnitNameSet("水运建设企业"),"水运建设市场","表彰",new TBBZDAO());
+		ConstructComETL shipTBBZetl = new ConstructComETL("水运建设企业","表彰",new TBBZDAO());
 		Service.execute(shipTBBZetl);
 		
-		ConstructComETL shipHJQKetl = new ConstructComETL(CommonUtil.getUnitNameSet("水运建设企业"),"水运建设市场","获奖",new HJQKDAO());
+		ConstructComETL shipHJQKetl = new ConstructComETL("水运建设企业","获奖",new HJQKDAO());
 		Service.execute(shipHJQKetl);
 		
-		ConstructComETL shipTBPPJLetl = new ConstructComETL(CommonUtil.getUnitNameSet("水运建设企业"),"水运建设市场","批评",new TBPPJLDAO());
+		ConstructComETL shipTBPPJLetl = new ConstructComETL("水运建设企业","批评",new TBPPJLDAO());
 		Service.execute(shipTBPPJLetl);
 		Service.shutdown();
 		

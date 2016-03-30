@@ -15,7 +15,7 @@ public class MainSpider implements Runnable{
 		ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1);
 		long delayTime = CommonUtil.getDelayTime();//延迟时间
 		MainSpider spider = new MainSpider();
-		logger.info("MainSpider will be start in "+delayTime/(1000*60*60)+" hours...");
+		logger.info("MainSpider will be start in "+delayTime/(1000*60.0)+" minites...");
 		executorService.scheduleAtFixedRate(spider, delayTime, CommonUtil.one_day_millseconds,TimeUnit.MILLISECONDS);
 	}
 

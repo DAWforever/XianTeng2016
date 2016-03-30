@@ -2,11 +2,9 @@ package cn.edu.nju.iip.dao;
 
 import java.util.Date;
 import java.util.List;
-
 import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.model.TBBZ;
 
@@ -44,12 +42,12 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<TBBZ> getBiaoZhangDataList(String unitName) {
+	public List<TBBZ> getBiaoZhangDataList() {
 		List<TBBZ> list = null;
 		try{
 			begin();
-			Query query = getSession().createQuery("from BiaoZhangData where Corp_Name=:Corp_Name");
-			query.setString("Corp_Name", unitName);
+			Query query = getSession().createQuery("from TBBZ where CORP_ID=:id");
+			query.setString("id", "河南省公路工程局集团有限公司");
 			list = query.list();
 			commit();
 		}catch(Exception e) {
@@ -61,7 +59,12 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 	
 	public static void main(String[] args) {
 		TBBZDAO dao = new TBBZDAO();
-		logger.info(dao.getBiaoZhangDataList("重庆工业设备安装集团有限公司").size()+"");
+		List<TBBZ> list = dao.getBiaoZhangDataList();
+		for(TBBZ bz:list) {
+			//List<String> sentenceList = HanLP.extractSummary(bz.getContent(), 10);
+		    //System.out.println("sentenceList="+sentenceList);
+		    System.out.println("url="+bz.getData_Source());
+		}
 	}
 
 }

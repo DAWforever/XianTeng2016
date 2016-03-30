@@ -21,7 +21,7 @@ public class TagProcess implements Runnable{
 	
 	private BlockingQueue<String> NameQueue;
 	
-	//实体标签分类 construct or transport
+	//实体标签分类
 	private String tag_type;
 	
 	
@@ -30,14 +30,18 @@ public class TagProcess implements Runnable{
 		this.tag_type = tag_type;
 	}
 	
-	public void tagOne(String tag_name) {
+	/**
+	 * 打某一个标签
+	 * @param tag_name
+	 */
+	public void tagOnetag(String tag_name) {
 		try{
 			String query = "\""+tag_name+"\"";
 			Jedis jedis = JedisPoolUtils.getInstance().getJedis();
 			QueryResponse rsp = SolrImpl.queryDocuments(query);
 			SolrDocumentList list = rsp.getResults();
 	        for (SolrDocument solrDocument : list) {
-	        	String id = "jw_gov_data:"+(String) solrDocument.getFieldValue("id");
+	        	String id = "jw_raw_data:"+(String) solrDocument.getFieldValue("id");
 	            jedis.sadd(id, tag_type+":"+tag_name);
 	            jedis.sadd(tag_type+":"+tag_name, id);
 	        }
@@ -45,7 +49,6 @@ public class TagProcess implements Runnable{
 		}catch(Exception e) {
 			logger.error("tagOne error",e);
 		}
-	
 	}
 	
 	@Override
@@ -53,36 +56,46 @@ public class TagProcess implements Runnable{
 		while(true) {
 			String unitName = NameQueue.poll();
 			if(unitName!=null) {
-				tagOne(unitName);
+				tagOnetag(unitName);
 			}
 			else {
+				logger.info(Thread.currentThread().getName()+"#"+tag_type+" tag finish...");
 				break;
 			}
 		}
 	}
 	
-	public static void TagProcessMain(String tag_name,String tag_type) {
+	/**
+	 * 打某一分类下的所有标签
+	 * @param tag_type
+	 */
+	public static void TagOneType(String tag_type) {
 		BlockingQueue<String> NameQueue = new LinkedBlockingQueue<String>();
-		Set<String> unitNameSet= CommonUtil.getUnitNameSet(tag_name);
+		Set<String> unitNameSet= CommonUtil.getUnitNameSet(tag_type);
 		NameQueue.addAll(unitNameSet);
-		logger.info(tag_name+" count="+unitNameSet.size());
 		ExecutorService service = Executors.newCachedThreadPool();
 		for(int i=0;i<5;i++) {
-			TagProcess process = new TagProcess(NameQueue,tag_type);
+			TagProcess process = new TagProcess(NameQueue,tag_type.split(":")[1]);
 			service.execute(process);
 		}
 		service.shutdown();
 	}
 	
-	public static void tag_process_main() {
-		TagProcessMain("水运建设企业","construct");
-		TagProcessMain("公路建设企业","construct");
-		TagProcessMain("道路运输企业","transport");
-		TagProcessMain("信用相关标签","credit");
+	public static void tagProcessMain() {
+		Jedis jedis = JedisPoolUtils.getInstance().getJedis();
+		try{
+			//取出标签库中所有标签类
+			Set<String> TaglibSet = jedis.keys("Taglib*");
+			for(String tag_type:TaglibSet) {
+				TagOneType(tag_type);
+			}
+		}catch(Exception e) {
+			logger.error("tagProcessMain error",e);
+		}
 	}
 	
 	public static void main(String[] args) throws Exception {
-		tag_process_main();
+		tagProcessMain();
 	}
 
 }

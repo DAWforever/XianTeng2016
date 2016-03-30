@@ -239,7 +239,7 @@ public class CommonUtil {
 		Calendar c = Calendar.getInstance();
 		long currentTime = c.getTimeInMillis();
 		c.set(Calendar.HOUR_OF_DAY, Integer.valueOf(Config.getValue("start_hour")));
-	    c.set(Calendar.MINUTE, 0);
+	    c.set(Calendar.MINUTE, Integer.valueOf(Config.getValue("start_minites")));
 	    c.set(Calendar.SECOND, 0);
 	    long executeTime = c.getTimeInMillis();
 		return executeTime - currentTime < 0 ? (executeTime - currentTime + one_day_millseconds)

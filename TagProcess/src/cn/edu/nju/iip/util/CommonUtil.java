@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -22,6 +23,7 @@ public class CommonUtil {
 
 	private static final Logger logger = LoggerFactory.getLogger(CommonUtil.class);
 
+	public static final int one_day_millseconds = 24 * 60 * 60 * 1000;
 
 
 	/**
@@ -95,38 +97,41 @@ public class CommonUtil {
 	}
 	
 	/**
-	 * 将相关企业实体标签存入redis标签库
+	 * 将所有标签存入redis标签库
 	 */
-	public static void saveUnitNameToRedis() {
+	public static void saveAllTagsToRedis() {
 		Jedis jedis = JedisPoolUtils.getInstance().getJedis();
 		List<String> ConsShipUnitNames = importConsShipUnitName();
 		logger.info("ConsShipUnitNames size="+ConsShipUnitNames.size());
 		for(String unitName:ConsShipUnitNames) {
-			jedis.sadd("水运建设企业", unitName);
+			jedis.sadd("Taglib:水运建设企业", unitName);
 		}
 		List<String> ConsRoadUnitName = importConsRoadUnitName();
 		logger.info("ConsRoadUnitName size="+ConsRoadUnitName.size());
 		for(String unitName:ConsRoadUnitName) {
-			jedis.sadd("公路建设企业", unitName);
+			jedis.sadd("Taglib:公路建设企业", unitName);
 		}
 		List<String> TransRoadUnitName = importTransRoadUnitName();
 		logger.info("TransRoadUnitName size="+TransRoadUnitName.size());
 		for(String unitName:TransRoadUnitName) {
-			jedis.sadd("道路运输企业", unitName);
+			jedis.sadd("Taglib:道路运输企业", unitName);
 		}
+		jedis.sadd("Taglib:水运建设人员", "");
+		jedis.sadd("Taglib:公路建设人员", "");
+		jedis.sadd("Taglib:道路运输人员", "");
 		saveCreditTag(jedis);
 		JedisPoolUtils.getInstance().returnRes(jedis);
 	}
 	
 	public static void saveCreditTag(Jedis jedis) {
-		jedis.sadd("信用相关标签", "表彰");
-		jedis.sadd("信用相关标签", "批评");
-		jedis.sadd("信用相关标签", "获奖");
+		jedis.sadd("Taglib:信用相关标签", "表彰");
+		jedis.sadd("Taglib:信用相关标签", "批评");
+		jedis.sadd("Taglib:信用相关标签", "获奖");
 	}
 	
-	public static Set<String> getUnitNameSet(String unitType) {
+	public static Set<String> getUnitNameSet(String tag_type) {
 		Jedis jedis = JedisPoolUtils.getInstance().getJedis();
-		Set<String> set = jedis.smembers(unitType);
+		Set<String> set = jedis.smembers(tag_type);
 		JedisPoolUtils.getInstance().returnRes(jedis);
 		return set;
 	}
@@ -154,10 +159,21 @@ public class CommonUtil {
 		}  
 		return date;
 	}
+	
+	public static long getDelayTime() {
+		Calendar c = Calendar.getInstance();
+		long currentTime = c.getTimeInMillis();
+		c.set(Calendar.HOUR_OF_DAY, Integer.valueOf(Config.getValue("start_hour")));
+	    c.set(Calendar.MINUTE, Integer.valueOf(Config.getValue("start_minites")));
+	    c.set(Calendar.SECOND, 0);
+	    long executeTime = c.getTimeInMillis();
+		return executeTime - currentTime < 0 ? (executeTime - currentTime + one_day_millseconds)
+	            : (executeTime - currentTime);
+	}
 
 	public static void main(String[] args) {
 		//logger.info(getUnitNameSet("水运建设企业").toString());
-		saveUnitNameToRedis();
+		saveAllTagsToRedis();
 	}
 
 }

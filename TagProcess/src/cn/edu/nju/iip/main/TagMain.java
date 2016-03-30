@@ -3,8 +3,11 @@ package cn.edu.nju.iip.main;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import cn.edu.nju.iip.util.CommonUtil;
 
 
 public class TagMain implements Runnable{
@@ -16,15 +19,17 @@ public class TagMain implements Runnable{
 	@Override
 	public void run() {
 		try{
-			TagProcess.tag_process_main();
+			TagProcess.tagProcessMain();
 		}catch(Exception e) {
 			logger.error("TagMain run() failed", e);
 		}
 	}
 	public static void main(String[] args) throws Exception {
 		ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1);
+		long delayTime = CommonUtil.getDelayTime();//延迟时间
 		TagMain tagTask = new TagMain();
-		executorService.scheduleAtFixedRate(tagTask,0,period,TimeUnit.MILLISECONDS);
+		logger.info("TagMain will be start in "+delayTime/(1000*60.0)+" minites...");
+		executorService.scheduleAtFixedRate(tagTask,delayTime,CommonUtil.one_day_millseconds,TimeUnit.MILLISECONDS);
 	}
 
 }

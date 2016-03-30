@@ -7,12 +7,12 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.edu.nju.iip.util.CommonUtil;
+
 
 public class ETLMain implements Runnable{
 	
 	private static final Logger logger = LoggerFactory.getLogger(ETLMain.class);
-	//执行周期
-	public static final int period = 12 * 60 * 60 * 1000;
 	
 	@Override
 	public void run() {
@@ -26,7 +26,8 @@ public class ETLMain implements Runnable{
 	public static void main(String[] args) throws Exception {
 		ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1);
 		ETLMain ETLTask = new ETLMain();
-		executorService.scheduleAtFixedRate(ETLTask,0,period,TimeUnit.MILLISECONDS);
+		long delayTime = CommonUtil.getDelayTime();//延迟时间
+		executorService.scheduleAtFixedRate(ETLTask,delayTime,CommonUtil.one_day_millseconds,TimeUnit.MILLISECONDS);
 	}
 
 }
