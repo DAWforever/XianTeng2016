@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.edu.nju.iip.util.CommonUtil;
+import cn.edu.nju.iip.util.Config;
 
 
 public class ETLMain implements Runnable{
@@ -27,7 +28,8 @@ public class ETLMain implements Runnable{
 		ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1);
 		ETLMain ETLTask = new ETLMain();
 		long delayTime = CommonUtil.getDelayTime();//延迟时间
-		executorService.scheduleAtFixedRate(ETLTask,delayTime,CommonUtil.one_day_millseconds,TimeUnit.MILLISECONDS);
+		int period =  Integer.valueOf(Config.getValue("period"))*60*60*1000;
+		executorService.scheduleAtFixedRate(ETLTask,delayTime,period,TimeUnit.MILLISECONDS);
 	}
 
 }
