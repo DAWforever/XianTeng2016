@@ -47,6 +47,7 @@
 		<property name="c3p0.max_size">5</property> <!--在连接池中所有数据库连接的最大数目 -->
 		<property name="c3p0.time_out">1800</property> <!--设定数据库连接的超时时间 -->
 		<property name="c3p0.max_statement">5</property> <!--可以被缓存的PreparedStatement的最大数目 -->
+		<property name="c3p0.maxIdleTime">1800</property><!--最大空闲时间,1800秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
 
 		<!-- List of XML mapping files -->
 		<mapping resource="cn/edu/nju/iip/model/JWNews.hbm.xml" />
