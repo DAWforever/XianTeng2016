@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.HJQK;
 import cn.edu.nju.iip.model.RawHtml;
+import cn.edu.nju.iip.model.TBBZ;
 
 /**
  * 公路水运建设市场从业企业获奖情况表DAO
@@ -31,6 +32,10 @@ public class HJQKDAO extends DAO {
 			Data.setCorp_Id(raw_html.getUnitName());
 			Data.setType_Name(raw_html.getSource().contains("市")?"市级":"省级");
 			extractField(Data);
+			abstractContent(Data);
+			if(Data.getContent()==null) {
+				return false;
+			}
 			begin();
 			getSession().save(Data);
 			commit();
@@ -48,8 +53,33 @@ public class HJQKDAO extends DAO {
 	 */
 	public void extractField(HJQK Data) {
 		String content = Data.getContent();
-		logger.info("content="+content);
+		//logger.info("content="+content);
 		//add code here
+	}
+	
+	/**
+	 * 正文摘要
+	 * @param Data
+	 */
+	public void abstractContent(HJQK Data) {
+		String content = Data.getContent();
+		String[] sentences = content.split("[\\s。？]+");
+		for (String sentence : sentences) {
+			if (sentence.contains("奖")&&(sentence.contains("关于")||sentence.contains("名单")||sentence.contains("决定")||sentence.contains("通知"))) {
+				if(sentence.contains("关于")) {
+					int index = sentence.indexOf("关于");
+					sentence = sentence.substring(index);
+				}
+				if (sentence.length() > 50) {
+					sentence = sentence.substring(0, 50);
+				}
+				sentence = sentence.replace(".doc", "");
+				Data.setContent(sentence);
+				logger.info("sentence="+sentence);
+				return;
+			}
+		}
+		Data.setContent(null);
 	}
 	
 	public static void main(String[] args) {

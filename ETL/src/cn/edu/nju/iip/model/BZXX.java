@@ -18,8 +18,26 @@ public class BZXX {
 	private String unit;
 	//录入时间
 	private Date cDate;
+	//表彰时间
+	private Date pDate;
+	//内容
+	private String content;
 	//数据来源
 	private String data_Source;
+	
+	
+	public Date getpDate() {
+		return pDate;
+	}
+	public void setpDate(Date pDate) {
+		this.pDate = pDate;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public String getId() {
 		return id;
 	}

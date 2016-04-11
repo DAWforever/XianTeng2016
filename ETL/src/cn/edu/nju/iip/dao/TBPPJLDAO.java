@@ -1,10 +1,8 @@
 package cn.edu.nju.iip.dao;
 
 import java.util.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.model.TBPPJL;
@@ -32,8 +30,9 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 			Data.setData_Source(raw_html.getUrl());
 			Data.setCorp_Id(raw_html.getUnitName());
 			extractField(Data);
+			abstractContent(Data);
 			begin();
-			getSession().save(Data);
+			//getSession().save(Data);
 			commit();
 			return true;
 		}catch(Exception e) {
@@ -49,12 +48,36 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 	 */
 	public void extractField(TBPPJL Data) {
 		String content = Data.getContent();
-		logger.info("content="+content);
+		//logger.info("content="+Data.getData_Source());
 		//add code here
 	}
 	
+	/**
+	 * 正文摘要
+	 * @param Data
+	 */
+	public void abstractContent(TBPPJL Data) {
+		String content = Data.getContent();
+		String[] sentences = content.split("[\\s。？]+");
+		for (String sentence : sentences) {
+			if (sentence.contains("关于")&&(sentence.contains("通知")||sentence.contains("通报"))) {
+				if(sentence.contains("关于")) {
+					int index = sentence.indexOf("关于");
+					sentence = sentence.substring(index);
+				}
+				if (sentence.length() > 50) {
+					sentence = sentence.substring(0, 50);
+				}
+				Data.setContent(sentence);
+				logger.info("sentence="+sentence);
+				return;
+			}
+		}
+		Data.setContent(null);
+	}
+	
 	public static void main(String[] args) {
-		ConstructComETL road_HJQK_etl = new ConstructComETL("公路建设企业","获奖",new HJQKDAO());
+		ConstructComETL road_HJQK_etl = new ConstructComETL("公路建设企业","批评",new TBPPJLDAO());
 		Thread thread = new Thread(road_HJQK_etl);
 		thread.start();
 	}

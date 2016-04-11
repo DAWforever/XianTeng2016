@@ -32,8 +32,9 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 			Data.setData_Source(raw_html.getUrl());
 			Data.setCorp_Id(raw_html.getUnitName());
 			extractField(Data);
+			abstractContent(Data);
 			begin();
-			getSession().save(Data);
+			//getSession().save(Data);
 			commit();
 			return true;
 		}catch(Exception e) {
@@ -43,14 +44,37 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 		return false;
 	}
     
+    
     /**
 	 * 抽取正文字段
 	 * @param Data
 	 */
 	public void extractField(TBBZ Data) {
 		String content = Data.getContent();
-		logger.info("content="+content);
+		
 		//add code here
+	}
+	
+	/**
+	 * 正文摘要
+	 * @param Data
+	 */
+	public void abstractContent(TBBZ Data) {
+		String content = Data.getContent();
+		String[] sentences = content.split("\\s+");
+		for (String sentence : sentences) {
+			if (sentence.contains("关于表彰")) {
+				sentence = sentence.trim().replaceAll("[？>]", "");
+				int index = sentence.indexOf("关于表彰");
+				sentence = sentence.substring(index);
+				if (sentence.length() > 50) {
+					sentence = sentence.substring(0, 50);
+				}
+				Data.setContent(sentence);
+				logger.info("content="+Data.getContent());
+				break;
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
