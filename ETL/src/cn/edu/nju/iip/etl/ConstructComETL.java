@@ -65,16 +65,16 @@ public class ConstructComETL implements Runnable{
 		Set<String> id_set = new HashSet<String>();
 		try{
 			Jedis jedis = JedisPoolUtils.getInstance().getJedis();
-			Set<String> already_taged_id_set = jedis.smembers("already_taged_id:"+unitName+"-"+credit_tag);
+//			Set<String> already_taged_id_set = jedis.smembers("already_taged_id:"+unitName+"-"+credit_tag);
 			id_set = jedis.sinter(unitType+":"+unitName,"信用相关标签:"+credit_tag);
-			Iterator<String> it = id_set.iterator();
-			while(it.hasNext()) {
-				String raw_data_id = it.next();
-				//若该doc已经被打过标签则剔除
-				if(already_taged_id_set.contains(raw_data_id)) {
-					it.remove();
-				}
-			}
+//			Iterator<String> it = id_set.iterator();
+//			while(it.hasNext()) {
+//				String raw_data_id = it.next();
+//				//若该doc已经被打过标签则剔除
+//				if(already_taged_id_set.contains(raw_data_id)) {
+//					it.remove();
+//				}
+//			}
 			JedisPoolUtils.getInstance().returnRes(jedis);
 		}catch(Exception e) {
 			logger.error("getRawDataId error",e);
@@ -131,33 +131,6 @@ public class ConstructComETL implements Runnable{
 		logger.info(unitType+"-"+credit_tag+" ETL finish! new add data size:"+count);
 	}
 	
-	public static void ConstructComETLMain() {
-		ExecutorService Service = Executors.newCachedThreadPool();
-		ConstructComETL roadTBBZetl = new ConstructComETL("公路建设企业","表彰",new TBBZDAO());
-		Service.execute(roadTBBZetl);
-		
-		ConstructComETL roadHJQKetl = new ConstructComETL("公路建设企业","获奖",new HJQKDAO());
-		Service.execute(roadHJQKetl);
-		
-		ConstructComETL roadTBPPJLetl = new ConstructComETL("公路建设企业","批评",new TBPPJLDAO());
-		Service.execute(roadTBPPJLetl);
-		
-		ConstructComETL shipTBBZetl = new ConstructComETL("水运建设企业","表彰",new TBBZDAO());
-		Service.execute(shipTBBZetl);
-		
-		ConstructComETL shipHJQKetl = new ConstructComETL("水运建设企业","获奖",new HJQKDAO());
-		Service.execute(shipHJQKetl);
-		
-		ConstructComETL shipTBPPJLetl = new ConstructComETL("水运建设企业","批评",new TBPPJLDAO());
-		Service.execute(shipTBPPJLetl);
-		Service.shutdown();
-		
-	}
-	
-	public static void main(String[] args) throws Exception {
-		ConstructComETLMain();
-	}
-
 	@Override
 	public void run() {
 		try{
@@ -167,5 +140,22 @@ public class ConstructComETL implements Runnable{
 		}
 		
 	}
-
+	
+	public static void ConstructComETLMain() {
+		ExecutorService Service = Executors.newCachedThreadPool();
+//		ConstructComETL roadTBBZetl = new ConstructComETL("公路建设企业","表彰",new TBBZDAO());
+//		Service.execute(roadTBBZetl);
+//		
+		ConstructComETL roadHJQKetl = new ConstructComETL("公路建设企业","获奖",new HJQKDAO());
+		Service.execute(roadHJQKetl);
+//		
+//		ConstructComETL roadTBPPJLetl = new ConstructComETL("公路建设企业","批评",new TBPPJLDAO());
+//		Service.execute(roadTBPPJLetl);
+		Service.shutdown();
+		
+	}
+	
+	public static void main(String[] args) throws Exception {
+		ConstructComETLMain();
+	}
 }

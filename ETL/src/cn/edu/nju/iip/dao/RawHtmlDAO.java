@@ -10,17 +10,20 @@ public class RawHtmlDAO extends DAO{
 	
 	private static final Logger logger = LoggerFactory.getLogger(RawHtmlDAO.class);
 	
-	
-	public void saveRawHtml(RawHtml rawhtml) {
+	@Override
+	public boolean saveData(RawHtml rawhtml) {
 		try{
 			begin();
 			getSession().save(rawhtml);
 			commit();
+			return true;
 		}catch(Exception e) {
 			rollback();
 			logger.error("saveRawHtml failed!",e);
 		}
+		return false;
 	}
+	
 	
 	
 	public RawHtml getRawHtml(int id) {
@@ -45,5 +48,7 @@ public class RawHtmlDAO extends DAO{
 		}
 		
 	}
+
+
 
 }

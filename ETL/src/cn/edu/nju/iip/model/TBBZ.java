@@ -16,7 +16,7 @@ public class TBBZ {
 	private String industry;
 	//标题
 	private String title;
-	//文号
+	//文号(*)
 	private String code;
 	//发布单位
 	private String unit;

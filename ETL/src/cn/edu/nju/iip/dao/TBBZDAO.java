@@ -1,10 +1,11 @@
 package cn.edu.nju.iip.dao;
 
 import java.util.Date;
-import java.util.List;
-import org.hibernate.Query;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.model.TBBZ;
 
@@ -21,17 +22,18 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
     @Override
 	public boolean saveData(RawHtml raw_html) {
 		try{
-			TBBZ BData = new TBBZ();
-			BData.setIssue_Date(raw_html.getCrawltime());
-			BData.setcDate(new Date());
-			BData.setTitle(raw_html.getTitle());
-			BData.setContent(raw_html.getContent());
-			BData.setIndustry(raw_html.getIndustry());
-			BData.setUnit(raw_html.getSource());
-			BData.setData_Source(raw_html.getUrl());
-			BData.setCorp_Id(raw_html.getUnitName());
+			TBBZ Data = new TBBZ();
+			Data.setIssue_Date(raw_html.getCrawltime());
+			Data.setcDate(new Date());
+			Data.setTitle(raw_html.getTitle());
+			Data.setContent(raw_html.getContent());
+			Data.setIndustry(raw_html.getIndustry());
+			Data.setUnit(raw_html.getSource());
+			Data.setData_Source(raw_html.getUrl());
+			Data.setCorp_Id(raw_html.getUnitName());
+			extractField(Data);
 			begin();
-			getSession().save(BData);
+			getSession().save(Data);
 			commit();
 			return true;
 		}catch(Exception e) {
@@ -40,31 +42,21 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 		}
 		return false;
 	}
-	
-	@SuppressWarnings("unchecked")
-	public List<TBBZ> getBiaoZhangDataList() {
-		List<TBBZ> list = null;
-		try{
-			begin();
-			Query query = getSession().createQuery("from TBBZ where CORP_ID=:id");
-			query.setString("id", "河南省公路工程局集团有限公司");
-			list = query.list();
-			commit();
-		}catch(Exception e) {
-			rollback();
-			logger.error("TBBZDAO getBiaoZhangDataList failed!",e);
-		}
-		return list;
+    
+    /**
+	 * 抽取正文字段
+	 * @param Data
+	 */
+	public void extractField(TBBZ Data) {
+		String content = Data.getContent();
+		logger.info("content="+content);
+		//add code here
 	}
 	
 	public static void main(String[] args) {
-		TBBZDAO dao = new TBBZDAO();
-		List<TBBZ> list = dao.getBiaoZhangDataList();
-		for(TBBZ bz:list) {
-			//List<String> sentenceList = HanLP.extractSummary(bz.getContent(), 10);
-		    //System.out.println("sentenceList="+sentenceList);
-		    System.out.println("url="+bz.getData_Source());
-		}
+		ConstructComETL road_TBBZ_etl = new ConstructComETL("公路建设企业","表彰",new TBBZDAO());
+		Thread thread = new Thread(road_TBBZ_etl);
+		thread.start();
 	}
 
 }

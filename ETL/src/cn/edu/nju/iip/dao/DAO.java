@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import cn.edu.nju.iip.model.RawHtml;
 
 
-public class DAO {
+public abstract class DAO {
 	
 	private static final Logger logger = LoggerFactory.getLogger(DAO.class);
 	
@@ -25,9 +25,8 @@ public class DAO {
 	protected DAO() {
 	}
 	
-	public boolean saveData(RawHtml raw_html) {
-		return false;
-	}
+	public abstract boolean saveData(RawHtml raw_html);
+	
 	
 	/**
 	 * 取得当前线程的会话
