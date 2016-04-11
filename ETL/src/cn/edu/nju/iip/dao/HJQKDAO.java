@@ -32,9 +32,9 @@ public class HJQKDAO extends DAO {
 			if(!abstractContent(Data)){
 				return false;
 			}
-			begin();
-			getSession().save(Data);
-			commit();
+//			begin();
+//			getSession().save(Data);
+//			commit();
 			return true;
 		}catch(Exception e) {
 			rollback();
@@ -49,7 +49,7 @@ public class HJQKDAO extends DAO {
 	 */
 	public void extractField(HJQK Data) {
 		String content = Data.getContent();
-		//logger.info("content="+content);
+		logger.info("content="+content);
 		//add code here
 	}
 	
