@@ -23,10 +23,9 @@ public class BZXXDAO extends DAO {
 			Data.setCorp_Id(raw_html.getUnitName());
 			Data.setData_Source(raw_html.getUrl());
 			Data.setContent(raw_html.getContent());
-			if (!raw_html.getContent().contains("关于表彰")) {
-				return true;
+			if(!abstractContent(Data)) {
+				return false;
 			}
-			extractField(Data);
 			begin();
 			getSession().save(Data);
 			commit();
@@ -43,7 +42,7 @@ public class BZXXDAO extends DAO {
 	 * 
 	 * @param Data
 	 */
-	public void extractField(BZXX Data) {
+	public boolean abstractContent(BZXX Data) {
 		String content = Data.getContent();
 		String[] sentences = content.split("\\s+");
 		for (String sentence : sentences) {
@@ -55,9 +54,10 @@ public class BZXXDAO extends DAO {
 					sentence = sentence.substring(0, 50);
 				}
 				Data.setTitle(sentence);
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public static void main(String[] args) {

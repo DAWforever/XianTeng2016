@@ -30,9 +30,11 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 			Data.setData_Source(raw_html.getUrl());
 			Data.setCorp_Id(raw_html.getUnitName());
 			extractField(Data);
-			abstractContent(Data);
+			if(!abstractContent(Data)) {
+				return false;
+			}
 			begin();
-			//getSession().save(Data);
+			getSession().save(Data);
 			commit();
 			return true;
 		}catch(Exception e) {
@@ -56,7 +58,7 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 	 * 正文摘要
 	 * @param Data
 	 */
-	public void abstractContent(TBPPJL Data) {
+	public boolean abstractContent(TBPPJL Data) {
 		String content = Data.getContent();
 		String[] sentences = content.split("[\\s。？]+");
 		for (String sentence : sentences) {
@@ -65,15 +67,16 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 					int index = sentence.indexOf("关于");
 					sentence = sentence.substring(index);
 				}
-				if (sentence.length() > 50) {
-					sentence = sentence.substring(0, 50);
+				if (sentence.length() > 100) {
+					sentence = sentence.substring(0, 100);
 				}
 				Data.setContent(sentence);
+				Data.setTitle(sentence);
 				logger.info("sentence="+sentence);
-				return;
+				return true;
 			}
 		}
-		Data.setContent(null);
+		return false;
 	}
 	
 	public static void main(String[] args) {

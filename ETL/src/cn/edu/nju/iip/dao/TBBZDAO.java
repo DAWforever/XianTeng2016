@@ -32,9 +32,11 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 			Data.setData_Source(raw_html.getUrl());
 			Data.setCorp_Id(raw_html.getUnitName());
 			extractField(Data);
-			abstractContent(Data);
+			if(!abstractContent(Data)) {
+				return false;
+			}
 			begin();
-			//getSession().save(Data);
+			getSession().save(Data);
 			commit();
 			return true;
 		}catch(Exception e) {
@@ -59,7 +61,7 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 	 * 正文摘要
 	 * @param Data
 	 */
-	public void abstractContent(TBBZ Data) {
+	public boolean abstractContent(TBBZ Data) {
 		String content = Data.getContent();
 		String[] sentences = content.split("\\s+");
 		for (String sentence : sentences) {
@@ -71,10 +73,12 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 					sentence = sentence.substring(0, 50);
 				}
 				Data.setContent(sentence);
+				Data.setTitle(sentence);
 				logger.info("content="+Data.getContent());
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public static void main(String[] args) {

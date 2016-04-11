@@ -1,14 +1,11 @@
 package cn.edu.nju.iip.dao;
 
 import java.util.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.HJQK;
 import cn.edu.nju.iip.model.RawHtml;
-import cn.edu.nju.iip.model.TBBZ;
 
 /**
  * 公路水运建设市场从业企业获奖情况表DAO
@@ -32,8 +29,7 @@ public class HJQKDAO extends DAO {
 			Data.setCorp_Id(raw_html.getUnitName());
 			Data.setType_Name(raw_html.getSource().contains("市")?"市级":"省级");
 			extractField(Data);
-			abstractContent(Data);
-			if(Data.getContent()==null) {
+			if(!abstractContent(Data)){
 				return false;
 			}
 			begin();
@@ -61,7 +57,7 @@ public class HJQKDAO extends DAO {
 	 * 正文摘要
 	 * @param Data
 	 */
-	public void abstractContent(HJQK Data) {
+	public boolean abstractContent(HJQK Data) {
 		String content = Data.getContent();
 		String[] sentences = content.split("[\\s。？]+");
 		for (String sentence : sentences) {
@@ -76,10 +72,10 @@ public class HJQKDAO extends DAO {
 				sentence = sentence.replace(".doc", "");
 				Data.setContent(sentence);
 				logger.info("sentence="+sentence);
-				return;
+				return true;
 			}
 		}
-		Data.setContent(null);
+		return false;
 	}
 	
 	public static void main(String[] args) {
