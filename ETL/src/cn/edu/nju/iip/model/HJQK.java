@@ -12,6 +12,8 @@ public class HJQK {
 	private String award_id;
 	// 企业id
 	private String corp_Id;
+	// 文号(*)
+	private String code;
 	// 奖项名称(*)
 	private String name;
 	// 获奖年度(*)
@@ -106,6 +108,12 @@ public class HJQK {
 	}
 	public void setData_Source(String data_Source) {
 		this.data_Source = data_Source;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 	

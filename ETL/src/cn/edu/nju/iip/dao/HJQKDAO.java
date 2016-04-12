@@ -54,14 +54,19 @@ public class HJQKDAO extends DAO {
 	public void extractField(HJQK Data) {
 
 		String content = Data.getContent();
+		
 		String year = null;
 		String name = null;
+		String code = null;
 		
 //		logger.info("content="+content);
-//		logger.info("url="+url);
+//		logger.info("url="+Data.getData_Source());
 
+		
+		Matcher match =  null;
+		
 		Pattern yearPattern = Pattern.compile("([0-9]{4}(年度))|(〔[0-9]{4}〕)");
-		Matcher match = yearPattern.matcher(content);
+		match = yearPattern.matcher(content);
 		
 		if(match.find()){
 			String findString =  match.group();			
@@ -82,10 +87,42 @@ public class HJQKDAO extends DAO {
 			}
 		}
 		
-		if(year != null && name != null){
-			Data.setYear(year);
-			Data.setName(name);
+		Pattern codePattern = Pattern.compile("(京|津|冀|晋|蒙|辽|吉|黑|沪|苏|浙|皖|闽|赣|鲁|豫|鄂|湘|粤|桂|琼|渝|川|蜀|贵|黔|云|滇|藏|陕|秦|甘|陇|青|宁|新|港|澳|台|中|武|建|.建|工)(.{1,6})(〔|（|\\[|\\(|【)[0-9]{4}(）|\\)|\\]|】|〕)(.{1,6})(号)");
+		match = codePattern.matcher(content);
+		
+		if(match.find()){
+			String findString =  match.group();			
+			code = findString;
 		}
+		
+		Data.setYear(year);
+		Data.setName(name);
+		Data.setCode(code);
+		
+		if(name.contains("国家") || name.contains("中国")|| name.contains("全国") ){
+			Data.setType("国家级");
+			Data.setType_Name("国家级");
+		}else if(name.contains("省")){
+			Data.setType("省级");
+			Data.setType_Name("省级");
+		}else if(name.contains("市")){
+			Data.setType("市级");
+			Data.setType_Name("市级");
+		}else{
+			Data.setType("其它");
+			Data.setType_Name("其它");
+		}
+
+//		logger.info(year);
+//		logger.info(name);
+		
+//		if(year != null && name != null){
+//			logger.info(year);
+//			logger.info(name);
+			
+//			Data.setYear(year);
+//			Data.setName(name);
+//		}
 		//add code here
 	}
 	
