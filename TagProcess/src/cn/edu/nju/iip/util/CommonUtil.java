@@ -116,9 +116,6 @@ public class CommonUtil {
 		for(String unitName:TransRoadUnitName) {
 			jedis.sadd("Taglib:道路运输企业", unitName);
 		}
-		jedis.sadd("Taglib:水运建设人员", "");
-		jedis.sadd("Taglib:公路建设人员", "");
-		jedis.sadd("Taglib:道路运输人员", "");
 		saveCreditTag(jedis);
 		JedisPoolUtils.getInstance().returnRes(jedis);
 	}
