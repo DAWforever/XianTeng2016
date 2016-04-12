@@ -34,6 +34,8 @@
 		<mapping resource="cn/edu/nju/iip/model/TBPPJL.hbm.xml" />
 		<mapping resource="cn/edu/nju/iip/model/HJQK.hbm.xml" />
 		<mapping resource="cn/edu/nju/iip/model/BZXX.hbm.xml" />
+		<mapping resource="cn/edu/nju/iip/model/JLXX.hbm.xml" />
+		<mapping resource="cn/edu/nju/iip/model/TBPPXX.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>
