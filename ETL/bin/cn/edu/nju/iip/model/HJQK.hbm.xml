@@ -17,10 +17,12 @@
 		<property name="name" column="NAME" type="string" />
 		<property name="year" column="YEAR" type="string" />
 		<property name="type_Name" column="TYPE_NAME" type="string" />
+		<property name="type" column="TYPE" type="string" />
 		<property name="industry" column="INDUSTRY" type="string" />
 		<property name="unit" column="UNIT" type="string" />
 		<property name="pDate" column="PDATE" type="timestamp" />
 		<property name="cdate" column="CDATE" type="timestamp" />
+		<property name="udate" column="UDATE" type="timestamp" />
 		<property name="content" column="CONTENT" type="string" />
 		<property name="data_Source" column="DATA_SOURCE" type="string" />
 	</class>

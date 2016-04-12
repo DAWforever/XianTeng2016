@@ -19,6 +19,7 @@
 		<property name="unit" column="UNIT" type="string" />
 		<property name="issue_Date" column="ISSUE_DATE" type="timestamp" />
 		<property name="cDate" column="CDATE" type="timestamp" />
+		<property name="year" column="YEAR" type="string" />
 		<property name="content" column="CONTENT" type="string" />
 		<property name="data_Source" column="DATA_SOURCE" type="string" />
 	</class>

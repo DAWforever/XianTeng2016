@@ -30,12 +30,20 @@ public class HJQK {
 	private Date pDate;
 	// 录入时间
 	private Date cdate;
+	// 数据交换入库时间时间
+	private Date udate;
 	//内容
 	private String content;
 	// 来源
 	private String data_Source;
 	
 	
+	public Date getUdate() {
+		return udate;
+	}
+	public void setUdate(Date udate) {
+		this.udate = udate;
+	}
 	public String getContent() {
 		return content;
 	}

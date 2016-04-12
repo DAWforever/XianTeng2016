@@ -18,6 +18,8 @@ public class TBBZ {
 	private String title;
 	//文号(*)
 	private String code;
+	//表彰年度(*)
+	private String year;
 	//发布单位
 	private String unit;
 	//发布日期
@@ -31,6 +33,12 @@ public class TBBZ {
 	
 	
 	
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
 	public Date getIssue_Date() {
 		return issue_Date;
 	}
