@@ -12,7 +12,7 @@ public class BZXX {
 	private String id;
 	//业户id
 	private String corp_Id;
-	//表彰名称(*)
+	//表彰名称
 	private String title;
 	//发布单位
 	private String unit;

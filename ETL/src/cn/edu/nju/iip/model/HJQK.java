@@ -12,11 +12,11 @@ public class HJQK {
 	private String award_id;
 	// 企业id
 	private String corp_Id;
-	// 文号(*)
+	// 文号
 	private String code;
-	// 奖项名称(*)
+	// 奖项名称
 	private String name;
-	// 获奖年度(*)
+	// 获奖年度
 	private String year;
 	// 奖项等级类别
 	private String type;
