@@ -55,9 +55,9 @@ public class HJQKDAO extends DAO {
 
 		String content = Data.getContent();
 		
-		String year = null;
-		String name = null;
-		String code = null;
+		String year = "";
+		String name = "";
+		String code = "";
 		
 //		logger.info("content="+content);
 //		logger.info("url="+Data.getData_Source());
@@ -112,17 +112,7 @@ public class HJQKDAO extends DAO {
 			Data.setType("其它");
 			Data.setType_Name("其它");
 		}
-
-//		logger.info(year);
-//		logger.info(name);
 		
-//		if(year != null && name != null){
-//			logger.info(year);
-//			logger.info(name);
-			
-//			Data.setYear(year);
-//			Data.setName(name);
-//		}
 		//add code here
 	}
 	
