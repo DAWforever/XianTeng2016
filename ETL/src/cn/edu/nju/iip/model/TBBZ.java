@@ -18,6 +18,8 @@ public class TBBZ {
 	private String title;
 	//文号(*)
 	private String code;
+	//年度(*)
+	private String year;
 	//发布单位
 	private String unit;
 	//发布日期
@@ -90,6 +92,12 @@ public class TBBZ {
 	}
 	public void setData_Source(String data_Source) {
 		this.data_Source = data_Source;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
 	}
 
 }

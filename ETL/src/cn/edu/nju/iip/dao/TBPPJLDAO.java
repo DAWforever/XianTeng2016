@@ -1,8 +1,12 @@
 package cn.edu.nju.iip.dao;
 
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.model.TBPPJL;
@@ -50,6 +54,18 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 	 */
 	public void extractField(TBPPJL Data) {
 		String content = Data.getContent();
+		String code = "";
+		
+		Matcher match =  null;
+		
+		Pattern codePattern = Pattern.compile("([\u4e00-\u9fa5]{2,6})(［|〔|（|\\[|\\(|【)[0-9]{4}(］|）|\\)|\\]|】|〕)(.?[0-9]{1,4}.?)(号?)");
+		match = codePattern.matcher(content);
+		
+		if(match.find()){
+			code =  match.group();			
+		}
+		Data.setCode(code);
+		
 		//logger.info("content="+Data.getData_Source());
 		//add code here
 	}

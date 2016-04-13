@@ -1,6 +1,8 @@
 package cn.edu.nju.iip.dao;
 
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,9 +37,9 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 			if(!abstractContent(Data)) {
 				return false;
 			}
-			begin();
-			getSession().save(Data);
-			commit();
+//			begin();
+//			getSession().save(Data);
+//			commit();
 			return true;
 		}catch(Exception e) {
 			rollback();
@@ -54,7 +56,31 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 	public void extractField(TBBZ Data) {
 		String content = Data.getContent();
 		
-		//add code here
+		String code = "";
+		String year = "";
+		
+		Matcher match =  null;
+		
+		Pattern yearPattern = Pattern.compile("([0-9]{4}(年度))|(〔[0-9]{4}〕)");
+		match = yearPattern.matcher(content);
+		
+		if(match.find()){
+			String findString =  match.group();			
+			year = findString.replace("〔", "").replace("〕","").replace("年度", "");							
+		}
+		
+		Pattern codePattern = Pattern.compile("([\u4e00-\u9fa5]{2,6})(［|〔|（|\\[|\\(|【)[0-9]{4}(］|）|\\)|\\]|】|〕)(.?[0-9]{1,4}.?)(号?)");
+		match = codePattern.matcher(content);
+		
+		if(match.find()){
+			code =  match.group();			
+		}
+		
+		Data.setCode(code);
+		Data.setYear(year);
+		
+		//logger.info("content="+Data.getData_Source());
+		//add code here		
 	}
 	
 	/**
