@@ -16,6 +16,7 @@
 		<property name="industry" column="INDUSTRY" type="string" />
 		<property name="title" column="TITLE" type="string" />
 		<property name="code" column="CODE" type="string" />
+		<property name="year" column="YEAR" type="string" />
 		<property name="unit" column="UNIT" type="string" />
 		<property name="issue_Date" column="ISSUE_DATE" type="timestamp" />
 		<property name="cDate" column="CDATE" type="timestamp" />

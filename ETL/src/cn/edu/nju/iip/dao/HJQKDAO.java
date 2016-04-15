@@ -83,12 +83,11 @@ public class HJQKDAO extends DAO {
 			}
 		}
 		
-		Pattern codePattern = Pattern.compile("(京|津|冀|晋|蒙|辽|吉|黑|沪|苏|浙|皖|闽|赣|鲁|豫|鄂|湘|粤|桂|琼|渝|川|蜀|贵|黔|云|滇|藏|陕|秦|甘|陇|青|宁|新|港|澳|台|中|武|建|.建|工)(.{1,6})(〔|（|\\[|\\(|【)[0-9]{4}(）|\\)|\\]|】|〕)(.{1,6})(号)");
+		Pattern codePattern = Pattern.compile("([\u4e00-\u9fa5]{2,6})(［|〔|（|\\[|\\(|【)[0-9]{4}(］|）|\\)|\\]|】|〕)(.?[0-9]{1,4}.?)(号?)");
 		match = codePattern.matcher(content);
 		
 		if(match.find()){
-			String findString =  match.group();			
-			code = findString;
+			code =  match.group();			
 		}
 		
 		Data.setYear(year);
@@ -108,6 +107,8 @@ public class HJQKDAO extends DAO {
 			Data.setType("9");
 			Data.setType_Name("其它");
 		}
+		//logger.info("content="+Data.getData_Source());
+		//add code here
 	}
 	
 	
