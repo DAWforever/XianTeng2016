@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.BZXX;
 import cn.edu.nju.iip.model.RawHtml;
+import cn.edu.nju.iip.util.CommonUtil;
 
 public class BZXXDAO extends DAO {
 	private static final Logger logger = LoggerFactory.getLogger(BZXXDAO.class);
@@ -16,7 +17,7 @@ public class BZXXDAO extends DAO {
 	public boolean saveData(RawHtml raw_html) {
 		try {
 			BZXX Data = new BZXX();
-			logger.info(raw_html.getId()+"");
+			logger.info(CommonUtil.getAttachFileName(raw_html.getAttachment()));
 			Data.setUnit(raw_html.getSource());
 			Data.setcDate(new Date());// 录入时间
 			Data.setpDate(raw_html.getCrawltime());
@@ -26,9 +27,9 @@ public class BZXXDAO extends DAO {
 			if(!abstractContent(Data)) {
 				return false;
 			}
-			begin();
-			getSession().save(Data);
-			commit();
+//			begin();
+//			getSession().save(Data);
+//			commit();
 			return true;
 		} catch (Exception e) {
 			rollback();

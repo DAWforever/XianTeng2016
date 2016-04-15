@@ -25,5 +25,6 @@
 		<property name="crawltime" column="crawltime" type="timestamp" />
 		<property name="type" column="type" type="string" />
 		<property name="attachment" column="attachment" type="string" />
+		<property name="fileName" column="FILENAME" type="string" />
 	</class>
 </hibernate-mapping>

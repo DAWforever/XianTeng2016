@@ -2,12 +2,17 @@ package cn.edu.nju.iip.util;
 
 import java.util.Calendar;
 import java.util.Set;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import cn.edu.nju.iip.redis.JedisPoolUtils;
 
 
 public class CommonUtil {
+	
+	private static final Logger logger = LoggerFactory.getLogger(CommonUtil.class);
 	
 	public static final int one_day_millseconds = 24 * 60 * 60 * 1000;
 
@@ -28,6 +33,36 @@ public class CommonUtil {
 	    long executeTime = c.getTimeInMillis();
 		return executeTime - currentTime < 0 ? (executeTime - currentTime + one_day_millseconds)
 	            : (executeTime - currentTime);
+	}
+	
+	/**
+	 * 抽取附件文件名
+	 * @param attachment
+	 * @return
+	 */
+	public static String getAttachFileName(String attachment) {
+		String fileName = "";
+		try{
+			if(attachment==null) return null;
+			Pattern pattern = Pattern.compile("###(.*)###");
+			Matcher matcher = pattern.matcher(attachment);
+			boolean flag = true;
+			while(matcher.find()) {
+				String str = matcher.group(1);
+				int index = str.lastIndexOf("/");
+				str = str.substring(index+1);
+				if(flag) {
+					flag = false;
+				}
+				else {
+					str = "#"+str;
+				}
+				fileName = fileName+str;
+			}
+		}catch(Exception e) {
+			logger.error("CommonUtil.getAttachFileName() failed!",e);
+		}
+		return fileName;
 	}
 	
 

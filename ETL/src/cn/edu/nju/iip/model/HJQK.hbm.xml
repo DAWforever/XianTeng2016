@@ -25,5 +25,6 @@
 		<property name="udate" column="UDATE" type="timestamp" />
 		<property name="content" column="CONTENT" type="string" />
 		<property name="data_Source" column="DATA_SOURCE" type="string" />
+		<property name="fileName" column="FILENAME" type="string" />
 	</class>
 </hibernate-mapping>
