@@ -1,5 +1,7 @@
 package cn.edu.nju.iip.redis;
 
+import java.util.Set;
+
 import redis.clients.jedis.Jedis;
 
 public class test {
@@ -12,6 +14,11 @@ public class test {
 		jedis.set("w3ckey", "Redis tutorial");
 		// 获取存储的数据并输出
 		System.out.println("Stored string in redis:: " + jedis.get("w3ckey"));
+		
+		Set<String> TaglibSet = jedis.keys("already_taged_id*"); 
+		for(String str:TaglibSet) {
+			jedis.del(str);
+		}
 		JedisPoolUtils.getInstance().returnRes(jedis);
 	}
 

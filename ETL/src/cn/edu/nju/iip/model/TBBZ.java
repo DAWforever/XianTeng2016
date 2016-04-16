@@ -26,6 +26,8 @@ public class TBBZ {
 	private Date issue_Date;
 	//录入时间
 	private Date cDate;
+	//跟新时间
+	private Date uDate;
 	//内容
 	private String content;
 	//数据来源
@@ -34,6 +36,12 @@ public class TBBZ {
 	private String fileName;
 	
 	
+	public Date getuDate() {
+		return uDate;
+	}
+	public void setuDate(Date uDate) {
+		this.uDate = uDate;
+	}
 	public String getFileName() {
 		return fileName;
 	}

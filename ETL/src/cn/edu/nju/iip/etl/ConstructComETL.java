@@ -12,11 +12,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import redis.clients.jedis.Jedis;
+import cn.edu.nju.iip.dao.BZXXDAO;
 import cn.edu.nju.iip.dao.DAO;
 import cn.edu.nju.iip.dao.HJQKDAO;
+import cn.edu.nju.iip.dao.JLXXDAO;
 import cn.edu.nju.iip.dao.RawHtmlDAO;
 import cn.edu.nju.iip.dao.TBBZDAO;
 import cn.edu.nju.iip.dao.TBPPJLDAO;
+import cn.edu.nju.iip.dao.TBPPXXDAO;
 import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.redis.JedisPoolUtils;
 import cn.edu.nju.iip.util.CommonUtil;
@@ -65,16 +68,16 @@ public class ConstructComETL implements Runnable{
 		Set<String> id_set = new HashSet<String>();
 		try{
 			Jedis jedis = JedisPoolUtils.getInstance().getJedis();
-//			Set<String> already_taged_id_set = jedis.smembers("already_taged_id:"+unitName+"-"+credit_tag);
+			Set<String> already_taged_id_set = jedis.smembers("already_taged_id:"+unitName+"-"+credit_tag);
 			id_set = jedis.sinter(unitType+":"+unitName,"信用相关标签:"+credit_tag);
-//			Iterator<String> it = id_set.iterator();
-//			while(it.hasNext()) {
-//				String raw_data_id = it.next();
-//				//若该doc已经被打过标签则剔除
-//				if(already_taged_id_set.contains(raw_data_id)) {
-//					it.remove();
-//				}
-//			}
+			Iterator<String> it = id_set.iterator();
+			while(it.hasNext()) {
+				String raw_data_id = it.next();
+				//若该doc已经被打过标签则剔除
+				if(already_taged_id_set.contains(raw_data_id)) {
+					it.remove();
+				}
+			}
 			JedisPoolUtils.getInstance().returnRes(jedis);
 		}catch(Exception e) {
 			logger.error("getRawDataId error",e);
@@ -143,14 +146,31 @@ public class ConstructComETL implements Runnable{
 	
 	public static void ConstructComETLMain() {
 		ExecutorService Service = Executors.newCachedThreadPool();
-//		ConstructComETL roadTBBZetl = new ConstructComETL("公路建设企业","表彰",new TBBZDAO());
-//		Service.execute(roadTBBZetl);
-//		
+		
+		ConstructComETL road_BZXX_etl = new ConstructComETL("道路运输企业", "表彰",new BZXXDAO());
+		Service.execute(road_BZXX_etl);
+		
 		ConstructComETL roadHJQKetl = new ConstructComETL("公路建设企业","获奖",new HJQKDAO());
 		Service.execute(roadHJQKetl);
-//		
-//		ConstructComETL roadTBPPJLetl = new ConstructComETL("公路建设企业","批评",new TBPPJLDAO());
-//		Service.execute(roadTBPPJLetl);
+		ConstructComETL shipHJQKetl = new ConstructComETL("水运建设企业","获奖",new HJQKDAO());
+		Service.execute(shipHJQKetl);
+		
+		ConstructComETL road_JLXX_etl = new ConstructComETL("道路运输企业", "获奖",new JLXXDAO());
+		Service.execute(road_JLXX_etl);
+		
+		ConstructComETL road_TBBZ_etl = new ConstructComETL("公路建设企业","表彰",new TBBZDAO());
+		Service.execute(road_TBBZ_etl);
+		ConstructComETL ship_TBBZ_etl = new ConstructComETL("水运建设企业","表彰",new TBBZDAO());
+		Service.execute(ship_TBBZ_etl);
+		
+		ConstructComETL road_TBPPJL_etl = new ConstructComETL("公路建设企业","批评",new TBPPJLDAO());
+		Service.execute(road_TBPPJL_etl);
+		ConstructComETL ship_TBPPJL_etl = new ConstructComETL("水运建设企业","批评",new TBPPJLDAO());
+		Service.execute(ship_TBPPJL_etl);
+		
+		ConstructComETL road_TBPPXX_etl = new ConstructComETL("道路运输企业","批评",new TBPPXXDAO());
+		Service.execute(road_TBPPXX_etl);
+		
 		Service.shutdown();
 		
 	}

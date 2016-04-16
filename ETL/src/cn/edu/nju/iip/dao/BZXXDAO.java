@@ -17,9 +17,10 @@ public class BZXXDAO extends DAO {
 	public boolean saveData(RawHtml raw_html) {
 		try {
 			BZXX Data = new BZXX();
-			logger.info(CommonUtil.getAttachFileName(raw_html.getAttachment()));
+			Data.setFileName(CommonUtil.getAttachFileName(raw_html.getAttachment()));
 			Data.setUnit(raw_html.getSource());
 			Data.setcDate(new Date());// 录入时间
+			Data.setuDate(Data.getcDate());
 			Data.setpDate(raw_html.getCrawltime());
 			Data.setCorp_Id(raw_html.getUnitName());
 			Data.setData_Source(raw_html.getUrl());
@@ -27,13 +28,13 @@ public class BZXXDAO extends DAO {
 			if(!abstractContent(Data)) {
 				return false;
 			}
-//			begin();
-//			getSession().save(Data);
-//			commit();
+			begin();
+			getSession().save(Data);
+			commit();
 			return true;
 		} catch (Exception e) {
 			rollback();
-			logger.error("TBBZDAO saveData failed!", e);
+			logger.error("BZXXDAO saveData failed!", e);
 		}
 		return false;
 	}

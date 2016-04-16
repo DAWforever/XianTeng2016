@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.model.TBBZ;
+import cn.edu.nju.iip.util.CommonUtil;
 
 /**
  * 公路水运建设市场从业企业 通报表彰表DAO
@@ -26,7 +27,9 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 		try{
 			TBBZ Data = new TBBZ();
 			Data.setIssue_Date(raw_html.getCrawltime());
+			Data.setFileName(CommonUtil.getAttachFileName(raw_html.getAttachment()));
 			Data.setcDate(new Date());
+			Data.setuDate(Data.getcDate());
 			Data.setTitle(raw_html.getTitle());
 			Data.setContent(raw_html.getContent());
 			Data.setIndustry(raw_html.getIndustry());
@@ -37,9 +40,9 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 			if(!abstractContent(Data)) {
 				return false;
 			}
-//			begin();
-//			getSession().save(Data);
-//			commit();
+			begin();
+			getSession().save(Data);
+			commit();
 			return true;
 		}catch(Exception e) {
 			rollback();
@@ -78,9 +81,6 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 		
 		Data.setCode(code);
 		Data.setYear(year);
-		
-		//logger.info("content="+Data.getData_Source());
-		//add code here		
 	}
 	
 	/**
@@ -88,19 +88,20 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 	 * @param Data
 	 */
 	public boolean abstractContent(TBBZ Data) {
+		
 		String content = Data.getContent();
-		String[] sentences = content.split("\\s+");
-		for (String sentence : sentences) {
+		String[] sentences = content.split("[\\s|。]+");
+		for (int i=0;i<sentences.length;i++) {
+			String sentence = sentences[i];
 			if (sentence.contains("关于表彰")) {
 				sentence = sentence.trim().replaceAll("[？>]", "");
 				int index = sentence.indexOf("关于表彰");
 				sentence = sentence.substring(index);
-				if (sentence.length() > 50) {
-					sentence = sentence.substring(0, 50);
+				if (sentence.length() > 100) {
+					sentence = sentence.substring(0, 100);
 				}
-				Data.setContent(sentence);
 				Data.setTitle(sentence);
-				logger.info("content="+Data.getContent());
+				Data.setContent(sentence);
 				return true;
 			}
 		}
@@ -108,7 +109,7 @@ private static final Logger logger = LoggerFactory.getLogger(TBBZDAO.class);
 	}
 	
 	public static void main(String[] args) {
-		ConstructComETL road_TBBZ_etl = new ConstructComETL("公路建设企业","表彰",new TBBZDAO());
+		ConstructComETL road_TBBZ_etl = new ConstructComETL("水运建设企业","表彰",new TBBZDAO());
 		Thread thread = new Thread(road_TBBZ_etl);
 		thread.start();
 	}

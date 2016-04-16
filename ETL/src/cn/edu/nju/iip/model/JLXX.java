@@ -15,6 +15,8 @@ public class JLXX {
 	private Date cDate;
 	//颁奖时间
 	private Date pDate;
+	//跟新入库时间
+	private Date uDate;
 	//内容
 	private String content;
 	//数据来源
@@ -24,6 +26,12 @@ public class JLXX {
 	
 	
 	
+	public Date getuDate() {
+		return uDate;
+	}
+	public void setuDate(Date uDate) {
+		this.uDate = uDate;
+	}
 	public String getFileName() {
 		return fileName;
 	}

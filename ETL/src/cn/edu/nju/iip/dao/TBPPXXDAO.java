@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.model.TBPPXX;
+import cn.edu.nju.iip.util.CommonUtil;
 
 public class TBPPXXDAO extends DAO{
 	
@@ -17,8 +18,10 @@ public class TBPPXXDAO extends DAO{
 	public boolean saveData(RawHtml raw_html) {
 		try {
 			TBPPXX Data = new TBPPXX();
+			Data.setFileName(CommonUtil.getAttachFileName(raw_html.getAttachment()));
 			Data.setUnit(raw_html.getSource());
 			Data.setcDate(new Date());// 录入时间
+			Data.setuDate(Data.getcDate());
 			Data.setpDate(raw_html.getCrawltime());
 			Data.setCorp_Id(raw_html.getUnitName());
 			Data.setData_Source(raw_html.getUrl());
@@ -32,7 +35,7 @@ public class TBPPXXDAO extends DAO{
 			return true;
 		} catch (Exception e) {
 			rollback();
-			logger.error("TBBZDAO saveData failed!", e);
+			logger.error("TBPPXXDAO saveData failed!", e);
 		}
 		return false;
 	}
@@ -54,7 +57,6 @@ public class TBPPXXDAO extends DAO{
 					sentence = sentence.substring(0, 150);
 				}
 				Data.setContent(sentence);
-				logger.info("sentence="+sentence);
 				return true;
 			}
 		}

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.model.TBPPJL;
+import cn.edu.nju.iip.util.CommonUtil;
 
 /**
  * 公路水运建设市场从业企业 通报批评表DAO
@@ -26,7 +27,9 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 		try{
 			TBPPJL Data = new TBPPJL();
 			Data.setpDate(raw_html.getCrawltime());
+			Data.setFileName(CommonUtil.getAttachFileName(raw_html.getAttachment()));
 			Data.setcDate(new Date());
+			Data.setuDate(Data.getcDate());
 			Data.setTitle(raw_html.getTitle());
 			Data.setContent(raw_html.getContent());
 			Data.setIndustry(raw_html.getIndustry());
@@ -55,19 +58,13 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 	public void extractField(TBPPJL Data) {
 		String content = Data.getContent();
 		String code = "";
-		
 		Matcher match =  null;
-		
 		Pattern codePattern = Pattern.compile("([\u4e00-\u9fa5]{2,6})(［|〔|（|\\[|\\(|【)[0-9]{4}(］|）|\\)|\\]|】|〕)(.?[0-9]{1,4}.?)(号?)");
 		match = codePattern.matcher(content);
-		
 		if(match.find()){
 			code =  match.group();			
 		}
 		Data.setCode(code);
-		
-		//logger.info("content="+Data.getData_Source());
-		//add code here
 	}
 	
 	/**
@@ -88,7 +85,6 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 				}
 				Data.setContent(sentence);
 				Data.setTitle(sentence);
-				logger.info("sentence="+sentence);
 				return true;
 			}
 		}
@@ -96,7 +92,7 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 	}
 	
 	public static void main(String[] args) {
-		ConstructComETL road_HJQK_etl = new ConstructComETL("公路建设企业","批评",new TBPPJLDAO());
+		ConstructComETL road_HJQK_etl = new ConstructComETL("水运建设企业","批评",new TBPPJLDAO());
 		Thread thread = new Thread(road_HJQK_etl);
 		thread.start();
 	}

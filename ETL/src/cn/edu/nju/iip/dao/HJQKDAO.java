@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.HJQK;
 import cn.edu.nju.iip.model.RawHtml;
+import cn.edu.nju.iip.util.CommonUtil;
 
 /**
  * 公路水运建设市场从业企业获奖情况表DAO
@@ -25,6 +26,7 @@ public class HJQKDAO extends DAO {
 		try{
 			HJQK Data = new HJQK();
 			Data.setpDate(raw_html.getCrawltime());
+			Data.setFileName(CommonUtil.getAttachFileName(raw_html.getAttachment()));
 			Data.setCdate(new Date());
 			Data.setUdate(new Date());
 			Data.setContent(raw_html.getContent());
@@ -93,7 +95,6 @@ public class HJQKDAO extends DAO {
 		Data.setYear(year);
 		Data.setName(name);
 		Data.setCode(code);
-		logger.info("code="+code);
 		if(name.contains("国家") || name.contains("中国")|| name.contains("全国") ){
 			Data.setType("2");
 			Data.setType_Name("国家级");
@@ -130,7 +131,6 @@ public class HJQKDAO extends DAO {
 				}
 				sentence = sentence.replace(".doc", "");
 				Data.setContent(sentence);
-				logger.info("sentence="+sentence);
 				return true;
 			}
 		}

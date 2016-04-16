@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.JLXX;
 import cn.edu.nju.iip.model.RawHtml;
+import cn.edu.nju.iip.util.CommonUtil;
 
 public class JLXXDAO extends DAO{
 	
@@ -19,6 +20,7 @@ public class JLXXDAO extends DAO{
 	public boolean saveData(RawHtml raw_html) {
 		try {
 			JLXX Data = new JLXX();
+			Data.setFileName(CommonUtil.getAttachFileName(raw_html.getAttachment()));
 			Data.setUnit(raw_html.getSource());
 			Data.setcDate(new Date());// 录入时间
 			Data.setpDate(raw_html.getCrawltime());
@@ -76,16 +78,6 @@ public class JLXXDAO extends DAO{
 		String[] sentences = content.split("[\\s。？]+");
 		for (String sentence : sentences) {
 			if (sentence.contains("奖")&&(sentence.contains("关于")||sentence.contains("名单")||sentence.contains("决定")||sentence.contains("通知"))) {
-				if(sentence.contains("关于")) {
-					int index = sentence.indexOf("关于");
-					sentence = sentence.substring(index);
-				}
-				if (sentence.length() > 50) {
-					sentence = sentence.substring(0, 50);
-				}
-				sentence = sentence.replace(".doc", "");
-//				Data.setName(sentence);
-//				logger.info("sentence="+sentence);
 				return true;
 			}
 		}
