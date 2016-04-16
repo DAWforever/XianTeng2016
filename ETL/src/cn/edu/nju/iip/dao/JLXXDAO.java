@@ -1,6 +1,8 @@
 package cn.edu.nju.iip.dao;
 
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.JLXX;
 import cn.edu.nju.iip.model.RawHtml;
-import cn.edu.nju.iip.model.TBPPJL;
 
 public class JLXXDAO extends DAO{
 	
@@ -28,9 +29,9 @@ public class JLXXDAO extends DAO{
 			if(!abstractContent(Data)) {
 				return false;
 			}
-//			begin();
-//			getSession().save(Data);
-//			commit();
+			begin();
+			getSession().save(Data);
+			commit();
 			return true;
 		} catch (Exception e) {
 			rollback();
@@ -44,6 +45,25 @@ public class JLXXDAO extends DAO{
 	 * @param Data
 	 */
 	public void extractField(JLXX Data) {
+		String content = Data.getContent();
+		
+		String name = "";
+		Matcher match =  null;
+		
+		Pattern award = Pattern.compile("(国家|中国|全国|河北省|山西省|辽宁省|吉林省|黑龙江省|江苏省|浙江省|安徽省|福建省|江西省|山东省|河南省|湖北省|湖南省|广东省|海南省|四川省|贵州省|云南省|陕西省|甘肃省|青海省|台湾省|内蒙古自治区|广西壮族自治区|西藏自治区|宁夏回族自治区|新疆维吾尔自治区|北京市|天津市|上海市|重庆市|香港特别行政区|澳门特别行政区|[0-9]{4}年度)([\u4e00-\u9fa5“”]*?)(奖)");
+		match = award.matcher(content);
+		
+		while(match.find()){
+			String findString =  match.group();
+			if (findString.contains("年度")) {
+				findString = findString.substring(6);
+			}
+			if (findString.length() < 25) {
+				name = findString;
+				break;
+			}
+		}
+		Data.setName(name);		
 		
 	}
 	
