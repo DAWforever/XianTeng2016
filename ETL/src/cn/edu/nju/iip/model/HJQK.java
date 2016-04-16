@@ -12,11 +12,11 @@ public class HJQK {
 	private String award_id;
 	// 企业id
 	private String corp_Id;
-	// 文号(*)
+	// 文号
 	private String code;
-	// 奖项名称(*)
+	// 奖项名称
 	private String name;
-	// 获奖年度(*)
+	// 获奖年度
 	private String year;
 	// 奖项等级类别
 	private String type;
@@ -30,12 +30,28 @@ public class HJQK {
 	private Date pDate;
 	// 录入时间
 	private Date cdate;
+	// 数据交换入库时间时间
+	private Date udate;
 	//内容
 	private String content;
 	// 来源
 	private String data_Source;
+	//附件名
+	private String fileName;
 	
 	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public Date getUdate() {
+		return udate;
+	}
+	public void setUdate(Date udate) {
+		this.udate = udate;
+	}
 	public String getContent() {
 		return content;
 	}

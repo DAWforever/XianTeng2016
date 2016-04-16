@@ -26,6 +26,7 @@ public class HJQKDAO extends DAO {
 			HJQK Data = new HJQK();
 			Data.setpDate(raw_html.getCrawltime());
 			Data.setCdate(new Date());
+			Data.setUdate(new Date());
 			Data.setContent(raw_html.getContent());
 			Data.setIndustry(raw_html.getIndustry());
 			Data.setUnit(raw_html.getSource());
@@ -36,9 +37,9 @@ public class HJQKDAO extends DAO {
 			if(!abstractContent(Data)){
 				return false;
 			}
-//			begin();
-//			getSession().save(Data);
-//			commit();
+			begin();
+			getSession().save(Data);
+			commit();
 			return true;
 		}catch(Exception e) {
 			rollback();
@@ -58,7 +59,6 @@ public class HJQKDAO extends DAO {
 		String year = "";
 		String name = "";
 		String code = "";
-		
 		Matcher match =  null;
 		
 		Pattern yearPattern = Pattern.compile("([0-9]{4}(年度))|(〔[0-9]{4}〕)");
@@ -93,21 +93,20 @@ public class HJQKDAO extends DAO {
 		Data.setYear(year);
 		Data.setName(name);
 		Data.setCode(code);
-		
+		logger.info("code="+code);
 		if(name.contains("国家") || name.contains("中国")|| name.contains("全国") ){
-			Data.setType("国家级");
+			Data.setType("2");
 			Data.setType_Name("国家级");
 		}else if(name.contains("省")){
-			Data.setType("省级");
+			Data.setType("3");
 			Data.setType_Name("省级");
 		}else if(name.contains("市")){
-			Data.setType("市级");
+			Data.setType("4");
 			Data.setType_Name("市级");
 		}else{
-			Data.setType("其它");
+			Data.setType("9");
 			Data.setType_Name("其它");
 		}
-		
 		//logger.info("content="+Data.getData_Source());
 		//add code here
 	}

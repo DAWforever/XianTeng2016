@@ -12,7 +12,7 @@ public class BZXX {
 	private String id;
 	//业户id
 	private String corp_Id;
-	//表彰名称(*)
+	//表彰名称
 	private String title;
 	//发布单位
 	private String unit;
@@ -24,8 +24,16 @@ public class BZXX {
 	private String content;
 	//数据来源
 	private String data_Source;
+	//附件名
+	private String fileName;
 	
 	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public Date getpDate() {
 		return pDate;
 	}

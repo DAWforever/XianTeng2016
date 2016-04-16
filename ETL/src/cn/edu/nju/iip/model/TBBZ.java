@@ -18,7 +18,7 @@ public class TBBZ {
 	private String title;
 	//文号(*)
 	private String code;
-	//年度(*)
+	//表彰年度(*)
 	private String year;
 	//发布单位
 	private String unit;
@@ -30,9 +30,22 @@ public class TBBZ {
 	private String content;
 	//数据来源
 	private String data_Source;
+	//附件名
+	private String fileName;
 	
 	
-	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
 	public Date getIssue_Date() {
 		return issue_Date;
 	}
@@ -92,12 +105,6 @@ public class TBBZ {
 	}
 	public void setData_Source(String data_Source) {
 		this.data_Source = data_Source;
-	}
-	public String getYear() {
-		return year;
-	}
-	public void setYear(String year) {
-		this.year = year;
 	}
 
 }

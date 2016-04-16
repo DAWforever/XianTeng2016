@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.JLXX;
 import cn.edu.nju.iip.model.RawHtml;
+import cn.edu.nju.iip.model.TBPPJL;
 
 public class JLXXDAO extends DAO{
 	
@@ -23,12 +24,13 @@ public class JLXXDAO extends DAO{
 			Data.setCorp_Id(raw_html.getUnitName());
 			Data.setData_Source(raw_html.getUrl());
 			Data.setContent(raw_html.getContent());
-			if(!extractField(Data)) {
+			extractField(Data);
+			if(!abstractContent(Data)) {
 				return false;
 			}
-			begin();
-			getSession().save(Data);
-			commit();
+//			begin();
+//			getSession().save(Data);
+//			commit();
 			return true;
 		} catch (Exception e) {
 			rollback();
@@ -41,7 +43,15 @@ public class JLXXDAO extends DAO{
 	 * 抽取正文字段
 	 * @param Data
 	 */
-	public boolean extractField(JLXX Data) {
+	public void extractField(JLXX Data) {
+		
+	}
+	
+	/**
+	 * 抽取正文字段
+	 * @param Data
+	 */
+	public boolean abstractContent(JLXX Data) {
 		String content = Data.getContent();
 		String[] sentences = content.split("[\\s。？]+");
 		for (String sentence : sentences) {
@@ -54,8 +64,8 @@ public class JLXXDAO extends DAO{
 					sentence = sentence.substring(0, 50);
 				}
 				sentence = sentence.replace(".doc", "");
-				Data.setName(sentence);
-				logger.info("sentence="+sentence);
+//				Data.setName(sentence);
+//				logger.info("sentence="+sentence);
 				return true;
 			}
 		}

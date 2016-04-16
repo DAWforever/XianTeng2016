@@ -19,7 +19,17 @@ public class JLXX {
 	private String content;
 	//数据来源
 	private String data_Source;
+	//附件名
+	private String fileName;
 	
+	
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public String getId() {
 		return id;
 	}
