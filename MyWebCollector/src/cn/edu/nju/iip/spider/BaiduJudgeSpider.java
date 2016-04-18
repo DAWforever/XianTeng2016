@@ -70,7 +70,7 @@ public class BaiduJudgeSpider implements Runnable{
 	
 	public void run() {
 		logger.info("**************BaiduJudgeSpider thread start**************");
-		List<String> unitNameList = CommonUtil.importUnitName();
+		List<String> unitNameList = CommonUtil.importConsRoadUnitName();
 		for(String name:unitNameList) {
 			parseJudgeDoc(getRespondJson(name));
 		}

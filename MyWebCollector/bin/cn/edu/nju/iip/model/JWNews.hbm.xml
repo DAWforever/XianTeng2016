@@ -18,5 +18,6 @@
 		<property name="content" column="CONTENT" type="string" />
 		<property name="source" column="SOURCE" type="string" />
 		<property name="crawltime" column="CRAWLTIME" type="timestamp" />
+		<property name="pdate" column="PDATE" type="timestamp" />
 	</class>
 </hibernate-mapping>
