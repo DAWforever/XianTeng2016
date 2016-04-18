@@ -126,15 +126,16 @@ public class SearchSpider extends BreadthCrawler {
 	
 	public static void stratSearchSpider() {
 		try{
+			logger.info("************360SearchSpider start************");
 			SearchSpider crawler = new SearchSpider("crawl", true);
 			crawler.setThreads(2);
 			crawler.setTopN(5000);
 			crawler.start(100);
-			crawler.setRetry(1);
 			bf.saveBloomFilter();
 			logger.info("新增新闻: "+crawler.count);
 			File file = new File("crawl");
 			CommonUtil.deleteFile(file);
+			logger.info("************360SearchSpider finish************");
 		}catch(Exception e) {
 			logger.error("stratSearchSpider run() failed", e);
 		}
