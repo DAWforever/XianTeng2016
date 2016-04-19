@@ -17,8 +17,8 @@ import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.plugin.berkeley.BreadthCrawler;
 import cn.edu.nju.iip.BloomFilter.BloomFactory;
-import cn.edu.nju.iip.dao.NewsDAO;
-import cn.edu.nju.iip.model.JWNews;
+import cn.edu.nju.iip.dao.RawHtmlDAO;
+import cn.edu.nju.iip.model.RawHtml;
 import cn.edu.nju.iip.util.CommonUtil;
 /**
  * 360新闻网站新闻抓取
@@ -29,7 +29,7 @@ public class SearchSpider extends BreadthCrawler {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SearchSpider.class);
 	
-	private NewsDAO newsDao = new NewsDAO();
+	private RawHtmlDAO rawHtmlDAO = new RawHtmlDAO();
 	
 	private static BloomFactory bf = BloomFactory.getInstance();
 	
@@ -55,11 +55,11 @@ public class SearchSpider extends BreadthCrawler {
 		for(String uniName:consShipUnitName) {
 			this.addSeed(new CrawlDatum("http://news.so.com/ns?q=\""+uniName+"\"&pn=1&tn=news&rank=pdate&j=0").putMetaData("unitName", uniName));
 		}
-		List<String> transRoadUnitName = CommonUtil.importTransRoadUnitName(); 
-		logger.info("transRoadUnitName="+transRoadUnitName.size()+"");
-		for(String uniName:transRoadUnitName) {
-			this.addSeed(new CrawlDatum("http://news.so.com/ns?q=\""+uniName+"\"&pn=1&tn=news&rank=pdate&j=0").putMetaData("unitName", uniName));
-		}
+//		List<String> transRoadUnitName = CommonUtil.importTransRoadUnitName(); 
+//		logger.info("transRoadUnitName="+transRoadUnitName.size()+"");
+//		for(String uniName:transRoadUnitName) {
+//			this.addSeed(new CrawlDatum("http://news.so.com/ns?q=\""+uniName+"\"&pn=1&tn=news&rank=pdate&j=0").putMetaData("unitName", uniName));
+//		}
 		/* fetch url like http://news.hfut.edu.cn/show-xxxxxxhtml */
 		this.addRegex("http://news.so.com/ns\\?q=.+&pn=\\d+&tn=news&rank=pdate&j=0");
 	}
@@ -78,7 +78,7 @@ public class SearchSpider extends BreadthCrawler {
 					continue;
 				}
 				
-				JWNews jwnews = new JWNews();
+				RawHtml rawhtml = new RawHtml();
 				
 				Element news_title = res.select("a.news_title").first();
 				String title = news_title.text();//标题
@@ -98,17 +98,16 @@ public class SearchSpider extends BreadthCrawler {
 				String source = sitename.text();//来源
 				
 				Element posttime = res.select("span.posttime").first();
-				Date pdate = CommonUtil.strToDateLong(posttime.attr("title"));
+				//Date pdate = CommonUtil.strToDateLong(posttime.attr("title"));
 				
-				jwnews.setTitle(title);
-				jwnews.setUrl(news_url);
-				jwnews.setContent(nwes_content);
-				jwnews.setSource(source);
-				jwnews.setCrawltime(new Date());
-				jwnews.setPdate(pdate);
-				newsDao.saveNews(jwnews);
+				rawhtml.setTitle(title);
+				rawhtml.setUrl(news_url);
+				rawhtml.setContent(nwes_content);
+				rawhtml.setSource(source);
+				rawhtml.setCrawltime(new Date());
+				rawhtml.setType("媒体评价类信息");
+				rawHtmlDAO.saveRawHtml(rawhtml);
 				count++;
-				Thread.sleep(100);
 			}
 		}catch(Exception e) {
 			logger.error("SearchSpider visit error",e);
@@ -130,7 +129,8 @@ public class SearchSpider extends BreadthCrawler {
 			SearchSpider crawler = new SearchSpider("crawl", true);
 			crawler.setThreads(2);
 			crawler.setTopN(5000);
-			crawler.start(100);
+			crawler.start(2);
+			crawler.setRetry(1);
 			bf.saveBloomFilter();
 			logger.info("新增新闻: "+crawler.count);
 			File file = new File("crawl");
