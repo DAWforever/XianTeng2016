@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<dataConfig>
+	
+	<dataSource name="slave1"
+				type="JdbcDataSource"
+				driver="oracle.jdbc.driver.OracleDriver" 
+				url="jdbc:oracle:thin:@114.212.87.188:1521:orcl" 
+				user="WQ" 
+				password="iipconfig" />				
+			 
+    <document>
+        <entity name="JW_RAW_DATA_SLAVE1" pk="ID" dataSource="slave1" transformer="ClobTransformer"
+			query="SELECT * FROM JW_GOV_DATA" 
+			deltaImportQuery="SELECT * FROM JW_GOV_DATA WHERE ID = '${dataimporter.delta.ID}'" 
+			deltaQuery="SELECT ID FROM JW_GOV_DATA WHERE CRAWLTIME > to_date('${dataimporter.JW_RAW_DATA_SLAVE1.last_index_time}','yyyy-MM-dd HH24:MI:SS')"> 
+			
+            <field column="ID" name="id" /> 	
+			<field column="CONTENT" name="content" clob="true"/> 		
+            <field column="SOURCE" name="source" /> 
+			<field column="CRAWLTIME" name="crawltime" />
+			<field column="TYPE" name="type" />
+			<field column="URL" name="url" /> 
+                        <field column="TITLE" name="title" /> 
+
+        </entity>
+	  
+    </document> 
+</dataConfig>
