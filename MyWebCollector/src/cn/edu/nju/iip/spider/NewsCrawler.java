@@ -114,5 +114,6 @@ public class NewsCrawler extends BreadthCrawler {
 	}
 
 	public static void main(String[] args) throws Exception {
+		startNewsCrawler();
 	}
 }

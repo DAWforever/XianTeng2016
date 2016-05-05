@@ -29,6 +29,7 @@ public class ETLMain implements Runnable{
 		ETLMain ETLTask = new ETLMain();
 		long delayTime = CommonUtil.getDelayTime();//延迟时间
 		int period =  Integer.valueOf(Config.getValue("period"))*60*60*1000;
+		logger.info("ETLMain will be start in "+delayTime/(1000*60.0)+" minites...");
 		executorService.scheduleAtFixedRate(ETLTask,delayTime,period,TimeUnit.MILLISECONDS);
 	}
 

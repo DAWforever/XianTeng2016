@@ -86,6 +86,7 @@ public class TagProcess implements Runnable{
 		try{
 			//取出标签库中所有标签类
 			Set<String> TaglibSet = jedis.keys("Taglib*");
+			JedisPoolUtils.getInstance().returnRes(jedis);
 			for(String tag_type:TaglibSet) {
 				TagOneType(tag_type);
 			}

@@ -96,7 +96,9 @@ public class ConstructComETL implements Runnable{
 			for(String id:id_set) {
 				id = id.split(":")[1];
 				RawHtml raw_html = RDao.getRawHtml(Integer.valueOf(id));
-				list.add(raw_html);
+				if(raw_html!=null) {
+					list.add(raw_html);
+				}
 			}
 		}catch(Exception e) {
 			logger.error("getRawHtmlList error",e);
