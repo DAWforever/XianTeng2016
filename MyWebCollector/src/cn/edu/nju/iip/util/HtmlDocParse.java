@@ -200,7 +200,7 @@ public class HtmlDocParse {
 			for (String fileUrl : file_url_list) {
 				String destionationFilePath = downloader.download(fileUrl,destinationDirectory);
 				File file = new File(destionationFilePath);
-				if(!file.exists()) {
+				if(!file.exists()||file.length()>10000000) {//过滤掉大于10MB的文件
 					continue;
 				}
 				if (destionationFilePath.contains(".docx")) {
