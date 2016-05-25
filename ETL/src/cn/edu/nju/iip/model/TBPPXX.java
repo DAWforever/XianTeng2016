@@ -19,7 +19,7 @@ public class TBPPXX {
 	//录入时间
 	private Date uDate;
 	//通报时间
-	private Date pDate;
+	private String pDate;
 	//通报内容
 	private String content;
 	//数据来源
@@ -63,10 +63,10 @@ public class TBPPXX {
 	public void setcDate(Date cDate) {
 		this.cDate = cDate;
 	}
-	public Date getpDate() {
+	public String getpDate() {
 		return pDate;
 	}
-	public void setpDate(Date pDate) {
+	public void setpDate(String pDate) {
 		this.pDate = pDate;
 	}
 	public String getContent() {

@@ -26,14 +26,14 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 	public boolean saveData(RawHtml raw_html) {
 		try{
 			TBPPJL Data = new TBPPJL();
-			Data.setpDate(raw_html.getCrawltime());
+//			Data.setpDate(raw_html.getCrawltime());
 			Data.setFileName(CommonUtil.getAttachFileName(raw_html.getAttachment()));
 			Data.setcDate(new Date());
 			Data.setuDate(Data.getcDate());
 			Data.setTitle(raw_html.getTitle());
 			Data.setContent(raw_html.getContent());
 			Data.setIndustry(raw_html.getIndustry());
-			Data.setUnit(raw_html.getSource());
+//			Data.setUnit(raw_html.getSource());
 			Data.setData_Source(raw_html.getUrl());
 			Data.setCorp_Id(raw_html.getUnitName());
 			extractField(Data);
@@ -46,7 +46,7 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 			return true;
 		}catch(Exception e) {
 			rollback();
-			logger.error("TBBZDAO saveData failed!",e);
+			logger.error("TBPPJLDAO saveData failed!",e);
 		}
 		return false;
 	}
@@ -58,6 +58,9 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 	public void extractField(TBPPJL Data) {
 		String content = Data.getContent();
 		String code = "";
+		String pdate = "";
+		String unit = "";
+		
 		Matcher match =  null;
 		Pattern codePattern = Pattern.compile("([\u4e00-\u9fa5]{2,6})(［|〔|（|\\[|\\(|【)[0-9]{4}(］|）|\\)|\\]|】|〕)(.?[0-9]{1,4}.?)(号?)");
 		match = codePattern.matcher(content);
@@ -65,6 +68,33 @@ private static final Logger logger = LoggerFactory.getLogger(TBPPJLDAO.class);
 			code =  match.group();			
 		}
 		Data.setCode(code);
+		
+		Pattern pattern = Pattern.compile("([\u4e00-\u9fa5]{1,20}(会|室|厅|站|府|局|部|院|所|处))(\\s| | )+([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+		match = pattern.matcher(content);
+		
+		String str = "";
+		while(match.find()){
+			str = match.group();
+		}
+		
+		if(str.length() < 10){
+			Pattern datePattern = Pattern.compile("([0-9]{4}-[0-9]{2}-[0-9]{2})|(([0-9]{4}|(二...))年.{1,2}月.{1,3}日)");
+			match = datePattern.matcher(content);
+			if(match.find()){
+				pdate = match.group();
+			}		
+		}else{
+
+			Pattern datePattern = Pattern.compile("([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+			match = datePattern.matcher(str);
+			if(match.find()){
+				pdate = match.group();
+			}
+			unit = str.replace(pdate, "").trim();
+		}
+		
+		Data.setpDate(pdate);
+		Data.setUnit(unit);
 	}
 	
 	/**

@@ -16,7 +16,7 @@
 		<property name="name" column="JXMC" type="string" />
 		<property name="unit" column="BJDW" type="string" />
 		<property name="cDate" column="CDATE" type="timestamp" />
-		<property name="pDate" column="BJSJ" type="timestamp" />
+		<property name="pDate" column="BJSJ" type="string" />
 		<property name="uDate" column="UDATE" type="timestamp" />
 		<property name="data_Source" column="DATA_SOURCE" type="string" />
 		<property name="fileName" column="FILENAME" type="string" />

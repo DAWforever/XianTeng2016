@@ -21,7 +21,7 @@ public class TBPPJL {
 	//发布单位
 	private String unit;
 	//发布日期
-	private Date pDate;
+	private String pDate;
 	//录入时间
 	private Date cDate;
 	//录入时间
@@ -81,11 +81,11 @@ public class TBPPJL {
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
-	public Date getpDate() {
+	public String getpDate() {
 		return pDate;
 	}
-	public void setpDate(Date pDate) {
-		this.pDate = pDate;
+	public void setpDate(String pdate2) {
+		this.pDate = pdate2;
 	}
 	public Date getcDate() {
 		return cDate;

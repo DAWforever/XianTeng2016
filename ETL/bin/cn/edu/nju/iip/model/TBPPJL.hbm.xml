@@ -17,7 +17,7 @@
 		<property name="title" column="TILTE" type="string" />
 		<property name="code" column="CODE" type="string" />
 		<property name="unit" column="UNIT" type="string" />
-		<property name="pDate" column="PDATE" type="timestamp" />
+		<property name="pDate" column="PDATE" type="string" />
 		<property name="cDate" column="CDATE" type="timestamp" />
 		<property name="uDate" column="UDATE" type="timestamp" />
 		<property name="content" column="CONTENT" type="string" />
