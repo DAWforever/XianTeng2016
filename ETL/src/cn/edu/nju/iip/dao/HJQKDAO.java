@@ -21,17 +21,18 @@ public class HJQKDAO extends DAO {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HJQKDAO.class);
 
+	
 	@Override
 	public boolean saveData(RawHtml raw_html) {
 		try{
 			HJQK Data = new HJQK();
-			Data.setpDate(raw_html.getCrawltime());
+//			Data.setpDate(raw_html.getCrawltime());
 			Data.setFileName(CommonUtil.getAttachFileName(raw_html.getAttachment()));
 			Data.setCdate(new Date());
 			Data.setUdate(new Date());
 			Data.setContent(raw_html.getContent());
 			Data.setIndustry(raw_html.getIndustry());
-			Data.setUnit(raw_html.getSource());
+//			Data.setUnit(raw_html.getSource());
 			Data.setData_Source(raw_html.getUrl());
 			Data.setCorp_Id(raw_html.getUnitName());
 			Data.setType_Name(raw_html.getSource().contains("市")?"市级":"省级");
@@ -45,7 +46,7 @@ public class HJQKDAO extends DAO {
 			return true;
 		}catch(Exception e) {
 			rollback();
-			logger.error("TBBZDAO saveData failed!",e);
+			logger.error("HJQKDAO saveData failed!",e);
 		}
 		return false;
 	}
@@ -61,6 +62,9 @@ public class HJQKDAO extends DAO {
 		String year = "";
 		String name = "";
 		String code = "";
+		String pdate = "";
+		String unit = "";
+		
 		Matcher match =  null;
 		
 		Pattern yearPattern = Pattern.compile("([0-9]{4}(年度))|(〔[0-9]{4}〕)");
@@ -108,8 +112,35 @@ public class HJQKDAO extends DAO {
 			Data.setType("9");
 			Data.setType_Name("其它");
 		}
-		//logger.info("content="+Data.getData_Source());
-		//add code here
+		
+		
+		Pattern pattern = Pattern.compile("([\u4e00-\u9fa5]{1,20}(会|室|厅|站|府|局|部|院|所|处))(\\s| | )+([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+		match = pattern.matcher(content);
+		
+		String str = "";
+		while(match.find()){
+			str = match.group();
+		}
+		
+		if(str.length() < 10){
+			Pattern datePattern = Pattern.compile("([0-9]{4}-[0-9]{2}-[0-9]{2})|(([0-9]{4}|(二...))年.{1,2}月.{1,3}日)");
+			match = datePattern.matcher(content);
+			if(match.find()){
+				pdate = match.group();
+			}		
+		}else{
+
+			Pattern datePattern = Pattern.compile("([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+			match = datePattern.matcher(str);
+			if(match.find()){
+				pdate = match.group();
+			}
+			unit = str.replace(pdate, "").trim();
+		}
+		
+		Data.setpDate(pdate);
+		Data.setUnit(unit);
+		
 	}
 	
 	
