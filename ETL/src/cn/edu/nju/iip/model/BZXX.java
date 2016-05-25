@@ -18,6 +18,8 @@ public class BZXX {
 	private String unit;
 	//录入时间
 	private Date cDate;
+	//录入时间
+    private Date uDate;
 	//表彰时间
 	private Date pDate;
 	//内容
@@ -28,6 +30,12 @@ public class BZXX {
 	private String fileName;
 	
 	
+	public Date getuDate() {
+		return uDate;
+	}
+	public void setuDate(Date uDate) {
+		this.uDate = uDate;
+	}
 	public String getFileName() {
 		return fileName;
 	}

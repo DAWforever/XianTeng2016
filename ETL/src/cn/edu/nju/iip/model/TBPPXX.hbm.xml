@@ -16,6 +16,7 @@
 		<property name="content" column="TBNR" type="string" />
 		<property name="unit" column="TBBM" type="string" />
 		<property name="cDate" column="CDATE" type="timestamp" />
+		<property name="uDate" column="UDATE" type="timestamp" />
 		<property name="pDate" column="TBRQ" type="timestamp" />
 		<property name="data_Source" column="DATA_SOURCE" type="string" />
 		<property name="fileName" column="FILENAME" type="string" />

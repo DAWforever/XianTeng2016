@@ -16,6 +16,8 @@ public class TBPPXX {
 	private String unit;
 	//录入时间
 	private Date cDate;
+	//录入时间
+	private Date uDate;
 	//通报时间
 	private Date pDate;
 	//通报内容
@@ -25,6 +27,12 @@ public class TBPPXX {
 	//附件名
 	private String fileName;
 	
+	public Date getuDate() {
+		return uDate;
+	}
+	public void setuDate(Date uDate) {
+		this.uDate = uDate;
+	}
 	public String getFileName() {
 		return fileName;
 	}

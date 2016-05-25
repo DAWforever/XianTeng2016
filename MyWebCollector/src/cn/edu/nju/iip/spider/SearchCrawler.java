@@ -76,7 +76,7 @@ public class SearchCrawler implements Runnable{
 	
 	public void run() {
 		logger.info("**************SearchCrawler thread start**************");
-		List<String> unitNameList = CommonUtil.importUnitName();
+		List<String> unitNameList = CommonUtil.importConsRoadUnitName();
 		for(String name:unitNameList) {
 			getUrlList(name);
 		}

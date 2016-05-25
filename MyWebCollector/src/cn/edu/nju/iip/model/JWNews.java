@@ -8,13 +8,20 @@ public class JWNews {
 	private String url;
 	private String title;
 	private String content;
-	// 来源
+	//来源
 	private String source;
-	// 抓取时间
+	//抓取时间
 	private Date crawltime;
+	//新闻发布时间
+	private Date pdate;
 	
-	
-	
+	public Date getPdate() {
+		return pdate;
+	}
+
+	public void setPdate(Date pdate) {
+		this.pdate = pdate;
+	}
 
 	public Date getCrawltime() {
 		return crawltime;

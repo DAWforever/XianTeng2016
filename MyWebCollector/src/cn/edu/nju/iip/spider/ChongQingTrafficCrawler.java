@@ -6,11 +6,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import cn.edu.hfut.dmic.contentextractor.ContentExtractor;
 import cn.edu.hfut.dmic.contentextractor.News;
-import cn.edu.nju.iip.dao.NewsDAO;
-import cn.edu.nju.iip.model.JWNews;
+import cn.edu.nju.iip.BloomFilter.BloomFactory;
+import cn.edu.nju.iip.dao.RawHtmlDAO;
+import cn.edu.nju.iip.model.RawHtml;
+import cn.edu.nju.iip.util.HtmlDocParse;
 
 
 /**
@@ -22,7 +23,9 @@ public class ChongQingTrafficCrawler implements Runnable{
 
 	private static final Logger logger = LoggerFactory.getLogger(ChongQingTrafficCrawler.class);
 	
-	private static NewsDAO newsDAO = new NewsDAO();
+	private static BloomFactory bf = BloomFactory.getInstance();
+	
+	private RawHtmlDAO dao = new RawHtmlDAO();
 	
 	private String getHTML(String url) {
 		String html = null;
@@ -33,7 +36,7 @@ public class ChongQingTrafficCrawler implements Runnable{
 					.get();
 			html = doc.html();
 		}catch(Exception e) {
-			logger.info("getHTML error",e);
+			logger.error("getHTML error",e);
 		}
 		return html;
 	}
@@ -47,19 +50,29 @@ public class ChongQingTrafficCrawler implements Runnable{
 			Elements results = doc.select("div.trafficNews").select("li");
 			for(Element result:results) {
 				String link = "http://www.cqjt.gov.cn"+result.select("a").attr("href");
+				if(bf.contains(link)) {
+					continue;
+				}
+				else {
+					bf.add(link);
+				}
 				String title = result.select("a").text();
 				logger.info("fetch URL: "+link);
 				String newsHtml = getHTML(link);
 				if(newsHtml != null) {
 					News news = ContentExtractor.getNewsByHtml(newsHtml);
-					JWNews jwnews = new JWNews();
-					jwnews.setContent(news.getContent().trim());
-					jwnews.setUrl(link);
-					jwnews.setSource(source);
-					jwnews.setTitle(title);	
-					newsDAO.saveNews(jwnews);
+					HtmlDocParse docParse = new HtmlDocParse(link,newsHtml);
+					String attachment = docParse.getDocsContent();
+					RawHtml rawHtml = new RawHtml();
+					rawHtml.setAttachment(attachment);
+					logger.info("attachment="+attachment);
+					rawHtml.setContent(news.getContent().trim());
+					rawHtml.setUrl(link);
+					rawHtml.setSource(source);
+					rawHtml.setTitle(title);	
+					rawHtml.setType("政府监管类信息");
+					dao.saveRawHtml(rawHtml);
 				}
-				//UrlQueue.put(url);
 			}
 		}catch(Exception e) {
 			logger.info("getUrlList error",e);
@@ -72,7 +85,7 @@ public class ChongQingTrafficCrawler implements Runnable{
 		
 		String source_url = "http://www.cqjt.gov.cn/openCatalogList/01010901_1.html";
 		getUrlList(source_url);
-		
+		bf.saveBloomFilter();
 		logger.info("**************ChongQingTrafficSpider thread end**************");	
 	}
 	

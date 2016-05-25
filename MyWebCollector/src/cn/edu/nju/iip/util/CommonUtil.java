@@ -3,6 +3,7 @@ package cn.edu.nju.iip.util;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,6 +17,8 @@ import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,7 +87,7 @@ public class CommonUtil {
 		return source_url;
 	}
 
-	public static List<String> importUnitName() {
+	public static List<String> importConsRoadUnitName() {
 		Workbook workbook = null;
 		List<String> list = new ArrayList<String>();
 		try {
@@ -92,6 +95,52 @@ public class CommonUtil {
 					.getProperty("user.dir") + "/resources/公路企业基本信息.xls"));
 		} catch (Exception e) {
 			logger.error("importFromXls error!", e);
+		}
+		Sheet sheet = workbook.getSheet(0);
+		int rowCount = sheet.getRows();
+		for (int i = 1; i < rowCount; i++) {
+			String UnitName = sheet.getCell(2, i).getContents().trim();
+			if (UnitName.contains("公司")) {
+				list.add(UnitName);
+			}
+		}
+		return list;
+	}
+	
+	/**
+	 * 水运建设从业企业数据导入
+	 * @return
+	 */
+	public static List<String> importConsShipUnitName() {
+		Workbook workbook = null;
+		List<String> list = new ArrayList<String>();
+		try {
+			workbook = Workbook.getWorkbook(new File(System
+					.getProperty("user.dir") + "/resources/水运企业基本信息.xls"));
+		} catch (Exception e) {
+			logger.error("importConsShipUnitName error!", e);
+		}
+		Sheet sheet = workbook.getSheet(0);
+		int rowCount = sheet.getRows();
+		for (int i = 1; i < rowCount; i++) {
+			String UnitName = sheet.getCell(1, i).getContents().trim();
+			list.add(UnitName);
+		}
+		return list;
+	}
+	
+	/**
+	 * 道路运输从业企业数据导入
+	 * @return
+	 */
+	public static List<String> importTransRoadUnitName() {
+		Workbook workbook = null;
+		List<String> list = new ArrayList<String>();
+		try {
+			workbook = Workbook.getWorkbook(new File(System
+					.getProperty("user.dir") + "/resources/道路运输从业企业.xls"));
+		} catch (Exception e) {
+			logger.error("importConsShipUnitName error!", e);
 		}
 		Sheet sheet = workbook.getSheet(0);
 		int rowCount = sheet.getRows();
@@ -244,6 +293,27 @@ public class CommonUtil {
 	    long executeTime = c.getTimeInMillis();
 		return executeTime - currentTime < 0 ? (executeTime - currentTime + one_day_millseconds)
 	            : (executeTime - currentTime);
+	}
+	
+	public static Date strToDateLong(String strDate) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		ParsePosition pos = new ParsePosition(0);
+		Date strtodate = formatter.parse(strDate, pos);
+		return strtodate;
+	}
+	
+	public static String getHTML(String url) {
+		String html = null;
+		try{
+			Document doc = Jsoup.connect(url)
+					.userAgent("Mozilla")
+					.timeout(5000)
+					.get();
+			html = doc.html();
+		}catch(Exception e) {
+			logger.info("getHTML error",e);
+		}
+		return html;
 	}
 	
 	public static void main(String[] args) {
