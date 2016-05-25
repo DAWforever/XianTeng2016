@@ -10,6 +10,10 @@ import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.pdfparser.PDFParser;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.util.PDFTextStripper;
 import org.apache.poi.POIXMLDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -51,7 +55,7 @@ public class HtmlDocParse {
 			Elements links = doc.select("a[href]");
 			for (Element link : links) {
 				String fileUrl = link.attr("abs:href");
-				if (fileUrl.contains(".doc") || fileUrl.contains(".xls")) {
+				if (fileUrl.contains(".docx") || fileUrl.contains(".xlsx")||fileUrl.contains(".doc") || fileUrl.contains(".xls")||fileUrl.contains(".pdf")) {
 					file_url_list.add(fileUrl);
 				}
 			}
@@ -88,7 +92,7 @@ public class HtmlDocParse {
 				workbook.close();
 			}
 		}
-		return content.replaceAll("[\\t\\d\\s]+", "");
+		return content.replaceAll("[\\t\\d\\s]+", " ");
 	}
 
 	// 读取xlsx
@@ -124,7 +128,7 @@ public class HtmlDocParse {
 				logger.error("readEXCEL2007 close error!",e);
 			}
 		}
-		return content.replaceAll("[\\t\\d\\s]+", "");
+		return content.replaceAll("[\\t\\d\\s]+", " ");
 	}
 
 	public String readWORD(String destionationFilePath) {
@@ -144,7 +148,7 @@ public class HtmlDocParse {
 				logger.error("readWORD close error!",e);
 			}
 		}
-		return content.replaceAll("[\\t\\d\\s]+", "");
+		return content.replaceAll("[\\t\\d\\s]+", " ");
 	}
 
 	// 读取docx文件
@@ -165,8 +169,29 @@ public class HtmlDocParse {
 				logger.error("readWORD2007 close error!",e);
 			}
 		}
-		return content.replaceAll("[\\t\\d\\s]+", "");
+		return content.replaceAll("[\\t\\d\\s]+", " ");
 	}
+	//读取pdf文件
+	public String readPDF(String filestring) {
+        try {
+            PDFTextStripper pdfStripper = null;
+            PDDocument pdDoc = null;
+            COSDocument cosDoc = null;
+            File file = new File(filestring);//"<file to analyze>"
+            PDFParser parser = new PDFParser(new FileInputStream(file));
+            parser.parse();
+            cosDoc = parser.getDocument();
+            pdDoc = new PDDocument(cosDoc);
+            PDDocument pdDoc2=parser.getPDDocument();
+            pdfStripper = new PDFTextStripper();//you can set the encoding of your choice
+            String parsedText = pdfStripper.getText(pdDoc2);
+            pdDoc.close();
+            return parsedText.replaceAll("[\\t\\d\\s]+"," ");
+        }catch (Exception e) {
+        	logger.error("readPDF error!",e);
+        }
+        return "";
+    }
 
 	public String getDocsContent() {
 		String doc_content = "";
@@ -191,13 +216,21 @@ public class HtmlDocParse {
 					doc_content = doc_content + "###" + destionationFilePath+ "###\n";
 					doc_content = doc_content + readWORD(destionationFilePath)+ "\n";
 				}
+				else if (destionationFilePath.contains(".pdf")) {
+					doc_content = doc_content + "###" + destionationFilePath+ "###\n";
+					doc_content = doc_content + readPDF(destionationFilePath)+ "\n";
+				}
 			}
 		} catch (Exception e) {
 			logger.error("getDocsContent error!",e);
 		}
 		return doc_content;
 	}
-
-	public static void main(String[] args) {
+	
+	public static void main(String[] args) throws Exception {
+		String url = "http://www.cqjt.gov.cn/openCatalog/74582d23-26be-49c7-ab1d-5c9937e5bdc7.html";
+		String html = Jsoup.connect(url).get().html();
+		HtmlDocParse hp = new HtmlDocParse(url,html);
+		System.out.println(hp.getDocsContent());
 	}
 }
