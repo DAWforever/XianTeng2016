@@ -27,7 +27,7 @@ public class HJQK {
 	// 颁奖单位
 	private String unit;
 	// 颁奖日期
-	private Date pDate;
+	private String pDate;
 	// 录入时间
 	private Date cdate;
 	// 数据交换入库时间时间
@@ -106,10 +106,10 @@ public class HJQK {
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
-	public Date getpDate() {
+	public String getpDate() {
 		return pDate;
 	}
-	public void setpDate(Date pDate) {
+	public void setpDate(String pDate) {
 		this.pDate = pDate;
 	}
 	

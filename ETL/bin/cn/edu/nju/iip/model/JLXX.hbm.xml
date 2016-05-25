@@ -4,20 +4,20 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="cn.edu.nju.iip.model.BZXX" table="BZXX">
+	<class name="cn.edu.nju.iip.model.JLXX" table="JLXX">
 		<meta attribute="class-description">
-		This class contains the nju.iip.model.BZXX
+		This class contains the nju.iip.model.JLXX
 			detail.
 		</meta>
-		<id name="id"  column="BZXXID" type="string">
+		<id name="id"  column="JLXXID" type="string">
 			<generator class="uuid.hex" />
 		</id>
 		<property name="corp_Id" column="YHID" type="string" />
-		<property name="title" column="BZMC" type="string" />
-		<property name="unit" column="BZDW" type="string" />
+		<property name="name" column="JXMC" type="string" />
+		<property name="unit" column="BJDW" type="string" />
 		<property name="cDate" column="CDATE" type="timestamp" />
+		<property name="pDate" column="BJSJ" type="timestamp" />
 		<property name="uDate" column="UDATE" type="timestamp" />
-		<property name="pDate" column="BZSJ" type="string" />
 		<property name="data_Source" column="DATA_SOURCE" type="string" />
 		<property name="fileName" column="FILENAME" type="string" />
 	</class>

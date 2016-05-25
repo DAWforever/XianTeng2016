@@ -20,7 +20,7 @@
 		<property name="type" column="TYPE" type="string" />
 		<property name="industry" column="INDUSTRY" type="string" />
 		<property name="unit" column="UNIT" type="string" />
-		<property name="pDate" column="PDATE" type="timestamp" />
+		<property name="pDate" column="PDATE" type="string" />
 		<property name="cdate" column="CDATE" type="timestamp" />
 		<property name="udate" column="UDATE" type="timestamp" />
 		<property name="content" column="CONTENT" type="string" />

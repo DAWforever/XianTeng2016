@@ -21,7 +21,7 @@ public class BZXX {
 	//录入时间
     private Date uDate;
 	//表彰时间
-	private Date pDate;
+	private String pDate;
 	//内容
 	private String content;
 	//数据来源
@@ -42,10 +42,10 @@ public class BZXX {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	public Date getpDate() {
+	public String getpDate() {
 		return pDate;
 	}
-	public void setpDate(Date pDate) {
+	public void setpDate(String pDate) {
 		this.pDate = pDate;
 	}
 	public String getContent() {
