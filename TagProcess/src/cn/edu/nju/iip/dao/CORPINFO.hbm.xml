@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.edu.nju.iip.dao.CORPINFO" table="CORPINFO">
+		<meta attribute="class-description">
+			This class contains the nju.iip.model.RawHtml
+			detail.
+		</meta>
+		<!-- <id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+		 -->
+		<id name="corp_id"  column="corp_id" type="string">
+			<generator class="uuid.hex" />
+		</id>
+		
+		<property name="corp_name" column="corp_name" type="string" />
+		<property name="corp_type" column="corp_type" type="string" />
+	</class>
+</hibernate-mapping>
