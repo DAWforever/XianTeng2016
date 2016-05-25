@@ -16,6 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import redis.clients.jedis.Jedis;
+import cn.edu.nju.iip.dao.CORPINFO;
+import cn.edu.nju.iip.dao.CORPINFODAO;
 import cn.edu.nju.iip.redis.JedisPoolUtils;
 
 
@@ -97,21 +99,63 @@ public class CommonUtil {
 	}
 	
 	/**
+	 * 公路建设从业企业数据导入(新)
+	 * @return
+	 */
+	public static List<String> importConsRoadUnitName2() {
+		List<String> list = new ArrayList<String>();
+		CORPINFODAO dao = new CORPINFODAO();
+		List<CORPINFO> corp_list = dao.getData("1");
+		for (CORPINFO corp : corp_list){
+			list.add(corp.getCorp_name());
+		}
+		return list;
+	}
+	
+	/**
+	 * 水运建设从业企业数据导入(新)
+	 * @return
+	 */
+	public static List<String> importConsShipUnitName2() {
+		List<String> list = new ArrayList<String>();
+		CORPINFODAO dao = new CORPINFODAO();
+		List<CORPINFO> corp_list = dao.getData("2");
+		for (CORPINFO corp : corp_list){
+			list.add(corp.getCorp_name());
+		}
+		return list;
+	}
+	
+	/**
+	 * 道路运输从业企业数据导入(新)
+	 * @return
+	 */
+	public static List<String> importTransRoadUnitName2() {
+		List<String> list = new ArrayList<String>();
+		CORPINFODAO dao = new CORPINFODAO();
+		List<CORPINFO> corp_list = dao.getData("3");
+		for (CORPINFO corp : corp_list){
+			list.add(corp.getCorp_name());
+		}
+		return list;
+	}
+	
+	/**
 	 * 将所有标签存入redis标签库
 	 */
 	public static void saveAllTagsToRedis() {
 		Jedis jedis = JedisPoolUtils.getInstance().getJedis();
-		List<String> ConsShipUnitNames = importConsShipUnitName();
+		List<String> ConsShipUnitNames = importConsShipUnitName2();
 		logger.info("ConsShipUnitNames size="+ConsShipUnitNames.size());
 		for(String unitName:ConsShipUnitNames) {
 			jedis.sadd("Taglib:水运建设企业", unitName);
 		}
-		List<String> ConsRoadUnitName = importConsRoadUnitName();
+		List<String> ConsRoadUnitName = importConsRoadUnitName2();
 		logger.info("ConsRoadUnitName size="+ConsRoadUnitName.size());
 		for(String unitName:ConsRoadUnitName) {
 			jedis.sadd("Taglib:公路建设企业", unitName);
 		}
-		List<String> TransRoadUnitName = importTransRoadUnitName();
+		List<String> TransRoadUnitName = importTransRoadUnitName2();
 		logger.info("TransRoadUnitName size="+TransRoadUnitName.size());
 		for(String unitName:TransRoadUnitName) {
 			jedis.sadd("Taglib:道路运输企业", unitName);
@@ -170,7 +214,25 @@ public class CommonUtil {
 
 	public static void main(String[] args) {
 		//logger.info(getUnitNameSet("水运建设企业").toString());
-		saveAllTagsToRedis();
+		//saveAllTagsToRedis();
+		List<String> road_list = importConsRoadUnitName2();
+		List<String> ship_list = importConsShipUnitName2();
+		List<String> train_list = importTransRoadUnitName2();
+		
+		for (String temp : road_list)
+			System.out.println(temp);
+		
+		System.out.println("***********************");
+		
+		for (String temp : ship_list)
+			System.out.println(temp);
+		
+		System.out.println("***********************");
+		
+		for (String temp : train_list)
+			System.out.println(temp);
+		
+		System.out.println(road_list.size() + "\t" + ship_list.size() + "\t" + train_list.size());
 	}
 
 }
