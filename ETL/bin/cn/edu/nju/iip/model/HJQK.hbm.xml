@@ -13,6 +13,7 @@
 			<generator class="uuid.hex" />
 		</id>
 		<property name="corp_Id" column="CORP_ID" type="string" />
+		<property name="corp_Name" column="CORP_NAME" type="string" />
 		<property name="code" column="CODE" type="string" />
 		<property name="name" column="NAME" type="string" />
 		<property name="year" column="YEAR" type="string" />

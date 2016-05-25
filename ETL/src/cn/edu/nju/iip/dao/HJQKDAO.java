@@ -20,6 +20,8 @@ import cn.edu.nju.iip.util.CommonUtil;
 public class HJQKDAO extends DAO {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HJQKDAO.class);
+	
+	private static CORPINFODAO dao = new CORPINFODAO();
 
 	
 	@Override
@@ -32,9 +34,11 @@ public class HJQKDAO extends DAO {
 			Data.setUdate(new Date());
 			Data.setContent(raw_html.getContent());
 			Data.setIndustry(raw_html.getIndustry());
-//			Data.setUnit(raw_html.getSource());
+			Data.setUnit(raw_html.getSource());
 			Data.setData_Source(raw_html.getUrl());
-			Data.setCorp_Id(raw_html.getUnitName());
+			Data.setCorp_Id(dao.fetchID(raw_html.getUnitName()));
+			Data.setCorp_Name(raw_html.getUnitName());
+			Data.setType(raw_html.getType());
 			Data.setType_Name(raw_html.getSource().contains("市")?"市级":"省级");
 			extractField(Data);
 			if(!abstractContent(Data)){
@@ -99,19 +103,19 @@ public class HJQKDAO extends DAO {
 		Data.setYear(year);
 		Data.setName(name);
 		Data.setCode(code);
-		if(name.contains("国家") || name.contains("中国")|| name.contains("全国") ){
-			Data.setType("2");
-			Data.setType_Name("国家级");
-		}else if(name.contains("省")){
-			Data.setType("3");
-			Data.setType_Name("省级");
-		}else if(name.contains("市")){
-			Data.setType("4");
-			Data.setType_Name("市级");
-		}else{
-			Data.setType("9");
-			Data.setType_Name("其它");
-		}
+//		if(name.contains("国家") || name.contains("中国")|| name.contains("全国") ){
+//			Data.setType("2");
+//			Data.setType_Name("国家级");
+//		}else if(name.contains("省")){
+//			Data.setType("3");
+//			Data.setType_Name("省级");
+//		}else if(name.contains("市")){
+//			Data.setType("4");
+//			Data.setType_Name("市级");
+//		}else{
+//			Data.setType("9");
+//			Data.setType_Name("其它");
+//		}
 		
 		
 		Pattern pattern = Pattern.compile("([\u4e00-\u9fa5]{1,20}(会|室|厅|站|府|局|部|院|所|处))(\\s| | )+([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
@@ -139,8 +143,10 @@ public class HJQKDAO extends DAO {
 		}
 		
 		Data.setpDate(pdate);
-		Data.setUnit(unit);
-		
+		if(!unit.equals("")) {
+			System.out.println("unit="+unit);
+			Data.setUnit(unit);
+		}
 	}
 	
 	

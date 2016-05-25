@@ -12,6 +12,8 @@ public class HJQK {
 	private String award_id;
 	// 企业id
 	private String corp_Id;
+	// 企业id
+	private String corp_Name;
 	// 文号
 	private String code;
 	// 奖项名称
@@ -40,6 +42,12 @@ public class HJQK {
 	private String fileName;
 	
 	
+	public String getCorp_Name() {
+		return corp_Name;
+	}
+	public void setCorp_Name(String corp_Name) {
+		this.corp_Name = corp_Name;
+	}
 	public String getFileName() {
 		return fileName;
 	}

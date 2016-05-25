@@ -12,6 +12,8 @@ public class BZXX {
 	private String id;
 	//业户id
 	private String corp_Id;
+	//业户id
+	private String corp_Name;
 	//表彰名称
 	private String title;
 	//发布单位
@@ -28,8 +30,22 @@ public class BZXX {
 	private String data_Source;
 	//附件名
 	private String fileName;
+	//类别
+	private String type;
 	
 	
+	public String getCorp_Name() {
+		return corp_Name;
+	}
+	public void setCorp_Name(String corp_Name) {
+		this.corp_Name = corp_Name;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public Date getuDate() {
 		return uDate;
 	}

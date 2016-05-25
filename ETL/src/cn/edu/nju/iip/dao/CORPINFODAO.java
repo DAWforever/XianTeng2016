@@ -8,6 +8,9 @@ import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.edu.nju.iip.model.CORPINFO;
+import cn.edu.nju.iip.model.RawHtml;
+
 
 
 public class CORPINFODAO extends DAO{
@@ -43,10 +46,12 @@ public class CORPINFODAO extends DAO{
 			q.setString("name", corp_name);
 			commit();
 			CORPINFO corp = (CORPINFO) q.uniqueResult();
-			return corp.getCorp_id();
+			if(corp!=null) {
+				return corp.getCorp_id();
+			}
 		}catch(Exception e) {
 			rollback();
-			logger.error("failed!",e);
+			logger.error("fetchID failed!",e);
 		}
 		return null;
 	}
@@ -57,6 +62,12 @@ public class CORPINFODAO extends DAO{
 		//System.out.println(list.size());
 		
 		System.out.println(dao.fetchID("重庆市万州区邮政汽车大修厂"));
+	}
+
+	@Override
+	public boolean saveData(RawHtml raw_html) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

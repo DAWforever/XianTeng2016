@@ -14,19 +14,22 @@ import cn.edu.nju.iip.util.CommonUtil;
 
 public class BZXXDAO extends DAO {
 	private static final Logger logger = LoggerFactory.getLogger(BZXXDAO.class);
+	
+	private static CORPINFODAO dao = new CORPINFODAO();
 
 	@Override
 	public boolean saveData(RawHtml raw_html) {
 		try {
 			BZXX Data = new BZXX();
 			Data.setFileName(CommonUtil.getAttachFileName(raw_html.getAttachment()));
-//			Data.setUnit(raw_html.getSource());
+			Data.setUnit(raw_html.getSource());
 			Data.setcDate(new Date());// 录入时间
 			Data.setuDate(Data.getcDate());
-//			Data.setpDate(raw_html.getCrawltime());
-			Data.setCorp_Id(raw_html.getUnitName());
+			Data.setCorp_Id(dao.fetchID(raw_html.getUnitName()));
+			Data.setCorp_Name(raw_html.getUnitName());
 			Data.setData_Source(raw_html.getUrl());
 			Data.setContent(raw_html.getContent());
+			Data.setType(raw_html.getType());
 			extractField(Data);
 			if(!abstractContent(Data)) {
 				return false;
@@ -80,7 +83,9 @@ public class BZXXDAO extends DAO {
 		}
 		
 		Data.setpDate(pdate);
-		Data.setUnit(unit);
+		if(!unit.equals("")) {
+			Data.setUnit(unit);
+		}
 	}
 
 	/**
@@ -92,10 +97,15 @@ public class BZXXDAO extends DAO {
 		String content = Data.getContent();
 		String[] sentences = content.split("\\s+");
 		for (String sentence : sentences) {
-			if (sentence.contains("关于表彰")) {
+			if (sentence.contains("关于表彰")&&sentence.contains("的")) {
 				sentence = sentence.trim().replaceAll("[？>]", "");
 				int index = sentence.indexOf("关于表彰");
-				sentence = sentence.substring(index);
+				int index2 = sentence.indexOf("的");
+				try {
+					sentence = sentence.substring(index+4,index2);
+				}catch(Exception e) {
+					continue;
+				}
 				if (sentence.length() > 50) {
 					sentence = sentence.substring(0, 50);
 				}
