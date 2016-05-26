@@ -23,7 +23,7 @@ public class TBBZ {
 	//发布单位
 	private String unit;
 	//发布日期
-	private Date issue_Date;
+	private String issue_Date;
 	//录入时间
 	private Date cDate;
 	//跟新时间
@@ -54,10 +54,10 @@ public class TBBZ {
 	public void setYear(String year) {
 		this.year = year;
 	}
-	public Date getIssue_Date() {
+	public String getIssue_Date() {
 		return issue_Date;
 	}
-	public void setIssue_Date(Date issue_Date) {
+	public void setIssue_Date(String issue_Date) {
 		this.issue_Date = issue_Date;
 	}
 	public String getCode() {

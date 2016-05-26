@@ -14,7 +14,7 @@ public class JLXX {
 	//录入时间
 	private Date cDate;
 	//颁奖时间
-	private Date pDate;
+	private String pDate;
 	//跟新入库时间
 	private Date uDate;
 	//内容
@@ -68,10 +68,10 @@ public class JLXX {
 	public void setcDate(Date cDate) {
 		this.cDate = cDate;
 	}
-	public Date getpDate() {
+	public String getpDate() {
 		return pDate;
 	}
-	public void setpDate(Date pDate) {
+	public void setpDate(String pDate) {
 		this.pDate = pDate;
 	}
 	public String getContent() {

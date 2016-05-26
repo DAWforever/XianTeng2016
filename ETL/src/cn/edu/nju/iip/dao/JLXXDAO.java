@@ -21,9 +21,9 @@ public class JLXXDAO extends DAO{
 		try {
 			JLXX Data = new JLXX();
 			Data.setFileName(CommonUtil.getAttachFileName(raw_html.getAttachment()));
-			Data.setUnit(raw_html.getSource());
+//			Data.setUnit(raw_html.getSource());
 			Data.setcDate(new Date());// 录入时间
-			Data.setpDate(raw_html.getCrawltime());
+//			Data.setpDate(raw_html.getCrawltime());
 			Data.setCorp_Id(raw_html.getUnitName());
 			Data.setData_Source(raw_html.getUrl());
 			Data.setContent(raw_html.getContent());
@@ -37,7 +37,7 @@ public class JLXXDAO extends DAO{
 			return true;
 		} catch (Exception e) {
 			rollback();
-			logger.error("TBBZDAO saveData failed!", e);
+			logger.error("JLXXDAO saveData failed!", e);
 		}
 		return false;
 	}
@@ -50,6 +50,10 @@ public class JLXXDAO extends DAO{
 		String content = Data.getContent();
 		
 		String name = "";
+		String pdate = "";
+		String unit = "";
+		
+		
 		Matcher match =  null;
 		
 		Pattern award = Pattern.compile("(国家|中国|全国|河北省|山西省|辽宁省|吉林省|黑龙江省|江苏省|浙江省|安徽省|福建省|江西省|山东省|河南省|湖北省|湖南省|广东省|海南省|四川省|贵州省|云南省|陕西省|甘肃省|青海省|台湾省|内蒙古自治区|广西壮族自治区|西藏自治区|宁夏回族自治区|新疆维吾尔自治区|北京市|天津市|上海市|重庆市|香港特别行政区|澳门特别行政区|[0-9]{4}年度)([\u4e00-\u9fa5“”]*?)(奖)");
@@ -66,6 +70,33 @@ public class JLXXDAO extends DAO{
 			}
 		}
 		Data.setName(name);		
+		
+		Pattern pattern = Pattern.compile("([\u4e00-\u9fa5]{1,20}(会|室|厅|站|府|局|部|院|所|处))(\\s| | )+([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+		match = pattern.matcher(content);
+		
+		String str = "";
+		while(match.find()){
+			str = match.group();
+		}
+		
+		if(str.length() < 10){
+			Pattern datePattern = Pattern.compile("([0-9]{4}-[0-9]{2}-[0-9]{2})|(([0-9]{4}|(二...))年.{1,2}月.{1,3}日)");
+			match = datePattern.matcher(content);
+			if(match.find()){
+				pdate = match.group();
+			}		
+		}else{
+
+			Pattern datePattern = Pattern.compile("([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+			match = datePattern.matcher(str);
+			if(match.find()){
+				pdate = match.group();
+			}
+			unit = str.replace(pdate, "").trim();
+		}
+		
+		Data.setpDate(pdate);
+		Data.setUnit(unit);
 		
 	}
 	
