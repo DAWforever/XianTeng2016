@@ -15,18 +15,25 @@ import cn.edu.nju.iip.util.CommonUtil;
 public class JLXXDAO extends DAO{
 	
 	private static final Logger logger = LoggerFactory.getLogger(JLXXDAO.class);
+	private static CORPINFODAO dao = new CORPINFODAO();
 
 	@Override
 	public boolean saveData(RawHtml raw_html) {
 		try {
 			JLXX Data = new JLXX();
 			Data.setFileName(CommonUtil.getAttachFileName(raw_html.getAttachment()));
-//			Data.setUnit(raw_html.getSource());
+			Data.setUnit(raw_html.getSource());
 			Data.setcDate(new Date());// 录入时间
-//			Data.setpDate(raw_html.getCrawltime());
+			Data.setuDate(new Date());
 			Data.setCorp_Id(raw_html.getUnitName());
 			Data.setData_Source(raw_html.getUrl());
 			Data.setContent(raw_html.getContent());
+			Data.setCorp_Id(dao.fetchID(raw_html.getUnitName()));
+			Data.setWebName(raw_html.getSource());
+			Data.setCorp_Name(raw_html.getUnitName());
+			Data.setWebContent(raw_html.getContent());
+			Data.setWebLevel(raw_html.getType());
+			Data.setCorp_Name(raw_html.getUnitName());
 			extractField(Data);
 			if(!abstractContent(Data)) {
 				return false;
@@ -94,10 +101,11 @@ public class JLXXDAO extends DAO{
 			}
 			unit = str.replace(pdate, "").trim();
 		}
-		
+		pdate = pdate.replaceAll("-", "/").replaceAll("年", "/").replaceAll("月", "/").replaceAll("日", "");
 		Data.setpDate(pdate);
-		Data.setUnit(unit);
-		
+		if(!unit.equals("")) {
+			Data.setUnit(unit);
+		}
 	}
 	
 	/**
@@ -109,6 +117,21 @@ public class JLXXDAO extends DAO{
 		String[] sentences = content.split("[\\s。？]+");
 		for (String sentence : sentences) {
 			if (sentence.contains("奖")&&(sentence.contains("关于")||sentence.contains("名单")||sentence.contains("决定")||sentence.contains("通知"))) {
+				if(sentence.contains("关于")) {
+					int index = sentence.indexOf("关于");
+					int index2 = sentence.indexOf("的");
+					try {
+						sentence = sentence.substring(index,index2+3);
+					}catch(Exception e) {
+						continue;
+					}
+				}
+				if (sentence.length() > 50) {
+					sentence = sentence.substring(0, 50);
+				}
+				sentence = sentence.replace(".doc", "");
+				Data.setContent(sentence);
+				Data.setWebTitle(sentence);
 				return true;
 			}
 		}

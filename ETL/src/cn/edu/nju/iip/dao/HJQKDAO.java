@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.edu.hfut.dmic.contentextractor.ContentExtractor;
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.HJQK;
 import cn.edu.nju.iip.model.RawHtml;
@@ -40,6 +41,9 @@ public class HJQKDAO extends DAO {
 			Data.setCorp_Name(raw_html.getUnitName());
 			Data.setType(raw_html.getType());
 			Data.setType_Name(raw_html.getSource().contains("市")?"市级":"省级");
+			Data.setWebContent(raw_html.getContent());
+			Data.setWebLevel(raw_html.getType());
+			Data.setWebName(raw_html.getSource());
 			extractField(Data);
 			if(!abstractContent(Data)){
 				return false;
@@ -103,19 +107,19 @@ public class HJQKDAO extends DAO {
 		Data.setYear(year);
 		Data.setName(name);
 		Data.setCode(code);
-//		if(name.contains("国家") || name.contains("中国")|| name.contains("全国") ){
-//			Data.setType("2");
-//			Data.setType_Name("国家级");
-//		}else if(name.contains("省")){
-//			Data.setType("3");
-//			Data.setType_Name("省级");
-//		}else if(name.contains("市")){
-//			Data.setType("4");
-//			Data.setType_Name("市级");
-//		}else{
-//			Data.setType("9");
-//			Data.setType_Name("其它");
-//		}
+		if(name.contains("国家") || name.contains("中国")|| name.contains("全国") ){
+			Data.setType("2");
+			Data.setType_Name("国家级");
+		}else if(name.contains("省")){
+			Data.setType("3");
+			Data.setType_Name("省级");
+		}else if(name.contains("市")){
+			Data.setType("4");
+			Data.setType_Name("市级");
+		}else{
+			Data.setType("9");
+			Data.setType_Name("其它");
+		}
 		
 		
 		Pattern pattern = Pattern.compile("([\u4e00-\u9fa5]{1,20}(会|室|厅|站|府|局|部|院|所|处))(\\s| | )+([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
@@ -142,7 +146,34 @@ public class HJQKDAO extends DAO {
 			unit = str.replace(pdate, "").trim();
 		}
 		
+		
+		
+		Pattern datePattern = Pattern.compile("((20)[0-9]{2}(-|/|-)[0-9]{1,2}(-|-|/)[0-9]{1,2})");			
+		match = datePattern.matcher(content);
+		
+		if(match.find()){
+			pdate = match.group();
+		}else{
+			Pattern datePattern2 = Pattern.compile("(([0-9]{4})年[0-9]{1,2}月[0-9]{1,2}日)");
+			match = datePattern2.matcher(content);
+			if(match.find()){
+				pdate = match.group();
+			}
+			
+		}
+		
+		pdate = pdate.replaceAll("-", "/").replaceAll("年", "/").replaceAll("月", "/").replaceAll("日", "");
+		if(pdate.length()<5) {
+			try {
+				pdate = ContentExtractor.getNewsByUrl(Data.getData_Source()).getTime();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		Data.setpDate(pdate);
+		
+		System.out.println(Data.getpDate());
 		if(!unit.equals("")) {
 			System.out.println("unit="+unit);
 			Data.setUnit(unit);
@@ -162,12 +193,19 @@ public class HJQKDAO extends DAO {
 				if(sentence.contains("关于")) {
 					int index = sentence.indexOf("关于");
 					sentence = sentence.substring(index);
+					int index2 = sentence.indexOf("的");
+					try {
+						sentence = sentence.substring(index,index2+3);
+					}catch(Exception e) {
+						continue;
+					}
 				}
 				if (sentence.length() > 50) {
 					sentence = sentence.substring(0, 50);
 				}
 				sentence = sentence.replace(".doc", "");
 				Data.setContent(sentence);
+				Data.setWebTitle(sentence);
 				return true;
 			}
 		}

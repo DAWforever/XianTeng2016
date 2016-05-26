@@ -14,15 +14,18 @@
 		</id>
 		<property name="corp_Id" column="CORP_ID" type="string" />
 		<property name="industry" column="INDUSTRY" type="string" />
-		<property name="title" column="TITLE" type="string" />
 		<property name="code" column="CODE" type="string" />
 		<property name="year" column="YEAR" type="string" />
 		<property name="unit" column="UNIT" type="string" />
 		<property name="issue_Date" column="ISSUE_DATE" type="string" />
 		<property name="cDate" column="CDATE" type="timestamp" />
 		<property name="uDate" column="UDATE" type="timestamp" />
-		<property name="content" column="CONTENT" type="string" />
 		<property name="data_Source" column="DATA_SOURCE" type="string" />
 		<property name="fileName" column="FILENAME" type="string" />
+		<property name="webContent" column="WEB_CONTENT" type="string" />
+		<property name="webLevel" column="WEB_LEVEL" type="string" />
+		<property name="corp_Name" column="CORP_NAME" type="string" />
+		<property name="webTitle" column="WEB_TITLE" type="string" />
+		<property name="webName" column="WEB_NAME" type="string" />
 	</class>
 </hibernate-mapping>

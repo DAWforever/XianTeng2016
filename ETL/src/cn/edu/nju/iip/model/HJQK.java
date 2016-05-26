@@ -12,8 +12,6 @@ public class HJQK {
 	private String award_id;
 	// 企业id
 	private String corp_Id;
-	// 企业id
-	private String corp_Name;
 	// 文号
 	private String code;
 	// 奖项名称
@@ -40,8 +38,42 @@ public class HJQK {
 	private String data_Source;
 	//附件名
 	private String fileName;
+	//网站名称
+    private String webName;
+    //正文内容
+    private String webContent;
+    //关注度等级
+    private String webLevel;
+    //标题
+    private String webTitle;
+    //企业名
+  	private String corp_Name;
 	
 	
+	public String getWebName() {
+		return webName;
+	}
+	public void setWebName(String webName) {
+		this.webName = webName;
+	}
+	public String getWebContent() {
+		return webContent;
+	}
+	public void setWebContent(String webContent) {
+		this.webContent = webContent;
+	}
+	public String getWebLevel() {
+		return webLevel;
+	}
+	public void setWebLevel(String webLevel) {
+		this.webLevel = webLevel;
+	}
+	public String getWebTitle() {
+		return webTitle;
+	}
+	public void setWebTitle(String webTitle) {
+		this.webTitle = webTitle;
+	}
 	public String getCorp_Name() {
 		return corp_Name;
 	}
