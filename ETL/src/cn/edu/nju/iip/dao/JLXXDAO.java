@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.edu.hfut.dmic.contentextractor.ContentExtractor;
 import cn.edu.nju.iip.etl.ConstructComETL;
 import cn.edu.nju.iip.model.JLXX;
 import cn.edu.nju.iip.model.RawHtml;
@@ -26,14 +27,17 @@ public class JLXXDAO extends DAO{
 			Data.setcDate(new Date());// 录入时间
 			Data.setuDate(new Date());
 			Data.setCorp_Id(raw_html.getUnitName());
+			
 			Data.setData_Source(raw_html.getUrl());
 			Data.setContent(raw_html.getContent());
 			Data.setCorp_Id(dao.fetchID(raw_html.getUnitName()));
 			Data.setWebName(raw_html.getSource());
 			Data.setCorp_Name(raw_html.getUnitName());
+			
 			Data.setWebContent(raw_html.getContent());
 			Data.setWebLevel(raw_html.getType());
 			Data.setCorp_Name(raw_html.getUnitName());
+			
 			extractField(Data);
 			if(!abstractContent(Data)) {
 				return false;
@@ -78,7 +82,34 @@ public class JLXXDAO extends DAO{
 		}
 		Data.setName(name);		
 		
-		Pattern pattern = Pattern.compile("([\u4e00-\u9fa5]{1,20}(会|室|厅|站|府|局|部|院|所|处))(\\s| | )+([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+		
+		Pattern datePattern = Pattern.compile("((20)[0-9]{2}(-|/|-)[0-9]{1,2}(-|-|/)[0-9]{1,2})");			
+		match = datePattern.matcher(content);
+		
+		if(match.find()){
+			pdate = match.group();
+		}else{
+			Pattern datePattern2 = Pattern.compile("(([0-9]{4})年[0-9]{1,2}月[0-9]{1,2}日)");
+			match = datePattern2.matcher(content);
+			if(match.find()){
+				pdate = match.group();
+			}
+			
+		}
+		
+		pdate = pdate.replaceAll("-", "/").replaceAll("年", "/").replaceAll("月", "/").replaceAll("日", "");
+		if(pdate.length()<5) {
+			try {
+				pdate = ContentExtractor.getNewsByUrl(Data.getData_Source()).getTime();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		Data.setpDate(pdate);
+		
+		System.out.println(Data.getpDate());
+		
+		Pattern pattern = Pattern.compile("([\u4e00-\u9fa5]{1,20}(会|室|厅|站|府|局|部|院|所|处))(\\s| | )+([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
 		match = pattern.matcher(content);
 		
 		String str = "";
@@ -87,22 +118,21 @@ public class JLXXDAO extends DAO{
 		}
 		
 		if(str.length() < 10){
-			Pattern datePattern = Pattern.compile("([0-9]{4}-[0-9]{2}-[0-9]{2})|(([0-9]{4}|(二...))年.{1,2}月.{1,3}日)");
-			match = datePattern.matcher(content);
+			Pattern datePattern1 = Pattern.compile("([0-9]{4}-[0-9]{2}-[0-9]{2})|(([0-9]{4}|(二...))年.{1,2}月.{1,3}日)");
+			match = datePattern1.matcher(content);
 			if(match.find()){
 				pdate = match.group();
 			}		
 		}else{
 
-			Pattern datePattern = Pattern.compile("([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
-			match = datePattern.matcher(str);
+			Pattern datePattern1 = Pattern.compile("([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+			match = datePattern1.matcher(str);
 			if(match.find()){
 				pdate = match.group();
 			}
 			unit = str.replace(pdate, "").trim();
-		}
-		pdate = pdate.replaceAll("-", "/").replaceAll("年", "/").replaceAll("月", "/").replaceAll("日", "");
-		Data.setpDate(pdate);
+		}	
+		
 		if(!unit.equals("")) {
 			Data.setUnit(unit);
 		}

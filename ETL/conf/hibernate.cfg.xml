@@ -13,7 +13,7 @@
 
 		<!-- Assume test is the database name -->
 		<property name="hibernate.connection.url">
-			 jdbc:oracle:thin:@114.212.87.188:1521:orcl
+			 jdbc:oracle:thin:@192.168.131.106:1521:mipdb
 		</property>
 		<property name="hibernate.connection.username">
 			WQ

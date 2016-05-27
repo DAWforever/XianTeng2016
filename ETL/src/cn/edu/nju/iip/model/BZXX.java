@@ -32,8 +32,42 @@ public class BZXX {
 	private String fileName;
 	//类别
 	private String type;
+	//网站名称
+    private String webName;
+    //正文内容
+    private String webContent;
+    //关注度等级
+    private String webLevel;
+    //标题
+    private String webTitle;
 	
 	
+	public String getWebName() {
+		return webName;
+	}
+	public void setWebName(String webName) {
+		this.webName = webName;
+	}
+	public String getWebContent() {
+		return webContent;
+	}
+	public void setWebContent(String webContent) {
+		this.webContent = webContent;
+	}
+	public String getWebLevel() {
+		return webLevel;
+	}
+	public void setWebLevel(String webLevel) {
+		this.webLevel = webLevel;
+	}
+	public String getWebTitle() {
+		return webTitle;
+	}
+	public void setWebTitle(String webTitle) {
+		this.webTitle = webTitle;
+	}
+	
+    
 	public String getCorp_Name() {
 		return corp_Name;
 	}

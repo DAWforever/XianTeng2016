@@ -34,7 +34,7 @@ public class TBPPXX {
     private String webLevel;
     //标题
     private String webTitle;
-  //企业名
+    //企业名
   	private String corp_Name;
 	
   	

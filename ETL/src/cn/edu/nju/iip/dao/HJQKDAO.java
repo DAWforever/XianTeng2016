@@ -35,15 +35,18 @@ public class HJQKDAO extends DAO {
 			Data.setUdate(new Date());
 			Data.setContent(raw_html.getContent());
 			Data.setIndustry(raw_html.getIndustry());
+			
 			Data.setUnit(raw_html.getSource());
 			Data.setData_Source(raw_html.getUrl());
 			Data.setCorp_Id(dao.fetchID(raw_html.getUnitName()));
 			Data.setCorp_Name(raw_html.getUnitName());
 			Data.setType(raw_html.getType());
 			Data.setType_Name(raw_html.getSource().contains("市")?"市级":"省级");
+			
 			Data.setWebContent(raw_html.getContent());
 			Data.setWebLevel(raw_html.getType());
 			Data.setWebName(raw_html.getSource());
+			
 			extractField(Data);
 			if(!abstractContent(Data)){
 				return false;
@@ -65,7 +68,7 @@ public class HJQKDAO extends DAO {
 	 */
 	public void extractField(HJQK Data) {
 
-		String content = Data.getContent();
+		String content = Data.getWebContent();
 		
 		String year = "";
 		String name = "";
@@ -107,6 +110,7 @@ public class HJQKDAO extends DAO {
 		Data.setYear(year);
 		Data.setName(name);
 		Data.setCode(code);
+		
 		if(name.contains("国家") || name.contains("中国")|| name.contains("全国") ){
 			Data.setType("2");
 			Data.setType_Name("国家级");
@@ -167,17 +171,18 @@ public class HJQKDAO extends DAO {
 			try {
 				pdate = ContentExtractor.getNewsByUrl(Data.getData_Source()).getTime();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		Data.setpDate(pdate);
 		
 		System.out.println(Data.getpDate());
+		
 		if(!unit.equals("")) {
 			System.out.println("unit="+unit);
 			Data.setUnit(unit);
 		}
+		
 	}
 	
 	
