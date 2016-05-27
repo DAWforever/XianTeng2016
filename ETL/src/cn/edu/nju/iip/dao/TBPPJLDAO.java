@@ -63,9 +63,19 @@ private static CORPINFODAO dao = new CORPINFODAO();
 		String content = Data.getWebContent();
 
 		String pdate = "";
+		String unit = "";
 		String code = "";
 		
 		Matcher match =  null;
+		
+		
+		Pattern codePattern = Pattern.compile("([\u4e00-\u9fa5]{2,6})(［|〔|（|\\[|\\(|【)[0-9]{4}(］|）|\\)|\\]|】|〕)(.?[0-9]{1,4}.?)(号?)");
+		match = codePattern.matcher(content);
+		
+		if(match.find()){
+			code =  match.group();			
+		}
+		Data.setCode(code);
 		
 		Pattern datePattern = Pattern.compile("((20)[0-9]{2}(-|/|-)[0-9]{1,2}(-|-|/)[0-9]{1,2})");			
 		match = datePattern.matcher(content);
@@ -80,12 +90,12 @@ private static CORPINFODAO dao = new CORPINFODAO();
 			}
 			
 		}
+		
 		pdate = pdate.replaceAll("-", "/").replaceAll("年", "/").replaceAll("月", "/").replaceAll("日", "");
 		if(pdate.length()<5) {
 			try {
 				pdate = ContentExtractor.getNewsByUrl(Data.getData_Source()).getTime();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -93,13 +103,33 @@ private static CORPINFODAO dao = new CORPINFODAO();
 		
 		System.out.println(Data.getpDate());
 		
-		Pattern codePattern = Pattern.compile("([\u4e00-\u9fa5]{2,6})(［|〔|（|\\[|\\(|【)[0-9]{4}(］|）|\\)|\\]|】|〕)(.?[0-9]{1,4}.?)(号?)");
-		match = codePattern.matcher(content);
+		Pattern pattern = Pattern.compile("([\u4e00-\u9fa5]{1,20}(会|室|厅|站|府|局|部|院|所|处))(\\s| | )+([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+		match = pattern.matcher(content);
 		
-		if(match.find()){
-			code =  match.group();			
+		String str = "";
+		while(match.find()){
+			str = match.group();
 		}
-		Data.setCode(code);
+		
+		if(str.length() < 10){
+			Pattern datePattern1 = Pattern.compile("([0-9]{4}-[0-9]{2}-[0-9]{2})|(([0-9]{4}|(二...))年.{1,2}月.{1,3}日)");
+			match = datePattern1.matcher(content);
+			if(match.find()){
+				pdate = match.group();
+			}		
+		}else{
+
+			Pattern datePattern1 = Pattern.compile("([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+			match = datePattern1.matcher(str);
+			if(match.find()){
+				pdate = match.group();
+			}
+			unit = str.replace(pdate, "").trim();
+		}	
+		
+		if(!unit.equals("")) {
+			Data.setUnit(unit);
+		}
 	}
 	
 	/**

@@ -56,6 +56,7 @@ public class TBPPXXDAO extends DAO{
 		String content = Data.getWebContent();
 
 		String pdate = "";
+		String unit = "";
 		
 		Matcher match =  null;
 		
@@ -72,18 +73,46 @@ public class TBPPXXDAO extends DAO{
 			}
 			
 		}
+		
 		pdate = pdate.replaceAll("-", "/").replaceAll("年", "/").replaceAll("月", "/").replaceAll("日", "");
 		if(pdate.length()<5) {
 			try {
 				pdate = ContentExtractor.getNewsByUrl(Data.getData_Source()).getTime();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		Data.setpDate(pdate);
 		
 		System.out.println(Data.getpDate());
+		
+		Pattern pattern = Pattern.compile("([\u4e00-\u9fa5]{1,20}(会|室|厅|站|府|局|部|院|所|处))(\\s| | )+([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+		match = pattern.matcher(content);
+		
+		String str = "";
+		while(match.find()){
+			str = match.group();
+		}
+		
+		if(str.length() < 10){
+			Pattern datePattern1 = Pattern.compile("([0-9]{4}-[0-9]{2}-[0-9]{2})|(([0-9]{4}|(二...))年.{1,2}月.{1,3}日)");
+			match = datePattern1.matcher(content);
+			if(match.find()){
+				pdate = match.group();
+			}		
+		}else{
+
+			Pattern datePattern1 = Pattern.compile("([0-9]{4}|(二...))年.{1,2}月.{1,3}日");
+			match = datePattern1.matcher(str);
+			if(match.find()){
+				pdate = match.group();
+			}
+			unit = str.replace(pdate, "").trim();
+		}	
+		
+		if(!unit.equals("")) {
+			Data.setUnit(unit);
+		}
 		
 	}
 
