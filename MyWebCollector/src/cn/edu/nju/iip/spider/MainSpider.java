@@ -27,7 +27,7 @@ public class MainSpider implements Runnable{
 		try{
 			RawHtmlSpider.startRawHtmlCrawler();
 			SearchSpider.stratSearchSpider();
-			NewsCrawler.startNewsCrawler();
+			//NewsCrawler.startNewsCrawler();
 		}catch(Exception e) {
 			logger.error("MainSpider run() failed", e);
 		}

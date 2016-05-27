@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -101,11 +104,12 @@ public class RawHtmlSpider extends BreadthCrawler {
 						String attachment = docParse.getDocsContent();
 						rawHtml.setAttachment(attachment);
 						rawHtml.setContent(page.getDoc().text()+attachment);
-						rawHtml.setTitle(news.getTitle());
+						rawHtml.setTitle(page.getMetaData("title"));
 						rawHtml.setSource(page.getMetaData("source"));
 						rawHtml.setUrl(page.getUrl());
 						rawHtml.setType(page.getMetaData("type"));
 						rawHtml.setCrawltime(new Date());
+						rawHtml.setHtml(page.getHtml());
 						dao.saveRawHtml(rawHtml);
 			            count++;
 				 }catch(Exception e) {
@@ -119,9 +123,19 @@ public class RawHtmlSpider extends BreadthCrawler {
 		super.afterVisit(page, next);
 		String source = page.getMetaData("source");
 		String type = page.getMetaData("type");
+		Document doc =  page.getDoc();
+		Elements elements = doc.select("a[href]");
+		HashMap<String, String> map = new HashMap<String,String>();
+		for(Element element:elements){
+			map.put(element.absUrl("href").trim(), element.text().trim());
+			//System.out.println(element.absUrl("href"));
+			//System.out.println(element.text().trim());
+		}
 		for (CrawlDatum data : next) {
 			data.putMetaData("source", source);
 			data.putMetaData("type", type);
+			data.putMetaData("title", map.get(data.getUrl()));
+		
 		}
 	}
 	

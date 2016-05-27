@@ -15,7 +15,7 @@
 		 -->
 		<id name="id"  column="id" type="integer">
 			<generator class="sequence">
-              <param name="sequence">WQ_Sequence</param>
+              <param name="sequence">RAW_Sequence</param>
             </generator>
 		</id>
 		<property name="url" column="url" type="string" />
@@ -25,5 +25,6 @@
 		<property name="crawltime" column="crawltime" type="timestamp" />
 		<property name="type" column="type" type="string" />
 		<property name="attachment" column="attachment" type="string" />
+		<property name="html" column="RAWHTML" type="string" />
 	</class>
 </hibernate-mapping>

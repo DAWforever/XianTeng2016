@@ -43,10 +43,10 @@ public class BZXXDAO extends DAO {
 			if(!abstractContent(Data)) {
 				return false;
 			}
-//			begin();
-//			getSession().save(Data);
-//			commit();
-//			return true;
+			begin();
+			getSession().save(Data);
+			commit();
+			return true;
 		} catch (Exception e) {
 			rollback();
 			logger.error("BZXXDAO saveData failed!", e);
@@ -194,6 +194,8 @@ public class BZXXDAO extends DAO {
 				sentence = sentence.trim().replaceAll("[？>]", "");
 				int index = sentence.indexOf("关于表彰");
 				int index2 = sentence.indexOf("的");
+				sentence = sentence.substring(index,index2+3);
+				Data.setWebTitle(sentence);
 				try {
 					sentence = sentence.substring(index+4,index2);
 				}catch(Exception e) {

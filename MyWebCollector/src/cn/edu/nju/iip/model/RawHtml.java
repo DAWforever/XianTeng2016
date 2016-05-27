@@ -24,8 +24,18 @@ public class RawHtml {
 	private String type;
 	//附件内容
 	private String attachment;
+	//原始html代码
+	private String html;
 	
 	
+
+	public String getHtml() {
+		return html;
+	}
+
+	public void setHtml(String html) {
+		this.html = html;
+	}
 
 	public String getTitle() {
 		return title;
