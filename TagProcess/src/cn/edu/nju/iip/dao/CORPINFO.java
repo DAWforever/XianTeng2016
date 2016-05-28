@@ -4,7 +4,16 @@ public class CORPINFO {
 	private String corp_id;
 	private String corp_name;
 	private String corp_type;
+	private String corp_shortNames;
 	
+	
+	
+	public String getCorp_shortNames() {
+		return corp_shortNames;
+	}
+	public void setCorp_shortNames(String corp_shortNames) {
+		this.corp_shortNames = corp_shortNames;
+	}
 	public String getCorp_id() {
 		return corp_id;
 	}

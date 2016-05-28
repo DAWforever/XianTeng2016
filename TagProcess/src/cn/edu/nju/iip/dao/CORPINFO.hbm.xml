@@ -19,5 +19,6 @@
 		
 		<property name="corp_name" column="corp_name" type="string" />
 		<property name="corp_type" column="corp_type" type="string" />
+		<property name="corp_shortNames" column="corp_short" type="string" />
 	</class>
 </hibernate-mapping>

@@ -51,12 +51,29 @@ public class CORPINFODAO extends DAO{
 		return null;
 	}
 	
+	public String getShortNames(String corp_name){
+		try{
+			begin();
+			Query q = getSession().createQuery("from CORPINFO where corp_name=:name");
+			q.setString("name", corp_name);
+			commit();
+			CORPINFO corp = (CORPINFO) q.uniqueResult();
+			if(corp==null) return null;
+			else
+			return corp.getCorp_shortNames();
+		}catch(Exception e) {
+			rollback();
+			logger.error("failed!",e);
+		}
+		return null;
+	}
+	
 	public static void main(String[] args) {
 		CORPINFODAO dao = new CORPINFODAO();
 		//ArrayList<CORPINFO> list = (ArrayList<CORPINFO>) dao.getData("3");
 		//System.out.println(list.size());
 		
-		System.out.println(dao.fetchID("重庆市万州区邮政汽车大修厂"));
+		System.out.println(dao.getShortNames("水利工程有限公司"));
 	}
 
 

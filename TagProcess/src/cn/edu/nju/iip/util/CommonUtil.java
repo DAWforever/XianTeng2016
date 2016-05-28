@@ -214,25 +214,25 @@ public class CommonUtil {
 
 	public static void main(String[] args) {
 		//logger.info(getUnitNameSet("水运建设企业").toString());
-		//saveAllTagsToRedis();
-		List<String> road_list = importConsRoadUnitName2();
-		List<String> ship_list = importConsShipUnitName2();
-		List<String> train_list = importTransRoadUnitName2();
-		
-		for (String temp : road_list)
-			System.out.println(temp);
-		
-		System.out.println("***********************");
-		
-		for (String temp : ship_list)
-			System.out.println(temp);
-		
-		System.out.println("***********************");
-		
-		for (String temp : train_list)
-			System.out.println(temp);
-		
-		System.out.println(road_list.size() + "\t" + ship_list.size() + "\t" + train_list.size());
+		saveAllTagsToRedis();
+//		List<String> road_list = importConsRoadUnitName2();
+//		List<String> ship_list = importConsShipUnitName2();
+//		List<String> train_list = importTransRoadUnitName2();
+//		
+//		for (String temp : road_list)
+//			System.out.println(temp);
+//		
+//		System.out.println("***********************");
+//		
+//		for (String temp : ship_list)
+//			System.out.println(temp);
+//		
+//		System.out.println("***********************");
+//		
+//		for (String temp : train_list)
+//			System.out.println(temp);
+//		
+//		System.out.println(road_list.size() + "\t" + ship_list.size() + "\t" + train_list.size());
 	}
 
 }
