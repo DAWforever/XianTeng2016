@@ -189,18 +189,15 @@ public class CommonUtil {
 			Url Url = new Url();
 			String seed_url = sheet.getCell(2, i).getContents().trim();
 			String webName = sheet.getCell(0, i).getContents().trim();
-			String type = "政府监管类信息";
 			Url.setLink(seed_url);
 			Url.setWebname(webName);
-			Url.setCategory(type);
 			String content_regex = sheet.getCell(4, i).getContents().trim().replace("\\\\", "\\");
 			String page_regex = sheet.getCell(5, i).getContents().trim().replace("\\\\", "\\");
-			//String isStatic = sheet.getCell(3, i).getContents().trim();
-			//if(isStatic.equals("是")) {
+			String type = sheet.getCell(6, i).getContents().trim();
+			Url.setCategory(type);
 			seed_url_list.add(Url);
 			content_regex_list.add(content_regex);
 			page_regex_list.add(page_regex);
-			//}
 		}
 		map.put("seed_url_list", seed_url_list);
 		map.put("content_regex_list", content_regex_list);
