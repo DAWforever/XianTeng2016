@@ -103,7 +103,7 @@ public class RawHtmlSpider extends BreadthCrawler {
 					    News news = ContentExtractor.getNewsByHtml(page.getHtml());
 						String attachment = docParse.getDocsContent();
 						rawHtml.setAttachment(attachment);
-						rawHtml.setContent(page.getDoc().text()+attachment);
+						rawHtml.setContent(news.getContent()+attachment);
 						rawHtml.setTitle(page.getMetaData("title"));
 						rawHtml.setSource(page.getMetaData("source"));
 						rawHtml.setUrl(page.getUrl());
@@ -128,8 +128,6 @@ public class RawHtmlSpider extends BreadthCrawler {
 		HashMap<String, String> map = new HashMap<String,String>();
 		for(Element element:elements){
 			map.put(element.absUrl("href").trim(), element.text().trim());
-			//System.out.println(element.absUrl("href"));
-			//System.out.println(element.text().trim());
 		}
 		for (CrawlDatum data : next) {
 			data.putMetaData("source", source);
