@@ -16,10 +16,10 @@
 			 jdbc:oracle:thin:@114.212.87.188:1521:orcl
 		</property>
 		<property name="hibernate.connection.username">
-			WQ
+			cqjw_bigdata
 		</property>
 		<property name="hibernate.connection.password">
-		   iipconfig
+		   cqjw_bigdata
 		</property>
 
 		<property name="c3p0.min_size">2</property> <!--在连接池中可用数据库连接的最小数目 -->

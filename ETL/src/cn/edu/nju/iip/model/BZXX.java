@@ -12,26 +12,22 @@ public class BZXX {
 	private String id;
 	//业户id
 	private String corp_Id;
-	//业户id
+	//业户名
 	private String corp_Name;
 	//表彰名称
-	private String title;
+	private String bz_Name;
 	//发布单位
 	private String unit;
 	//录入时间
 	private Date cDate;
-	//录入时间
+	//更新时间
     private Date uDate;
 	//表彰时间
 	private String pDate;
-	//内容
-	private String content;
 	//数据来源
 	private String data_Source;
 	//附件名
 	private String fileName;
-	//类别
-	private String type;
 	//网站名称
     private String webName;
     //正文内容
@@ -41,7 +37,14 @@ public class BZXX {
     //标题
     private String webTitle;
 	
+    
 	
+	public String getBz_Name() {
+		return bz_Name;
+	}
+	public void setBz_Name(String bz_Name) {
+		this.bz_Name = bz_Name;
+	}
 	public String getWebName() {
 		return webName;
 	}
@@ -74,12 +77,6 @@ public class BZXX {
 	public void setCorp_Name(String corp_Name) {
 		this.corp_Name = corp_Name;
 	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
 	public Date getuDate() {
 		return uDate;
 	}
@@ -98,12 +95,6 @@ public class BZXX {
 	public void setpDate(String pDate) {
 		this.pDate = pDate;
 	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
 	public String getId() {
 		return id;
 	}
@@ -115,12 +106,6 @@ public class BZXX {
 	}
 	public void setCorp_Id(String corp_Id) {
 		this.corp_Id = corp_Id;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	public String getUnit() {
 		return unit;

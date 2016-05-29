@@ -14,7 +14,7 @@
 		</id>
 		<property name="corp_Id" column="YHID" type="string" />
 		<property name="corp_Name" column="CORP_NAME" type="string" />
-		<property name="title" column="BZMC" type="string" />
+		<property name="bz_Name" column="BZMC" type="string" />
 		<property name="unit" column="BZDW" type="string" />
 		<property name="cDate" column="CDATE" type="timestamp" />
 		<property name="uDate" column="UDATE" type="timestamp" />

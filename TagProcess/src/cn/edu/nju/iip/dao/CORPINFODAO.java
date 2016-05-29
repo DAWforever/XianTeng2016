@@ -63,7 +63,7 @@ public class CORPINFODAO extends DAO{
 			return corp.getCorp_shortNames();
 		}catch(Exception e) {
 			rollback();
-			logger.error("failed!",e);
+			logger.error("getShortNames error");
 		}
 		return null;
 	}

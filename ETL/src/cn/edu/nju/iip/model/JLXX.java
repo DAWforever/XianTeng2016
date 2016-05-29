@@ -17,8 +17,6 @@ public class JLXX {
 	private String pDate;
 	//跟新入库时间
 	private Date uDate;
-	//内容
-	private String content;
 	//数据来源
 	private String data_Source;
 	//附件名
@@ -113,12 +111,6 @@ public class JLXX {
 	}
 	public void setpDate(String pDate) {
 		this.pDate = pDate;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
 	}
 	public String getData_Source() {
 		return data_Source;

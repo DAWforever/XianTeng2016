@@ -51,7 +51,7 @@ public class CORPINFODAO extends DAO{
 			}
 		}catch(Exception e) {
 			rollback();
-			logger.error("fetchID failed!",e);
+			logger.error("fetchID error!");
 		}
 		return null;
 	}

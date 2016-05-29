@@ -20,6 +20,7 @@ public class TagMain implements Runnable{
 	@Override
 	public void run() {
 		try{
+			CommonUtil.saveAllTagsToRedis();
 			TagProcess.tagProcessMain();
 		}catch(Exception e) {
 			logger.error("TagMain run() failed", e);

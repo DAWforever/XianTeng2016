@@ -97,9 +97,9 @@ public class SearchSpider extends BreadthCrawler {
 				Element sitename = res.select("span.sitename").first();
 				String source = sitename.text();//来源
 				
-				Element posttime = res.select("span.posttime").first();
+				//Element posttime = res.select("span.posttime").first();
 				//Date pdate = CommonUtil.strToDateLong(posttime.attr("title"));
-				
+				rawhtml.setHtml(html);
 				rawhtml.setTitle(title);
 				rawhtml.setUrl(news_url);
 				rawhtml.setContent(nwes_content);
@@ -128,8 +128,8 @@ public class SearchSpider extends BreadthCrawler {
 			logger.info("************360SearchSpider start************");
 			SearchSpider crawler = new SearchSpider("crawl", true);
 			crawler.setThreads(2);
-			crawler.setTopN(5000);
-			crawler.start(2);
+			crawler.setTopN(50000);
+			crawler.start(4);
 			crawler.setRetry(1);
 			bf.saveBloomFilter();
 			logger.info("新增新闻: "+crawler.count);

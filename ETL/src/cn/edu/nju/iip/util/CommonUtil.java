@@ -65,5 +65,14 @@ public class CommonUtil {
 		return fileName;
 	}
 	
+	/**
+	 * 正文无效字符清除如&nbsp
+	 * @param content
+	 * @return
+	 */
+	public static String getCleanContent(String content) {
+		return content.replace((char)160, ' ').replace((char)12288, ' ').replaceAll("\\s+", " ");
+	}
+	
 
 }

@@ -16,6 +16,8 @@ public class TBBZ {
 	private String industry;
 	//文号(*)
 	private String code;
+	//表彰标题
+	private String title;
 	//表彰年度(*)
 	private String year;
 	//发布单位
@@ -42,6 +44,12 @@ public class TBBZ {
   	private String corp_Name;
 	
 	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public String getWebName() {
 		return webName;
 	}

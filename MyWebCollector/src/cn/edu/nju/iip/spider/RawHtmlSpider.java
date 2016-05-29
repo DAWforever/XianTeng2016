@@ -5,13 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import cn.edu.hfut.dmic.contentextractor.ContentExtractor;
 import cn.edu.hfut.dmic.contentextractor.News;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
@@ -123,8 +120,7 @@ public class RawHtmlSpider extends BreadthCrawler {
 		super.afterVisit(page, next);
 		String source = page.getMetaData("source");
 		String type = page.getMetaData("type");
-		Document doc =  page.getDoc();
-		Elements elements = doc.select("a[href]");
+		Elements elements = page.select("a[href]");
 		HashMap<String, String> map = new HashMap<String,String>();
 		for(Element element:elements){
 			map.put(element.absUrl("href").trim(), element.text().trim());

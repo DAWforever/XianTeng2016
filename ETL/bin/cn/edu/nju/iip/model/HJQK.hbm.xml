@@ -24,7 +24,6 @@
 		<property name="pDate" column="PDATE" type="string" />
 		<property name="cdate" column="CDATE" type="timestamp" />
 		<property name="udate" column="UDATE" type="timestamp" />
-		<property name="content" column="CONTENT" type="string" />
 		<property name="data_Source" column="DATA_SOURCE" type="string" />
 		<property name="fileName" column="FILENAME" type="string" />
 		<property name="webContent" column="WEB_CONTENT" type="string" />

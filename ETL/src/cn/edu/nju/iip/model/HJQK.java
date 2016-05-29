@@ -32,8 +32,6 @@ public class HJQK {
 	private Date cdate;
 	// 数据交换入库时间时间
 	private Date udate;
-	//内容
-	private String content;
 	// 来源
 	private String data_Source;
 	//附件名
@@ -91,12 +89,6 @@ public class HJQK {
 	}
 	public void setUdate(Date udate) {
 		this.udate = udate;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
 	}
 	public String getAward_id() {
 		return award_id;

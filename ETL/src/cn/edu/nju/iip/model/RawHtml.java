@@ -20,8 +20,18 @@ public class RawHtml {
 	private String attachment;
 	private String industry;
 	private String unitName;
+	private String html;
+	
+	
 	
 
+	public String getHtml() {
+		return html;
+	}
+
+	public void setHtml(String html) {
+		this.html = html;
+	}
 
 	public String getIndustry() {
 		return industry;
