@@ -124,6 +124,9 @@ public class MyContentExtractor {
 		}catch(Exception e) {
 			pdate = "";
 		}
+		if(pdate!=null) {
+			pdate = pdate.replaceAll("-", "/").replaceAll("年", "/").replaceAll("月", "/").replaceAll("日", "");
+		}
 		return pdate;
 	}
 	
