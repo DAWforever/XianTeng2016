@@ -1,12 +1,12 @@
 package cn.edu.nju.iip.util;
 
 import cn.edu.hfut.dmic.contentextractor.ContentExtractor;
-
-
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.jsoup.Jsoup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 网页正文抽取类
@@ -15,17 +15,50 @@ import org.jsoup.Jsoup;
  */
 public class MyContentExtractor {
 	
+	private static final Logger logger = LoggerFactory.getLogger(MyContentExtractor.class);
+	
 	/**
 	 * 抽取发布时间
 	 * @return
 	 */
 	public static String getPdate(String html) {
-		
+		String pdate = null; 
+		try{
+			pdate = ContentExtractor.getNewsByHtml(html).getTime();
+		}catch(Exception e) {
+			logger.info("getPdate error");
+		}
+		if(pdate==null) {
+			return getMyPdate(html);
+		}
+		else{
+			if(pdate.length()>"2010-07-12".length()) {
+				pdate = pdate.split(" ")[0];
+				pdate = pdate.replaceAll("-", "/");
+				return pdate;
+			}
+			else {
+				return getMyPdate(html);
+//				String[] str = pdate.split("-");
+//				int year = Integer.valueOf(str[0]);
+//				int mon = Integer.valueOf(str[1]);
+//				int day = Integer.valueOf(str[2]);
+//				if(year>2030||year<2000||mon>12||day>31) {
+//					return getMyPdate(html);
+//				}
+//				else {
+//					return pdate;
+//				}
+			}
+		}
+	}
+	
+	public static String getMyPdate(String html) {
 		String content = Jsoup.parse(html).text();
 		
 		String pdate = "";
 		
-		Pattern datePattern = Pattern.compile("(((^[0-9]){1})(20)[0-9]{2}(-|/|-)[0-9]{1,2}(-|-|/)[0-9]{1,2})");			
+		Pattern datePattern = Pattern.compile("((20)[0-9]{2}(-|/|-)[0-9]{1,2}(-|-|/)[0-9]{1,2})");			
 		
 		Matcher match = datePattern.matcher(content);
 		
@@ -90,18 +123,6 @@ public class MyContentExtractor {
 					}
 		}catch(Exception e) {
 			pdate = "";
-		}
-		//如果没提取到时间
-		if(pdate.length() < 5) {
-			try {
-				pdate = ContentExtractor.getNewsByHtml(html).getTime();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		if(pdate!=null) {
-			pdate = pdate.replaceAll("-", "/").replaceAll("年", "/").replaceAll("月", "/").replaceAll("日", "");
 		}
 		return pdate;
 	}
@@ -257,6 +278,11 @@ public class MyContentExtractor {
 		}
 		
 		return type;
+	}
+	
+	public static void main(String[] args) throws IOException {
+		String url = "http://www.hncd.gov.cn/portal/dzzw/zwgg/webinfo/2012/05/1338251542390886.htm";
+		System.out.println(getMyPdate(Jsoup.connect(url).get().html()));
 	}
 
 }
